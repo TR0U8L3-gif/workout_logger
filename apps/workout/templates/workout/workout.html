@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Workout Logger</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all,follow" />
+  </head>
+
+  <body>
+    <header class="header">
+      <nav class="navbar navbar-expand-lg">
+        <!-- <div class="search-panel">
+            <div class="search-inner d-flex align-items-center justify-content-center">
+                <div class="close-btn">Close <i class="fa fa-close"></i></div>
+                <form id="searchForm" action="#">
+                    <div class="form-group">
+                        <input type="search" name="search" placeholder="What are you searching for...">
+                        <button type="submit" class="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div> -->
+        <div
+          class="container-fluid d-flex align-items-center justify-content-between"
+        >
+          <div class="navbar-header">
+            <a href="/dashboard" class="navbar-brand">
+              <div class="brand-text brand-big visible text-uppercase">
+                <strong class="text-primary">Workout </strong
+                ><strong>Logger</strong>
+              </div>
+            </a>
+            <button class="sidebar-toggle">
+              <i class="fa fa-long-arrow-left"></i>
+            </button>
+          </div>
+          <ul class="right-menu list-inline no-margin-bottom">
+            <li class="list-inline-item">
+              <a href="#" class="search-open nav-link"
+                ><i class="icon-magnifying-glass-browser"></i
+              ></a>
+            </li>
+            <li class="list-inline-item logout">
+              <a id="logout" href="/user/logout" class="nav-link"
+                >Logout <i class="icon-logout"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="d-flex align-items-stretch">
+      <nav id="sidebar">
+        <div class="sidebar-header d-flex align-items-center">
+          <div class="title">
+            <h1 class="h5">{{ user.username}}</h1>
+          </div>
+        </div>
+        <span class="heading">Menu</span>
+        <ul class="list-unstyled">
+          <li>
+            <a href="/dashboard"><i class="icon-home"></i> Home</a>
+          </li>
+          <li class="active">
+            <a href="/workout"><i class="fa fa-plus-square"></i> Workout</a>
+          </li>
+          <li>
+            <a href="/workouts"><i class="fa fa-th-list"></i> View All </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="page-content mb-5">
+        <div class="page-header">
+          <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">Workout</h2>
+          </div>
+        </div>
+        <section class="no-padding-bottom">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12 text-light">
+                {% if workout.completed == False %}
+                <!-- End Workout -->
+                <form
+                  id="end-workout-form"
+                  action="/workout/{{ workout.id }}/complete"
+                  method="POST"
+                >
+                  {% csrf_token %}
+                  <!-- End Workout Button -->
+                  <button
+                    id="end-workout"
+                    type="submit"
+                    class="btn btn-primary btn-lg float-right end-workout mb-4 ml-2"
+                  >
+                    End Workout
+                  </button>
+                </form>
+                {% endif %}
+                <!-- Edit Workout Button -->
+                <a
+                  href="/workout/{{ workout.id }}/edit"
+                  class="btn btn-outline-info btn-lg float-right mb-4"
+                  >Edit</a
+                >
+                <!-- Workout Name -->
+                <h2 class="">{{ workout.name}}</h2>
+                <!-- Workout Subtitle -->
+                <small class="text-muted">{{ workout.created_at | date}}</small>
+                <!-- Workout Description -->
+                {% if workout.description %}
+                <p class="mt-5">{{ workout.description}}</p>
+                {% endif %}
+                <!-- Add Exercise -->
+                {% if workout.completed == False %}
+                <div class="card bg-dark add-exercise mb-5 mt-5">
+                  <div class="card-body">
+                    <form
+                      id="add-exercise-form"
+                      action="/workout/{{ workout.id }}/exercise"
+                      method="POST"
+                    >
+                      {% csrf_token %}
+                      <!-- Exercise Errors -->
+                      {% if messages %} {% for message in messages %} {% if message.tags == "workout error" %}
+                      <div
+                        class="alert alert-danger alert-dismissable"
+                        role="alert"
+                      >
+                        <a
+                          href="#"
+                          class="close"
+                          data-dismiss="alert"
+                          aria-label="close"
+                          >&times;</a
+                        >
+                        <strong>Error!</strong> {{ message }}
+                      </div>
+                      {% endif %} {% endfor %} {% endif %}
+                      <!-- Exercise Name -->
+                      <div class="form-group">
+                        <input
+                          id="name"
+                          type="text"
+                          name="name"
+                          required
+                          class="input-material form-control-lg"
+                          placeholder="Exercise Name"
+                        />
+                      </div>
+                      <!-- Exercise Description -->
+                      <div class="form-group">
+                        <input
+                          id="description"
+                          type="text"
+                          name="description"
+                          class="input-material form-control-lg"
+                          placeholder="Exercise Description"
+                        />
+                      </div>
+                      <!-- Exercise Muscle Group -->
+                      <div class="form-group">
+                        <input
+                          id="muscle_group"
+                          type="text"
+                          name="muscle_group"
+                          class="input-material form-control-lg"
+                          placeholder="Muscle Group"
+                        />
+                      </div>
+                      <!-- Add Exercise Button -->
+                      <input
+                        id="add"
+                        type="submit"
+                        value="Add"
+                        class="btn btn-primary btn-lg"
+                      />
+                    </form>
+                  </div>
+                </div>
+                {% endif %}
+                <hr />
+                <!-- Exercises Table -->
+                {% if exercises %}
+                <div id="exercise-wrapper" class="mb-5">
+                  <!-- <h4 class="card-title">Exercise Data</h4> -->
+                  <table class="table table-striped">
+                    <tbody>
+                      {% for exercise in exercises %}
+                      <tr>
+                        <th scope="row">{{ exercise.name }}</th>
+                        <td>{{ exercise.weight|floatformat }} lbs</td>
+                        <td>{{ exercise.repetitions|floatformat}} reps</td>
+
+                        {% if workout.completed == False %}
+                        <td>
+                          <form
+                            id="delete-exercise-form"
+                            action="/workout/{{ workout.id }}/exercise"
+                            method="GET"
+                            class="p-0"
+                          >
+                            {% csrf_token %}
+                            <input
+                              type="hidden"
+                              id="exercise_id"
+                              name="exercise_id"
+                              value="{{ exercise.id }}"
+                            />
+                            <input
+                              type="hidden"
+                              id="workout_id"
+                              name="workout_id"
+                              value="{{ workout.id }}"
+                            />
+                            <button
+                              id="delete-exercise"
+                              type="submit"
+                              class="btn btn-link btn-lg p-0"
+                            >
+                              <i class="fa fa-remove delete-exercise"></i>
+                            </button>
+                          </form>
+                        </td>
+                        {% endif %}
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

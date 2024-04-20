@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Workout Logger</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+          <div class="row">
+            <!-- Logo & Information Panel-->
+            <div class="col-lg-6">
+              <div class="info d-flex align-items-center">
+                <div class="content">
+                  <div class="logo">
+                    <h1 class="display-3">Workout Logger</h1>
+                  </div>
+                  <p>Track your workouts Harder, Better, Faster, Stronger.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Form Panel    -->
+            <div class="col-lg-6 bg-white">
+              <div class="form d-flex align-items-center">
+                <div class="content">
+                  <form id="register-form" action="/user/register" method="POST">
+                    {% csrf_token %}
+                    <!-- Registration Errors -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == "registration error" %}
+                            <div class="alert alert-danger alert-dismissable" role="alert">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Error!</strong> {{ message }}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <!-- Username -->
+                    <div class="form-group">
+                      <input id="username" type="text" name="username" required class="input-material form-control-lg less-dark" placeholder="Username">
+                    </div>
+                    <!-- Email Address -->
+                    <div class="form-group">
+                      <input id="email" type="email" name="email" required class="input-material form-control-lg less-dark" placeholder="Email Address">
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                      <input id="password" type="password" name="password" required class="input-material form-control-lg less-dark" placeholder="Password">
+                    </div>
+                    <!-- Password Confirm -->
+                    <div class="form-group">
+                      <input id="password_confirmation" type="password" name="password_confirmation" required class="input-material form-control-lg less-dark" placeholder="Confirm Password">
+                    </div>
+                    <!-- Register Button -->
+                    <input id="register" type="submit" value="Register" class="btn btn-primary btn-lg">
+                  </form><small>Already have an account? </small><a href="/" class="signup">Login</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
