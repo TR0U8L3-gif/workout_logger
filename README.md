@@ -3,6 +3,8 @@
 ### Packages
 
 py-bycrypt: ```pip install bcrypt```
+bootstrap ```pip install django-bootstrap-v5```
+fontawesomefree ```pip install fontawesomefree```
 
 ### The development server
 
