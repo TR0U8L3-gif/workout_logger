@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages # access django's `messages` module.
-from .models import User, Workout, Exercise, MuscleGroup
+from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from itertools import chain
 
 def login(request):
     """If GET, load login page, if POST, login user."""
@@ -152,11 +153,19 @@ def workout(request, id):
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
 
+        # Getting all exercises for this workout: 
+        ste = StrengthTrainingExercise.objects.filter(workout__id=id)
+        ete = EnduranceTrainingExercise.objects.filter(workout__id=id)
+        be = BalanceExercise.objects.filter(workout__id=id)
+        fe = FlexibilityExercise.objects.filter(workout__id=id)
+        
+        exercises = list(chain(ste, ete, be, fe))
+            
         # Gather any page data:
         data = {
             'user': user,
             'workout': Workout.objects.get(id=id),
-            'exercises': Exercise.objects.filter(workout__id=id).order_by('-updated_at'),
+            'exercises': sorted(exercises, key=lambda x: x.updated_at),
         }
 
         # If get request, load workout page with data:
@@ -210,9 +219,29 @@ def exercise(request, id):
         if request.method == "GET":
 
             # Delete exercise by exercise id (from hidden field):
-            Exercise.objects.get(id=request.GET["exercise_id"]).delete()
+            class_name = request.GET["exercise_class_name"]
+            exercise = None
 
-            return redirect("/workout/" + id)
+            if class_name == "StrengthTrainingExercise":
+                exercise = StrengthTrainingExercise
+            elif class_name == "EnduranceTrainingExercise":
+                exercise = EnduranceTrainingExercise
+            elif class_name == "BalanceExercise":
+                exercise = BalanceExercise
+            elif class_name == "FlexibilityExercise":
+                exercise = FlexibilityExercise
+
+            if exercise is None:
+                # Handle the case when exercise is not found
+                # ...
+                pass
+            else:
+                # Handle the case when exercise is not found
+                # ...
+            
+                exercise.objects.get(id=request.GET["exercise_id"]).delete()
+
+                return redirect("/workout/" + id)
 
         if request.method == "POST":
 
@@ -221,6 +250,9 @@ def exercise(request, id):
             print(request)
             
             # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
+            
+            #TODO: Add muscle group to the form and get it here
+            #TODO: odpowiednie rodzaje exercise
             exercise = {
                 "name": request.POST["name"],
                 "description": request.POST["description"],
@@ -262,12 +294,20 @@ def edit_workout(request, id):
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
-
+        
+        # Getting all exercises for this workout: 
+        ste = StrengthTrainingExercise.objects.filter(workout__id=id)
+        ete = EnduranceTrainingExercise.objects.filter(workout__id=id)
+        be = BalanceExercise.objects.filter(workout__id=id)
+        fe = FlexibilityExercise.objects.filter(workout__id=id)
+        
+        exercises = list(chain(ste, ete, be, fe))
+            
         # Gather any page data:
         data = {
             'user': user,
             'workout': Workout.objects.get(id=id),
-            'exercises': Exercise.objects.filter(workout__id=id),
+            'exercises': sorted(exercises, key=lambda x: x.updated_at),
         }
 
         if request.method == "GET":

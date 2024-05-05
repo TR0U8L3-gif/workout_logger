@@ -138,10 +138,11 @@
                     <tbody>
                       {% for exercise in exercises %}
                       <tr>
-                        <th scope="row">{{ exercise.name }}</th>
-                        <td>{{ exercise.weight|floatformat }} lbs</td>
-                        <td>{{ exercise.repetitions|floatformat}} reps</td>
-
+                      
+                        <th scope="row">{{ exercise.class_name }}</th>
+                        <td >{{ exercise }}</td>
+                        <td >{{ exercise.data }}</td>
+                        
                         {% if workout.completed == False %}
                         <td>
                           <form
@@ -151,6 +152,12 @@
                             class="p-0"
                           >
                             {% csrf_token %}
+                            <input
+                              type="hidden"
+                              id="exercise_class_name"
+                              name="exercise_class_name"
+                              value="{{ exercise.class_name }}"
+                            />
                             <input
                               type="hidden"
                               id="exercise_id"

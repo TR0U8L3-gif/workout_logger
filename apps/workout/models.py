@@ -411,30 +411,60 @@ class Exercise(models.Model):
     """Creates instances of `Exercise`."""
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=150)
-    workout = models.ForeignKey(Workout, on_delete=models.CASCADE, default=None)
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='%(class)s', default=None)
     muscle_group = models.ForeignKey(MuscleGroup, on_delete=models.CASCADE, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ExerciseManager()
     
+    class Meta:
+        ordering = ('name', 'muscle_group')
+        abstract = True
+    
     def __str__(self):
         return self.name
+    
+    def class_name(self):
+        return self.__class__.__name__
 
 class StrengthTrainingExercise(Exercise):
     """Creates instances of `StrengthTrainingExercise`."""
     weight = models.DecimalField(max_digits=6, decimal_places=2)
     repetitions = models.PositiveIntegerField()
+    def __str__(self):
+        return self.name + " Weight: " + str(self.weight) + "kg Repetitions: x" + str(self.repetitions)
+    
+    def data(self):
+        return [self.weight, self.repetitions]
 
 class EnduranceTrainingExercise(Exercise):
     """Creates instances of `EnduranceTrainingExercise`."""
     duration_minutes = models.PositiveIntegerField()
     distance_km = models.DecimalField(max_digits=6, decimal_places=2)
+    
+    def __str__(self): 
+        return self.name + " Duration: " + str(self.duration_minutes) + "m Distance: " + str(self.distance_km) + "km"
+    
+    def data(self):
+        return [self.duration_minutes, self.distance_km]
 
 class BalanceExercise(Exercise):
     """Creates instances of `BalanceExercise`."""
     difficulty_level = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.name + " Difficulty: " + self.difficulty_level
+    
+    def data(self):
+        return [self.difficulty_level]
 
 class FlexibilityExercise(Exercise):
     """Creates instances of `FlexibilityExercise`."""
     stretch_type = models.CharField(max_length=50) 
+    
+    def __str__(self):
+        return self.name + " Stretch type: " + self.stretch_type
+    
+    def data(self):
+        return [self.stretch_type]
 
