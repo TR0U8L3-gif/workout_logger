@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages # access django's `messages` module.
 from .models import *
+from .views_helper import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
 
@@ -148,7 +149,10 @@ def new_workout(request):
 
 def workout(request, id):
     """View workout."""
-
+    exercise_type = request.GET.get('exercise_type')
+    
+    print("exercise_type: ", exercise_type)
+    
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
@@ -166,6 +170,9 @@ def workout(request, id):
             'user': user,
             'workout': Workout.objects.get(id=id),
             'exercises': sorted(exercises, key=lambda x: x.updated_at),
+            'muscle_groups': MuscleGroup.objects.get(user = user),
+            'exercise_types': get_exercises_types(),
+            'current_exercise': exercise_type,
         }
 
         # If get request, load workout page with data:

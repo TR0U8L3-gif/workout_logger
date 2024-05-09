@@ -371,6 +371,59 @@ class ExerciseManager(models.Manager):
             }
             return errors
 
+class MuscleGroupManager(models.Manager):
+    """Additional instance method functions for `Exercise`"""
+
+    def new(self, **kwargs):
+        """
+        Validates and registers a new muscle group.
+
+        Parameters:
+        - `self` - Instance to whom this method belongs.
+        - `**kwargs` - Dictionary object of muscle group values from controller to be validated.
+
+        Validations:
+        - Name - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        """
+
+        # Create empty errors list, which we'll return to generate django messages back in our controller:
+        errors = []
+
+        #-----------#
+        #-- NAME: --#
+        #-----------#
+        # Check if name is less than 2 characters:
+        if len(kwargs["name"]) < 2:
+            errors.append('Name is required and must be at least 2 characters long.')
+
+        #------------------#
+        #-- DESCRIPTION: --#
+        #------------------#
+        # Check if size is less than 1:
+        if kwargs["size"] < 1:
+            errors.append('Size is required and must be at least 1.')
+
+        # Check for validation errors:
+        # If none, create muscle group and return created muscle group:
+        if len(errors) == 0:
+            # Create new validated muscle group:
+            validated_muscle_group = {
+                "muscle_group": MuscleGroup(name=kwargs["name"], size=kwargs["size"], user=kwargs["user"]),
+            }
+            # Save new Muscle Group:
+            validated_muscle_group["muscle_group"].save()
+            # Return created Muscle Group:
+            return validated_muscle_group
+        else:
+            # Else, if validation fails, print errors to console and return errors object:
+            for error in errors:
+                print("Validation Error: ", error)
+            # Prepare data for controller:
+            errors = {
+                "errors": errors,
+            }
+            return errors
+
 class User(models.Model):
     """Creates instances of `User`."""
     username = models.CharField(max_length=20)
@@ -401,8 +454,10 @@ class MuscleGroup(models.Model):
     """Creates instances of `MuscleGroup`."""
     name = models.CharField(max_length=50)
     size = models.IntegerField(default=10)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = MuscleGroupManager()
     
     def __str__(self):
         return self.name
@@ -413,6 +468,7 @@ class Exercise(models.Model):
     description = models.CharField(max_length=150)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='%(class)s', default=None)
     muscle_group = models.ForeignKey(MuscleGroup, on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ExerciseManager()
@@ -432,10 +488,19 @@ class StrengthTrainingExercise(Exercise):
     weight = models.DecimalField(max_digits=6, decimal_places=2)
     repetitions = models.PositiveIntegerField()
     def __str__(self):
-        return self.name + " Weight: " + str(self.weight) + "kg Repetitions: x" + str(self.repetitions)
+        return self.name
     
     def data(self):
-        return [self.weight, self.repetitions]
+        return [
+            "Weight: " + str(self.weight) + "kg",
+            "Repetitions: x" + str(self.repetitions)
+        ]
+    
+    def form_data(self):
+        return [
+            FormData("weight", "number", "Weight (kg)"),
+            FormData("repetitions", "number", "Repetitions")
+        ]
 
 class EnduranceTrainingExercise(Exercise):
     """Creates instances of `EnduranceTrainingExercise`."""
@@ -443,28 +508,53 @@ class EnduranceTrainingExercise(Exercise):
     distance_km = models.DecimalField(max_digits=6, decimal_places=2)
     
     def __str__(self): 
-        return self.name + " Duration: " + str(self.duration_minutes) + "m Distance: " + str(self.distance_km) + "km"
+        return self.name
     
     def data(self):
-        return [self.duration_minutes, self.distance_km]
+        return [
+            "Duration: " + str(self.duration_minutes) + "m",
+            "Distance: " + str(self.distance_km) + "km"
+            ]
 
+    def form_data(self):
+        return [
+            FormData("duration_minutes", "number", "Duration (minutes)"),
+            FormData("distance_km", "number", "Distance (km)")
+        ]
+        
 class BalanceExercise(Exercise):
     """Creates instances of `BalanceExercise`."""
     difficulty_level = models.CharField(max_length=50)
     
     def __str__(self):
-        return self.name + " Difficulty: " + self.difficulty_level
+        return self.name
     
     def data(self):
-        return [self.difficulty_level]
+        return ["Difficulty: " + self.difficulty_level]
+    
+    def form_data(self):
+        return [
+            FormData("difficulty_level", "text", "Difficulty Level")
+        ]
 
 class FlexibilityExercise(Exercise):
     """Creates instances of `FlexibilityExercise`."""
     stretch_type = models.CharField(max_length=50) 
     
     def __str__(self):
-        return self.name + " Stretch type: " + self.stretch_type
+        return self.name
     
     def data(self):
-        return [self.stretch_type]
+        return ["Stretch type: "+ self.stretch_type]
+    
+    def form_data(self):
+        return [
+            FormData("stretch_type", "text", "Stretch Type")
+        ]
 
+class FormData: 
+    def __init__(self, name, type, placeholder):
+        self.name = name
+        self.type = type
+        self.placeholder = placeholder
+        
