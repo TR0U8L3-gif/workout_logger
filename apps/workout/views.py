@@ -150,8 +150,8 @@ def new_workout(request):
 def workout(request, id):
     """View workout."""
     exercise_type = request.GET.get('exercise_type')
-    
-    print("exercise_type: ", exercise_type)
+    if(exercise_type == None):
+        exercise_type = StrengthTrainingExercise().class_name
     
     try:
         # Check for valid session:
@@ -227,25 +227,16 @@ def exercise(request, id):
 
             # Delete exercise by exercise id (from hidden field):
             class_name = request.GET["exercise_class_name"]
-            exercise = None
-
-            if class_name == "StrengthTrainingExercise":
-                exercise = StrengthTrainingExercise
-            elif class_name == "EnduranceTrainingExercise":
-                exercise = EnduranceTrainingExercise
-            elif class_name == "BalanceExercise":
-                exercise = BalanceExercise
-            elif class_name == "FlexibilityExercise":
-                exercise = FlexibilityExercise
-
+            
+            exercise = get_exercise_by_class_name(class_name)
+            
             if exercise is None:
                 # Handle the case when exercise is not found
                 # ...
-                pass
+                return redirect("/workout/" + id)
             else:
                 # Handle the case when exercise is not found
                 # ...
-            
                 exercise.objects.get(id=request.GET["exercise_id"]).delete()
 
                 return redirect("/workout/" + id)

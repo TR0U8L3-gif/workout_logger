@@ -144,6 +144,12 @@
                       <!-- Exercise Data -->
                       {% for exercise_type in exercise_types %}
                         {% if exercise_type.class_name == current_exercise %}
+                          <input
+                          type="hidden"
+                          id="exercise_class_name"
+                          name="exercise_class_name"
+                          value="{{ exercise_type.class_name }}"
+                          />
                           {% for field in exercise_type.form_data %}
                             <div class="form-group">
                               <input
@@ -158,6 +164,7 @@
                         {% endif %}
                       {% endfor %}
                       <!-- Add Exercise Button -->
+                      {% csrf_token %}
                       <input
                         id="add"
                         type="submit"
