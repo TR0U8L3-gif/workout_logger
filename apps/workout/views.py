@@ -74,6 +74,7 @@ def logout(request):
 
     # Return to index page:
     return redirect("/")
+
 # dashboard
 def dashboard(request):
     """Loads dashboard."""
@@ -99,42 +100,6 @@ def dashboard(request):
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         return redirect("/")
 
-def workout(request, id):
-    """View workout."""
-    exercise_type = request.GET.get('exercise_type')
-    if(exercise_type == None):
-        exercise_type = StrengthTrainingExercise().class_name
-    
-    try:
-        # Check for valid session:
-        user = User.objects.get(id=request.session["user_id"])
-
-        # Getting all exercises for this workout: 
-        ste = StrengthTrainingExercise.objects.filter(workout__id=id)
-        ete = EnduranceTrainingExercise.objects.filter(workout__id=id)
-        be = BalanceExercise.objects.filter(workout__id=id)
-        fe = FlexibilityExercise.objects.filter(workout__id=id)
-        
-        exercises = list(chain(ste, ete, be, fe))
-            
-        # Gather any page data:
-        data = {
-            'user': user,
-            'workout': Workout.objects.get(id=id),
-            'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
-            'muscle_groups': MuscleGroup.objects.filter(user = user),
-            'exercise_types': get_exercises_types(),
-            'current_exercise': exercise_type,
-        }
-
-        # If get request, load workout page with data:
-        return render(request, "workout/workout.html", data)
-
-    except (KeyError, User.DoesNotExist) as err:
-        # If existing session not found:
-        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
-        return redirect("/")
-
 def view_all(request):
     """Loads `View All` Workouts page."""
 
@@ -151,7 +116,7 @@ def view_all(request):
         
         page = request.GET.get('page', 1)
         data_list = list(chain(workout_list, ste_list,ete_list, be_list, fe_list, mg_list))
-        paginator = Paginator(sorted(data_list, key=lambda x: x.updated_at, reverse=True), 6)
+        paginator = Paginator(sorted(data_list, key=lambda x: x.updated_at, reverse=True), 12)
         try:
             data = paginator.page(page)
         except PageNotAnInteger:
@@ -174,7 +139,7 @@ def view_all(request):
         return redirect("/")
 
 # muscle group
-def muscle_group(request):
+def muscle_group(request, id):
     """ """
 
 def edit_muscle_group(request, id):
@@ -182,12 +147,14 @@ def edit_muscle_group(request, id):
 
 def new_muscle_group(request):
     """If GET, load new muscle group; if POST, submit new muscle group."""
-
+    if request.method == "GET":
+        return render(request, "workout/add_muscle_group.html")
+    
 def delete_muscle_group(request, id):
     """Delete a muscle group."""
 
 # exercise
-def exercise(request):
+def exercise(request, id):
     """show concrete exercise"""
 
 def edit_exercise(request, id):
@@ -217,7 +184,7 @@ def new_exercise(request):
         
         if request.method == "GET":
             # If get request, load `add workout` page with data:
-            return render(request, "exercise/add_exercise.html", data)
+            return render(request, "workout/add_exercise.html", data)
 
         if request.method == "POST":
             id = request.POST["workout_id"]
@@ -298,7 +265,44 @@ def delete_exercise(request, id):
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         return redirect("/")
+
 # workout 
+def workout(request, id):
+    """View workout."""
+    exercise_type = request.GET.get('exercise_type')
+    if(exercise_type == None):
+        exercise_type = StrengthTrainingExercise().class_name
+    
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+
+        # Getting all exercises for this workout: 
+        ste = StrengthTrainingExercise.objects.filter(workout__id=id)
+        ete = EnduranceTrainingExercise.objects.filter(workout__id=id)
+        be = BalanceExercise.objects.filter(workout__id=id)
+        fe = FlexibilityExercise.objects.filter(workout__id=id)
+        
+        exercises = list(chain(ste, ete, be, fe))
+            
+        # Gather any page data:
+        data = {
+            'user': user,
+            'workout': Workout.objects.get(id=id),
+            'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
+            'muscle_groups': MuscleGroup.objects.filter(user = user),
+            'exercise_types': get_exercises_types(),
+            'current_exercise': exercise_type,
+        }
+
+        # If get request, load workout page with data:
+        return render(request, "workout/workout.html", data)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        return redirect("/")
+
 def edit_workout(request, id):
     """If GET, load edit workout; if POST, update workout."""
 
