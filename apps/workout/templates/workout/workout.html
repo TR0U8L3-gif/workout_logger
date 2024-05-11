@@ -19,7 +19,7 @@
     {% include 'workout/header.html' %}
     <div class="d-flex align-items-stretch">
       {% include 'workout/sidebar.html' %}
-      <div class="page-content mb-5">
+      <div class="page-content mb-4">
         <div class="page-header">
           <div class="container-fluid">
             <h2 class="h5 no-margin-bottom">Workout</h2>
@@ -70,7 +70,7 @@
                 {% endif %}
                 <!-- Add Exercise -->
                 {% if workout.completed == False %}
-                <div  class="card bg-dark add-exercise mb-5 mt-2" >
+                <div  class="card bg-dark add-exercise mb-4 mt-2" >
                   <div class="card-body">
                     <form action="/workout/{{workout.id}}" class="form-group">
                       <div class="row">
@@ -95,7 +95,7 @@
                     </form>
                   </div>
                 </div>
-                <div class="card bg-dark add-exercise mb-5 mt-2">
+                <div class="card bg-dark add-exercise mb-4 mt-2">
                   <div class="card-body">
                     <form
                       id="add-exercise-form"
@@ -178,7 +178,7 @@
                 <hr  class="mb-0"/>
                 <!-- Exercises Table -->
                 {% if exercises %}
-                <div id="exercise-wrapper" class="mb-5">
+                <div id="exercise-wrapper" class="mb-4">
                   <!-- <h4 class="card-title">Exercise Data</h4> -->
                   <table class="table text-light">
                     <tbody>

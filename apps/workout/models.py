@@ -449,6 +449,9 @@ class Workout(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def class_name(self):
+        return self.__class__.__name__
 
 class MuscleGroup(models.Model):
     """Creates instances of `MuscleGroup`."""
@@ -461,6 +464,9 @@ class MuscleGroup(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def class_name(self):
+        return self.__class__.__name__
 
 class Exercise(models.Model):
     """Creates instances of `Exercise`."""

@@ -5,6 +5,7 @@ from .views_helper import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
 
+# authentication
 def login(request):
     """If GET, load login page, if POST, login user."""
 
@@ -73,7 +74,7 @@ def logout(request):
 
     # Return to index page:
     return redirect("/")
-
+# dashboard
 def dashboard(request):
     """Loads dashboard."""
 
@@ -92,55 +93,6 @@ def dashboard(request):
 
         # Load dashboard with data:
         return render(request, "workout/dashboard.html", data)
-
-    except (KeyError, User.DoesNotExist) as err:
-        # If existing session not found:
-        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
-        return redirect("/")
-
-def new_workout(request):
-    """If GET, load new workout; if POST, submit new workout."""
-
-    try:
-        # Check for valid session:
-        user = User.objects.get(id=request.session["user_id"])
-
-        # Gather any page data:
-        data = {
-            'user': user,
-        }
-
-        if request.method == "GET":
-            # If get request, load `add workout` page with data:
-            return render(request, "workout/add_workout.html", data)
-
-        if request.method == "POST":
-            # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
-            workout = {
-                "name": request.POST["name"],
-                "description": request.POST["description"],
-                "user": user
-            }
-
-            # Begin validation of a new workout:
-            validated = Workout.objects.new(**workout)
-
-            # If errors, reload register page with errors:
-            try:
-                if len(validated["errors"]) > 0:
-                    print("Workout could not be created.")
-                    # Loop through errors and Generate Django Message for each with custom level and tag:
-                    for error in validated["errors"]:
-                        messages.error(request, error, extra_tags='workout')
-                    # Reload workout page:
-                    return redirect("/workout")
-            except KeyError:
-                # If validation successful, load newly created workout page:
-                print("Workout passed validation and has been created.")
-
-                id = str(validated['workout'].id)
-                # Load workout:
-                return redirect('/workout/' + id)
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
@@ -183,39 +135,46 @@ def workout(request, id):
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         return redirect("/")
 
-def all_workouts(request):
+def view_all(request):
     """Loads `View All` Workouts page."""
 
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
 
-        workout_list = Workout.objects.filter(user__id=user.id).order_by('-id')
-
+        workout_list = Workout.objects.filter(user__id=user.id)
+        ste_list = StrengthTrainingExercise.objects.filter(user__id=user.id)
+        ete_list = EnduranceTrainingExercise.objects.filter(user__id=user.id)
+        be_list = BalanceExercise.objects.filter(user__id=user.id)
+        fe_list = FlexibilityExercise.objects.filter(user__id=user.id)
+        mg_list = MuscleGroup.objects.filter(user__id=user.id)
+        
         page = request.GET.get('page', 1)
+        data_list = list(chain(workout_list, ste_list,ete_list, be_list, fe_list, mg_list))
 
-        paginator = Paginator(workout_list, 12)
+        paginator = Paginator(sorted(data_list, key=lambda x: x.updated_at), 12)
         try:
-            workouts = paginator.page(page)
+            data = paginator.page(page)
         except PageNotAnInteger:
-            workouts = paginator.page(1)
+            data = paginator.page(1)
         except EmptyPage:
-            workouts = paginator.page(paginator.num_pages)
+            data = paginator.page(paginator.num_pages)
 
         # Gather any page data:
         data = {
             'user': user,
-            'workouts': workouts,
+            'data': data,
         }
 
         # Load dashboard with data:
-        return render(request, "workout/all_workouts.html", data)
+        return render(request, "workout/view_all.html", data)
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         return redirect("/")
 
+# exercise
 def exercise(request, id):
     """If POST, submit new exercise, if GET delete exercise."""
 
@@ -286,6 +245,15 @@ def exercise(request, id):
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         return redirect("/")
 
+def edit_exercise(request, id):
+    """If GET, load edit exercise; if POST, update exercise."""
+def new_exercise(request):
+    """If GET, load new exercise; if POST, submit new exercise."""
+
+def delete_exercise(request, id):
+    """Delete a exercise."""
+
+# workout 
 def edit_workout(request, id):
     """If GET, load edit workout; if POST, update workout."""
 
@@ -339,6 +307,55 @@ def edit_workout(request, id):
 
                 # Load workout:
                 return redirect("/workout/" + str(data['workout'].id))
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        return redirect("/")
+
+def new_workout(request):
+    """If GET, load new workout; if POST, submit new workout."""
+
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+
+        # Gather any page data:
+        data = {
+            'user': user,
+        }
+
+        if request.method == "GET":
+            # If get request, load `add workout` page with data:
+            return render(request, "workout/add_workout.html", data)
+
+        if request.method == "POST":
+            # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
+            workout = {
+                "name": request.POST["name"],
+                "description": request.POST["description"],
+                "user": user
+            }
+
+            # Begin validation of a new workout:
+            validated = Workout.objects.new(**workout)
+
+            # If errors, reload register page with errors:
+            try:
+                if len(validated["errors"]) > 0:
+                    print("Workout could not be created.")
+                    # Loop through errors and Generate Django Message for each with custom level and tag:
+                    for error in validated["errors"]:
+                        messages.error(request, error, extra_tags='workout')
+                    # Reload workout page:
+                    return redirect("/workout")
+            except KeyError:
+                # If validation successful, load newly created workout page:
+                print("Workout passed validation and has been created.")
+
+                id = str(validated['workout'].id)
+                # Load workout:
+                return redirect('/workout/' + id)
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
