@@ -121,7 +121,7 @@ def workout(request, id):
         data = {
             'user': user,
             'workout': Workout.objects.get(id=id),
-            'exercises': sorted(exercises, key=lambda x: x.updated_at),
+            'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
             'muscle_groups': MuscleGroup.objects.get(user = user),
             'exercise_types': get_exercises_types(),
             'current_exercise': exercise_type,
@@ -151,8 +151,7 @@ def view_all(request):
         
         page = request.GET.get('page', 1)
         data_list = list(chain(workout_list, ste_list,ete_list, be_list, fe_list, mg_list))
-
-        paginator = Paginator(sorted(data_list, key=lambda x: x.updated_at), 12)
+        paginator = Paginator(sorted(data_list, key=lambda x: x.updated_at, reverse=True), 6)
         try:
             data = paginator.page(page)
         except PageNotAnInteger:
@@ -273,7 +272,7 @@ def edit_workout(request, id):
         data = {
             'user': user,
             'workout': Workout.objects.get(id=id),
-            'exercises': sorted(exercises, key=lambda x: x.updated_at),
+            'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
         }
 
         if request.method == "GET":

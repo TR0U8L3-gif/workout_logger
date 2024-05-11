@@ -536,7 +536,7 @@ class BalanceExercise(Exercise):
         return self.name
     
     def data(self):
-        return ["Difficulty: " + self.difficulty_level]
+        return ["Difficulty: " + self.difficulty_level, '']
     
     def form_data(self):
         return [
@@ -551,7 +551,7 @@ class FlexibilityExercise(Exercise):
         return self.name
     
     def data(self):
-        return ["Stretch type: "+ self.stretch_type]
+        return ["Stretch type: "+ self.stretch_type, '']
     
     def form_data(self):
         return [

@@ -20,7 +20,7 @@
     {% include 'workout/header.html' %}
     <div class="d-flex align-items-stretch">
       {% include 'workout/sidebar.html' %}
-      <div class="page-content mb-5">
+      <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
             <h2 class="h5 no-margin-bottom">History</h2>
@@ -30,113 +30,125 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-lg-12 pb-4">
-                <!-- Perform django if check here for workouts-->
+                <!-- Perform django if check here for data-->
                 {% if data %}
-
-                <!-- All Workout Table -->
-                <table
-                  class="table table-sm all-workouts-table mb-4 text-white"
-                >
-                  <thead>
-                    <tr>
-                      <th scope="col">Updated:</th>
-                      <th scope="col">Created:</th>
-                      <th scope="col">Type:</th>
-                      <th scope="col">Description:</th>
-                      <th scope="col">Actions:</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for info in data %}
-                    <tr>
-                      <td scope="row">{{info.updated_at | date}}</td>
-                      <td scope="row">{{info.created_at | date}}</td>
-                      <td scope="row">{{info.class_name}}</td>
-                      <td><em>{{info.name}}</em></td>
-                      <td>
-                        {% if info.class_name == 'Workout' %}
+                <div class="card bg-dark add-exercise mb-4 mt-2">
+                  <div class="card-body">
+                    <!-- All Workout Table -->
+                    <table
+                      class="table table-dark table-striped all-data-table text-light"
+                    >
+                      <thead>
+                        <tr>
+                          <th scope="col">Updated:</th>
+                          <th scope="col">Created:</th>
+                          <th scope="col">Type:</th>
+                          <th scope="col">Description:</th>
+                          <th scope="col">Actions:</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for info in data %}
+                        <tr>
+                          <td scope="row">{{info.updated_at | date}}</td>
+                          <td scope="row">{{info.created_at | date}}</td>
+                          <td scope="row">{{info.class_name}}</td>
+                          <td><em>{{info.name}}</em></td>
+                          <td>
+                            {% if info.class_name == 'Workout' %}
                             <form action="/workout/{{info.id}}">
-                                <button class="btn btn-link btn-sm view-link" type="submit">
-                                    <i class="fa fa-eye"></i> View
-                                </button>
+                              <button
+                                class="btn btn-link btn-sm view-link"
+                                type="submit"
+                              >
+                                <i class="fa fa-eye"></i> View
+                              </button>
                             </form>
-                        {% elif info.class_name == 'MuscleGroup' %}
+                            {% elif info.class_name == 'MuscleGroup' %}
                             <form action="/muscle_group/{{info.id}}">
-                                <button class="btn btn-link btn-sm view-link" type="submit">
-                                    <i class="fa fa-eye"></i> View
-                                </button>
+                              <button
+                                class="btn btn-link btn-sm view-link"
+                                type="submit"
+                              >
+                                <i class="fa fa-eye"></i> View
+                              </button>
                             </form>
-                        {% else %}
+                            {% else %}
                             <form action="/exercise/{{info.id}}">
-                                <input
+                              <input
                                 type="hidden"
                                 id="exercise_type"
                                 name="exercise_type"
                                 value="{{info.class_name}}"
-                                />
-                                <button class="btn btn-link btn-sm view-link" type="submit">
-                                    <i class="fa fa-eye"></i> View
-                                </button>
+                              />
+                              <button
+                                class="btn btn-link btn-sm view-link"
+                                type="submit"
+                              >
+                                <i class="fa fa-eye"></i> View
+                              </button>
                             </form>
-                        {% endif %}
-                      </td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
+                            {% endif %}
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
                 <!-- Workout Pagination -->
-                {% if workouts.has_other_pages %}
-                <ul class="pagination pagination-lg justify-content-end mb-4">
-                  {% if workouts.has_previous %}
+                {% if data.has_other_pages %}
+                <ul class="pagination pagination-lg justify-content-end mb-2">
+                  {% if data.has_previous %}
                   <li class="page-item">
                     <a
-                      href="?page={{ workouts.previous_page_number }}"
-                      class="page-link bg-dark text-white"
+                      href="?page={{ data.previous_page_number }}"
+                      class="page-link bg-dark text-white py-2 px-3"
                       >Previous</a
                     >
                   </li>
                   {% else %}
                   <li class="page-item disabled">
-                    <span class="page-link end-nav bg-dark">Previous</span>
+                    <span class="page-link end-nav bg-dark py-2 px-3"
+                      >Previous</span
+                    >
                   </li>
-                  {% endif %} 
-                    {% for i in workouts.paginator.page_range %} 
-                        {% if workouts.number == i %}
-                        <li class="page-item active">
-                            <span class="page-link"
-                            >{{ i }} <span class="sr-only">(current)</span></span
-                            >
-                        </li>
-                        {% else %}
-                        <li class="page-item">
-                            <a href="?page={{ i }}" class="page-link bg-dark text-white"
-                            >{{ i }}</a
-                            >
-                        </li>
-                        {% endif %} 
-                    {% endfor %} 
-                  {% if workouts.has_next %}
+                  {% endif %} {% for i in data.paginator.page_range %} 
+                  {% if data.number == i %}
+                  <li class="page-item active">
+                    <span class="page-link py-2 px-3"
+                      >{{ i }} <span class="sr-only">(current)</span></span
+                    >
+                  </li>
+                  {% else %}
                   <li class="page-item">
                     <a
-                      href="?page={{ workouts.next_page_number }}"
-                      class="page-link bg-dark text-white"
+                      href="?page={{ i }}"
+                      class="page-link bg-dark text-white py-2 px-3"
+                      >{{ i }}</a
+                    >
+                  </li>
+                  {% endif %} {% endfor %} {% if data.has_next %}
+                  <li class="page-item">
+                    <a
+                      href="?page={{ data.next_page_number }}"
+                      class="page-link bg-dark text-white py-2 px-3"
                       >Next</a
                     >
                   </li>
                   {% else %}
                   <li class="page-item disabled">
-                    <span class="page-link bg-dark">Next</span>
+                    <span class="page-link bg-dark py-2 px-3">Next</span>
                   </li>
                   {% endif %}
                 </ul>
                 {% endif %} {% else %}
                 <div class="card text-white bg-dark mb-4">
                   <div class="card-body">
-                    <h4 class="card-title">You don't have any workouts yet.</h4>
+                    <h4 class="card-title">You don't have any data yet.</h4>
                     <h6 class="card-subtitle mb-2 text-muted">
                       There's no time like the present! 💪
                     </h6>
-                    <p class="card-text">{{workout.description}}</p>
                     <a href="/workout" class="card-link">Start a Workout</a>
                   </div>
                 </div>

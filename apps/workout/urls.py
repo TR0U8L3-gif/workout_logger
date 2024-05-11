@@ -19,5 +19,5 @@ urlpatterns = [
     re_path(r'^workout/(?P<id>\d*)/complete$', views.complete_workout), # complete workout
     re_path(r'^workout/(?P<id>\d*)/edit$', views.edit_workout), # edit workout
     re_path(r'^workout/(?P<id>\d*)/delete$', views.delete_workout), # delete workout
-    re_path(r'^workouts$', views.view_all), # get all workouts
+    re_path(r'^history$', views.view_all), # get all workouts
 ]

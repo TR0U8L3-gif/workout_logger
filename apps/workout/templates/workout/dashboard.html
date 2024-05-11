@@ -1,73 +1,82 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Workout Logger</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all,follow" />
     {% load static %}
-    <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.min.css' %}">
-    <link rel="stylesheet" href="../../static/workout/styles.css">
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
+    <link
+      rel="stylesheet"
+      href="{% static 'fontawesomefree/css/all.min.css' %}"
+    />
+    <link rel="stylesheet" href="../../static/workout/styles.css" />
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+  </head>
 
-<body>
+  <body>
     {% include 'workout/header.html' %}
 
-    <div class="d-flex align-items-stretch ">
-        {% include 'workout/sidebar.html' %}
-        <div class="page-content mb-5">
-            <div class="page-header">
-                <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">Dashboard</h2>
-                </div>
-            </div>
-            <section class="no-padding-bottom">
-                <div class="container-fluid mb-4">
-                    <div class="row">
-                      <!-- Perform django if check here for recent_workouts-->
-                      {% if recent_workouts %}
-                        <!-- If so, repeat cards here: -->
-                        {% for workout in recent_workouts %}
-                        <div class="col-lg-12 pb-4">
-                              <div class="card text-white bg-dark mb-2">
-                                  <div class="card-body">
-                                      <h4 class="card-title">{{workout.name}}</h4>
-                                      <h6 class="card-subtitle mb-2 text-muted">{{workout.created_at | date }}</h6>
-                                      <p class="card-text">{{workout.description}}
-                                      </p>
-                                      <a href="/workout/{{workout.id}}" class="card-link">View</a>
-                                      <p class="card-text">
-                                        <small class="text-muted">Updated {{workout.updated_at | timesince}} ago</small>
-                                      </p>
-                                  </div>
-                              </div>
-                        </div>
-                        {% endfor %}
-                        <p class="text-white text-muted ml-3 mr-3 block"><i class="fa fa-info-circle"></i> <em>Most recent 4 workouts displayed only. <a href="/workouts" class="card-link">View All</a></em></p>
-                        {% else %}
-                        <div class="col-lg-12 pb-4">
-                          <div class="card text-white bg-dark mb-4">
-                              <div class="card-body">
-                                  <h4 class="card-title">You don't have any workouts yet.</h4>
-                                  <h6 class="card-subtitle mb-2 text-muted">There's no time like the present! 💪</h6>
-                                  <p class="card-text">{{workout.description}}
-                                  </p>
-                                  <a href="/workout" class="card-link">Start a Workout</a>
-                              </div>
-                          </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-            </section>
+    <div class="d-flex align-items-stretch">
+      {% include 'workout/sidebar.html' %}
+      <div class="page-content">
+        <div class="page-header">
+          <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">Dashboard</h2>
+          </div>
         </div>
+        <section class="no-padding-bottom">
+          <div class="container-fluid mb-4">
+            <div class="row">
+              <!-- Perform django if check here for recent_workouts-->
+              {% if recent_workouts %}
+              <!-- If so, repeat cards here: -->
+              {% for workout in recent_workouts %}
+              <div class="col-lg-12 pb-4">
+                <div class="card text-white bg-dark mb-2">
+                  <div class="card-body">
+                    <h4 class="card-title">{{workout.name}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                      {{workout.created_at | date }}
+                    </h6>
+                    <p class="card-text">{{workout.description}}</p>
+                    <a href="/workout/{{workout.id}}" class="card-link">View</a>
+                    <p class="card-text">
+                      <small class="text-muted"
+                        >Updated {{workout.updated_at | timesince}} ago</small
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              <p class="text-white text-muted ml-3 mr-3 block">
+                <i class="fa fa-info-circle"></i>
+                <em
+                  >Most recent 4 workouts displayed only.
+                  <a href="/workout" class="card-link">View All</a></em
+                >
+              </p>
+              {% else %}
+              <div class="col-lg-12 pb-4">
+                <div class="card text-white bg-dark mb-4">
+                  <div class="card-body">
+                    <h4 class="card-title">You don't have any workouts yet.</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                      There's no time like the present! 💪
+                    </h6>
+                    <p class="card-text">{{workout.description}}</p>
+                    <a href="/workout" class="card-link">Start a Workout</a>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
