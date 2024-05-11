@@ -318,10 +318,11 @@ def new_workout(request):
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
-
+        workouts = Workout.objects.filter(user__id=user.id).order_by('-updated_at')
         # Gather any page data:
         data = {
             'user': user,
+            'workouts': workouts,
         }
 
         if request.method == "GET":

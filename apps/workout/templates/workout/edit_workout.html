@@ -40,20 +40,27 @@
                                     <strong>Error!</strong> {{ message }}
                                 </div>
                                 {% endif %} {% endfor %} {% endif %}
-                                <!-- Workout Name -->
-                                <div class="form-group">
-                                    <input id="name" type="text" name="name" required class="input-material form-control-lg" placeholder="Name" value="{{ workout.name }}">
+                                <div class="card bg-dark add-exercise mb-4 mt-2">
+                                    <div class="card-body text-light">
+                                        <!-- Workout Name -->
+                                        <div class="form-group">
+                                            <input id="name" type="text" name="name" required class="input-material form-control-lg" placeholder="Name" value="{{ workout.name }}">
+                                        </div>
+                                        <!-- Workout Description -->
+                                        <div class="form-group">
+                                            <input id="description" type="text" name="description" class="input-material form-control-lg" placeholder="Description" value="{{ workout.description }}">
+                                        </div>
+                                        <!-- Update Workout Button -->
+                                        <input id="update" type="submit" value="Update" class="btn btn-success btn-lg mr-2 my-4">
+                                        <!-- Back Button -->
+                                        <a href="/workout/{{ workout.id }}"
+                                        style="text-decoration: none" class="btn btn-outline-secondary btn-lg mr-2">Back</a>
+                                        <!-- Delete Button -->
+                                        <a id="delete-workout" href="/workout/{{ workout.id }}/delete" 
+                                        style="text-decoration: none"
+                                        class="btn btn-outline-danger btn-lg">Delete</a>
+                                    </div>
                                 </div>
-                                <!-- Workout Description -->
-                                <div class="form-group">
-                                    <input id="description" type="text" name="description" class="input-material form-control-lg" placeholder="Description" value="{{ workout.description }}">
-                                </div>
-                                <!-- Update Workout Button -->
-                                <input id="update" type="submit" value="Update" class="btn btn-success btn-lg mr-2">
-                                <!-- Back Button -->
-                                <a href="/workout/{{ workout.id }}" class="btn btn-outline-secondary btn-lg mr-2">Back</a>
-                                <!-- Delete Button -->
-                                <a id="delete-workout" href="/workout/{{ workout.id }}/delete" class="btn btn-outline-danger btn-lg">Delete</a>
                             </form>
                         </div>
                     </div>

@@ -74,15 +74,37 @@
               </form>
             </div>
           </div>
-          <h4 class="ms-4 mt-2 text-light">All Workouts</h4>
-          <div class="card bg-dark add-exercise mb-4 mt-2">
-            <div class="card-body text-light">
-              <h4 class="card-title">You don't have any workout yet.</h4>
-              <h6 class="card-subtitle mb-2 text-muted">
-                There's no time like the present! 💪
-              </h6>
+          <h4 class="ms-4 mt-2 mb-4 text-light">All Workouts </h4>
+            {% if workouts %}
+              {% for workout in workouts %}
+              <div class="col-lg-12 pb-4">
+                <div class="card text-white bg-dark mb-2">
+                  <div class="card-body">
+                    <h4 class="card-title">{{workout.name}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                      {{workout.created_at | date }}
+                    </h6>
+                    <p class="card-text">{{workout.description}}</p>
+                    <a href="/workout/{{workout.id}}" class="card-link">View</a>
+                    <p class="card-text">
+                      <small class="text-muted"
+                        >Updated {{workout.updated_at | timesince}} ago</small
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+            <div class="card bg-dark add-exercise mb-4 mt-2">
+              <div class="card-body text-light">
+                <h4 class="card-title">You don't have any workout yet.</h4>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  There's no time like the present! 💪
+                </h6>
+              </div>
             </div>
-          </div>
+            {% endif %}
         </section>
       </div>
     </div>
