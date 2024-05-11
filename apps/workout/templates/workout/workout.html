@@ -209,7 +209,6 @@
                 <div class="card bg-dark add-exercise mb-4 mt-2">
                   <div class="card-body">
                     <div id="exercise-wrapper" class="mb-4">
-                      <!-- <h4 class="card-title">Exercise Data</h4> -->
                       <hr  class="mb-0"/>
                       <table class="table table-dark table-striped text-light">
                       </thead>
@@ -232,7 +231,7 @@
                             <td class="align-middle text-center">
                               <form
                                 id="delete-exercise-form"
-                                action="/workout/{{ workout.id }}/exercise"
+                                action="/exercise/{{ exercise.id }}/delete"
                                 method="GET"
                                 class="p-0"
                               >
@@ -245,15 +244,9 @@
                                 />
                                 <input
                                   type="hidden"
-                                  id="exercise_id"
-                                  name="exercise_id"
-                                  value="{{ exercise.id }}"
-                                />
-                                <input
-                                  type="hidden"
-                                  id="workout_id"
-                                  name="workout_id"
-                                  value="{{ workout.id }}"
+                                  id="redirect_url"
+                                  name="redirect_url"
+                                  value="/workout/{{ workout.id }}"
                                 />
                                 <button
                                   id="delete-exercise"

@@ -187,75 +187,8 @@ def delete_muscle_group(request, id):
     """Delete a muscle group."""
 
 # exercise
-def exercise(request, id):
-    """If POST, submit new exercise, if GET delete exercise."""
-
-    try:
-        # Check for valid session:
-        user = User.objects.get(id=request.session["user_id"])
-
-        if request.method == "GET":
-
-            # Delete exercise by exercise id (from hidden field):
-            class_name = request.GET["exercise_class_name"]
-            
-            exercise = get_exercise_by_class_name(class_name)
-            
-            if exercise is None:
-                # Handle the case when exercise is not found
-                # ...
-                return redirect("/workout/" + id)
-            else:
-                # Handle the case when exercise is not found
-                # ...
-                exercise.objects.get(id=request.GET["exercise_id"]).delete()
-
-                return redirect("/workout/" + id)
-
-        if request.method == "POST":
-
-            print("exercise IS POST")
-            
-            print(request)
-            
-            # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
-            
-            #TODO: Add muscle group to the form and get it here
-            #TODO: odpowiednie rodzaje exercise
-            exercise = {
-                "name": request.POST["name"],
-                "description": request.POST["description"],
-                "workout": Workout.objects.get(id=id),
-                "muscle_group": MuscleGroup.objects.get(id=1),
-            }
-
-
-            print(exercise)
-            # Begin validation of a new exercise:
-            validated = Exercise.objects.new(**exercise)
-
-            # If errors, reload register page with errors:
-            try:
-                if len(validated["errors"]) > 0:
-                    print("Exercise could not be created.")
-
-                    # Loop through errors and Generate Django Message for each with custom level and tag:
-                    for error in validated["errors"]:
-                        messages.error(request, error, extra_tags='exercise')
-
-                    # Reload workout page:
-                    return redirect("/workout/" + id)
-            except KeyError:
-                # If validation successful, load newly created workout page:
-                print("Exercise passed validation and has been created.")
-
-                # Reload workout:
-                return redirect('/workout/' + id)
-
-    except (KeyError, User.DoesNotExist) as err:
-        # If existing session not found:
-        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
-        return redirect("/")
+def exercise(request):
+    """show concrete exercise"""
 
 def edit_exercise(request, id):
     """If GET, load edit exercise; if POST, update exercise."""
@@ -343,7 +276,28 @@ def new_exercise(request):
     
 def delete_exercise(request, id):
     """Delete a exercise."""
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
 
+        print(request)
+        
+        class_name = request.GET["exercise_class_name"]
+        redirect_url = request.GET["redirect_url"]
+            
+        exercise = get_exercise_by_class_name(class_name)
+        
+        # Delete workout:
+        exercise.objects.get(id=id).delete()
+        
+        # Load dashboard:
+        return redirect(redirect_url)
+
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        return redirect("/")
 # workout 
 def edit_workout(request, id):
     """If GET, load edit workout; if POST, update workout."""
