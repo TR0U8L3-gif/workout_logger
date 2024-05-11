@@ -15,9 +15,10 @@ urlpatterns = [
     re_path(r'^dashboard$', views.dashboard), # get dashboard
     re_path(r'^workout$', views.new_workout), # get workout page / add workout
     re_path(r'^workout/(?P<id>\d*)$', views.workout), # get workout / update workout# get workout / update workout
-    re_path(r'^workout/(?P<id>\d*)/exercise$', views.exercise), # add exercise
+    re_path(r'^workout/(?P<id>\d*)/exercise$', views.new_exercise), # add exercise
     re_path(r'^workout/(?P<id>\d*)/complete$', views.complete_workout), # complete workout
     re_path(r'^workout/(?P<id>\d*)/edit$', views.edit_workout), # edit workout
     re_path(r'^workout/(?P<id>\d*)/delete$', views.delete_workout), # delete workout
+    re_path(r'^exercise$', views.new_exercise), 
     re_path(r'^history$', views.view_all), # get all workouts
 ]

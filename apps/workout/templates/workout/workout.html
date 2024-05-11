@@ -36,18 +36,17 @@
                 <!-- Workout Description -->
                 {% if workout.description %}
                 <h5 class="mt-2">{{ workout.description}}</h5>
-                <div class="row mt-4">
+                <div class="row my-4">
                   <div class="col-auto text-left"><!-- Add appropriate column classes here -->
                     <!-- Edit Workout Button -->
                     <a
                       href="/workout/{{ workout.id }}/edit"
                       style="text-decoration: none"
-                      class="btn btn-primary btn-lg end-workout mb-4"
+                      class="btn btn-primary btn-lg end-workout"
                       >Edit</a
                     >
                   </div>
                   <div class="col-auto text-left"><!-- Add appropriate column classes here -->
-                    {% if workout.completed == False %}
                     <!-- End Workout -->
                     <form 
                       id="end-workout-form"
@@ -56,15 +55,25 @@
                     >
                       {% csrf_token %}
                       <!-- End Workout Button -->
+                      {% if workout.completed == False %}
                       <button
                         id="end-workout"
                         type="submit"
-                        class="btn btn-outline-info btn-lg mb-4 ml-2"
+                        class="btn btn-outline-info btn-lg"
                       >
                         End Workout
                       </button>
+                      {% else %}
+                      <button
+                        id="end-workout"
+                        type="submit"
+                        class="btn btn-primary btn-lg end-workout"
+                        >
+                        <b>Continue Workout </b>
+                      </button>
+                      {% endif %}
                     </form>
-                    {% endif %}
+                    
                   </div>
                 </div>
                 {% endif %}
@@ -99,26 +108,29 @@
                   <div class="card-body">
                     <form
                       id="add-exercise-form"
-                      action="/workout/{{ workout.id }}/exercise"
+                      action="/exercise"
                       method="POST"
                     >
                       {% csrf_token %}
                       <!-- Exercise Errors -->
-                      {% if messages %} {% for message in messages %} {% if message.tags == "workout error" %}
+                      {% if messages %} {% for message in messages %}
+                      {% if message.tags == 'exercise error'%}
                       <div
                         class="alert alert-danger alert-dismissable"
                         role="alert"
                       >
-                        <a
-                          href="#"
-                          class="close"
-                          data-dismiss="alert"
-                          aria-label="close"
-                          >&times;</a
-                        >
                         <strong>Error!</strong> {{ message }}
                       </div>
                       {% endif %} {% endfor %} {% endif %}
+                      
+                      <!-- Workout Id -->
+                      <input
+                          type="hidden"
+                          id="workout_id"
+                          name="workout_id"
+                          value="{{ workout.id }}"
+                          />
+
                       <!-- Exercise Name -->
                       <div class="form-group">
                         <input
@@ -146,8 +158,8 @@
                         {% if exercise_type.class_name == current_exercise %}
                           <input
                           type="hidden"
-                          id="exercise_class_name"
-                          name="exercise_class_name"
+                          id="exercise_type"
+                          name="exercise_type"
                           value="{{ exercise_type.class_name }}"
                           />
                           {% for field in exercise_type.form_data %}
@@ -156,6 +168,7 @@
                                 id="{{ field.name }}"
                                 type="{{ field.type }}"
                                 name="{{ field.name }}"
+                                required
                                 class="input-material form-control-lg"
                                 placeholder="{{ field.placeholder }}"
                               />
@@ -163,6 +176,22 @@
                           {% endfor %}
                         {% endif %}
                       {% endfor %}
+
+                      <div class="row mt-2 opacity-50">
+                        <div class="col-auto ">
+                        <select name="muscle_group" id="exercise_type" class="bg-dark input-material form-control-lg text-light">
+                          {% for muscle_group in muscle_groups %}
+                            <option value={{muscle_group.id}}>{{muscle_group}}</option>
+                          {% endfor %}
+                        </select>
+                        </div>
+                        <div class="col-auto p-0">
+                          <a href="/musclegroup"
+                          style="text-decoration: none"
+                          class="btn btn-primary btn-lg end-workout">Add Muscle Group</a>
+                        </div>
+                      </div>
+
                       <!-- Add Exercise Button -->
                       {% csrf_token %}
                       <input

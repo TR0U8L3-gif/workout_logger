@@ -355,10 +355,11 @@ class ExerciseManager(models.Manager):
         if len(errors) == 0:
             # Create new validated exercise:
             validated_exercise = {
-                "exercise": Exercise(name=kwargs["name"], description=kwargs["description"], muscle_group=kwargs["muscle_group"], workout=kwargs["workout"]),
+                "name": kwargs["name"],
+                "description": kwargs["description"],
+                "workout": kwargs["workout"],
+                "muscle_group": kwargs["muscle_group"],
             }
-            # Save new Workout:
-            validated_exercise["exercise"].save()
             # Return created Workout:
             return validated_exercise
         else:
@@ -371,6 +372,269 @@ class ExerciseManager(models.Manager):
             }
             return errors
 
+    class Meta:
+        abstract = True
+
+class StrengthTrainingExerciseManager(ExerciseManager):
+    """Additional instance method functions for `StrengthTrainingExercise`"""
+    
+    def new_exercise(self, **kwargs):
+        """
+        Validates and registers a new strength training exercise.
+
+        Parameters:
+        - `self` - Instance to whom this method belongs.
+        - `**kwargs` - Dictionary object of strength training exercise values from controller to be validated.
+
+        Validations:
+        - Name - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        - Description - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        - Weight - Required; No fewer than 1; decimal number only
+        - Repetitions - Required; No fewer than 1; integer number only
+        """
+        validated_exercise = super().new(**kwargs)
+        
+        # Create empty errors list, which we'll return to generate django messages back in our controller:
+        errors = []
+
+        
+        if "errors" in validated_exercise:
+            errors = validated_exercise["errors"]
+
+        #---------------#
+        #-- REQUIRED: --#
+        #---------------#
+        # Check if all required fields are present:
+        if not kwargs['weight'] or not kwargs['repetitions']:
+            errors.append('All required fields are mandatory.')
+        else:
+
+            #------------#
+            #-- WEIGHT: --#
+            #------------#
+            # Check if weight is less than 1:
+            if int(kwargs["weight"]) < 1:
+                errors.append('Weight is required and must be at least 1.')
+
+            #-------------------#
+            #-- REPETITIONS: --#
+            #-------------------#
+            # Check if repetitions is less than 1:
+            if int(kwargs["repetitions"]) < 1:
+                errors.append('Repetitions is required and must be at least 1.')
+
+        # Check for validation errors:
+        # If none, create strength training exercise and return created strength training exercise:  
+
+        if len(errors) == 0:
+            # Create new validated exercise:
+            st_exercise = {
+                "exercise" : StrengthTrainingExercise(name=validated_exercise["name"], description=validated_exercise["description"], workout=validated_exercise["workout"], muscle_group=validated_exercise["muscle_group"], user=kwargs["user"], weight=kwargs["weight"], repetitions=kwargs["repetitions"]),
+            }
+            # save 
+            st_exercise["exercise"].save()
+            # Return created Workout:
+            return st_exercise
+        else:
+            # Else, if validation fails, print errors to console and return errors object:
+            for error in errors:
+                print("Validation Error: ", error)
+            # Prepare data for controller:
+            errors = {
+                "errors": errors,
+            }
+            return errors
+
+class EnduranceTrainingExerciseManager(ExerciseManager):
+    """Additional instance method functions for `EnduranceTrainingExercise`"""
+    
+    def new_exercise(self, **kwargs):
+        """
+        Validates and registers a new endurance training exercise.
+
+        Parameters:
+        - `self` - Instance to whom this method belongs.
+        - `**kwargs` - Dictionary object of endurance training exercise values from controller to be validated.
+
+        Validations:
+        - Name - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        - Description - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        - Duration - Required; No fewer than 1; integer number only
+        - Distance - Required; No fewer than 1; decimal number only
+        """
+        validated_exercise = super().new(**kwargs)
+        
+        # Create empty errors list, which we'll return to generate django messages back in our controller:
+        errors = []
+
+        if "errors" in validated_exercise:
+            errors = validated_exercise["errors"]
+            
+        #---------------#
+        #-- REQUIRED: --#
+        #---------------#
+        # Check if all required fields are present:
+        if not kwargs['duration_minutes'] or not kwargs['distance_km']:
+            errors.append('All required fields are mandatory.')
+        else:
+
+            #------------------#
+            #-- DURATION: --#
+            #------------------#
+            # Check if duration is less than 1:
+            if int(kwargs["duration_minutes"]) < 1:
+                errors.append('Duration is required and must be at least 1.')
+
+            #------------------#
+            #-- DISTANCE: --#
+            #------------------#
+            # Check if distance is less than 1:
+            if int(kwargs["distance_km"]) < 1:
+                errors.append('Distance is required and must be at least 1.')
+
+        # Check for validation errors:
+        # If none, create endurance training exercise and return created endurance training exercise:  
+
+        if len(errors) == 0:
+            # Create new validated exercise:
+            et_exercise = {
+                "exercise" : EnduranceTrainingExercise(name=kwargs["name"], description=kwargs["description"], workout=kwargs["workout"], muscle_group=kwargs["muscle_group"], user=kwargs["user"], duration_minutes=kwargs["duration_minutes"], distance_km=kwargs["distance_km"]),
+            }
+            # save 
+            et_exercise["exercise"].save()
+            # Return created Workout
+            return et_exercise
+        else:
+            # Else, if validation fails, print errors to console and return errors object:
+            for error in errors:
+                print("Validation Error: ", error)
+            # Prepare data for controller:
+            errors = {
+                "errors": errors,
+            }
+            return errors
+      
+class BalanceExerciseManager(ExerciseManager):
+    """Additional instance method functions for `BalanceExercise`"""
+    
+    def new_exercise(self, **kwargs):
+        """
+        Validates and registers a new balance exercise.
+
+        Parameters:
+        - `self` - Instance to whom this method belongs.
+        - `**kwargs` - Dictionary object of balance exercise values from controller to be validated.
+
+        Validations:
+        - Name - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        - Description - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        - Difficulty Level - Required; No fewer than 1; letters, basic characters, numbers only
+        """
+        validated_exercise = super().new(**kwargs)
+        
+        # Create empty errors list, which we'll return to generate django messages back in our controller:
+        errors = []
+
+        if "errors" in validated_exercise:
+            errors = validated_exercise["errors"]
+            
+        #---------------#
+        #-- REQUIRED: --#
+        #---------------#
+        # Check if all required fields are present:
+        if not kwargs['difficulty_level']:
+            errors.append('All required fields are mandatory.')
+        else:
+            #------------------#
+            #-- DIFFICULTY LEVEL: --#
+            #------------------#
+            # Check if difficulty level is less than 1:
+            if len(kwargs["difficulty_level"]) < 1:
+                errors.append('Difficulty level is required and must be at least 1.')
+
+        # Check for validation errors:
+        # If none, create balance exercise and return created balance exercise:  
+
+        if len(errors) == 0:
+            # Create new validated exercise:
+            b_exercise = {
+                "exercise" : BalanceExercise(name=kwargs["name"], description=kwargs["description"], workout=kwargs["workout"], muscle_group=kwargs["muscle_group"], user=kwargs["user"], difficulty_level=kwargs["difficulty_level"]),
+            }
+            # save 
+            b_exercise["exercise"].save()
+            # Return created Workout
+            return b_exercise
+        else:
+            # Else, if validation fails, print errors to console and return errors object:
+            for error in errors:
+                print("Validation Error: ", error)
+            # Prepare data for controller:
+            errors = {
+                "errors": errors,
+            }
+            return errors
+
+class FlexibilityExerciseManager(ExerciseManager):
+    """Additional instance method functions for `FlexibilityExercise`"""
+    
+    def new_exercise(self, **kwargs):
+        """
+        Validates and registers a new flexibility exercise.
+
+        Parameters:
+        - `self` - Instance to whom this method belongs.
+        - `**kwargs` - Dictionary object of flexibility exercise values from controller to be validated.
+
+        Validations:
+        - Name - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        - Description - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        - Stretch Type - Required; No fewer than 1; letters, basic characters, numbers only
+        """
+        validated_exercise = super().new(**kwargs)
+        
+        # Create empty errors list, which we'll return to generate django messages back in our controller:
+        errors = []
+
+        if "errors" in validated_exercise:
+            errors = validated_exercise["errors"]
+            
+        #---------------#
+        #-- REQUIRED: --#
+        #---------------#
+        # Check if all required fields are present:
+        if not kwargs['stretch_type']:
+            errors.append('All required fields are mandatory.')
+        else:
+            #------------------#
+            #-- STRETCH TYPE: --#
+            #------------------#
+            # Check if stretch type is less than 1:
+            if len(kwargs["stretch_type"]) < 1:
+                errors.append('Stretch type is required and must be at least 1.')
+
+        # Check for validation errors:
+        # If none, create flexibility exercise and return created flexibility exercise:  
+
+        if len(errors) == 0:
+            # Create new validated exercise:
+            f_exercise = {
+                "exercise" : FlexibilityExercise(name=kwargs["name"], description=kwargs["description"], workout=kwargs["workout"], muscle_group=kwargs["muscle_group"], user=kwargs["user"], stretch_type=kwargs["stretch_type"]),
+            }
+            
+            # save 
+            f_exercise["exercise"].save()
+            # Return created Workout
+            return f_exercise
+        else:
+            # Else, if validation fails, print errors to console and return errors object:
+            for error in errors:
+                print("Validation Error: ", error)
+            # Prepare data for controller:
+            errors = {
+                "errors": errors,
+            }
+            return errors
+     
 class MuscleGroupManager(models.Manager):
     """Additional instance method functions for `Exercise`"""
 
@@ -493,6 +757,7 @@ class StrengthTrainingExercise(Exercise):
     """Creates instances of `StrengthTrainingExercise`."""
     weight = models.DecimalField(max_digits=6, decimal_places=2)
     repetitions = models.PositiveIntegerField()
+    objects = StrengthTrainingExerciseManager()
     def __str__(self):
         return self.name
     
@@ -512,6 +777,7 @@ class EnduranceTrainingExercise(Exercise):
     """Creates instances of `EnduranceTrainingExercise`."""
     duration_minutes = models.PositiveIntegerField()
     distance_km = models.DecimalField(max_digits=6, decimal_places=2)
+    objects = EnduranceTrainingExerciseManager()
     
     def __str__(self): 
         return self.name
@@ -531,6 +797,7 @@ class EnduranceTrainingExercise(Exercise):
 class BalanceExercise(Exercise):
     """Creates instances of `BalanceExercise`."""
     difficulty_level = models.CharField(max_length=50)
+    objects = BalanceExerciseManager()
     
     def __str__(self):
         return self.name
@@ -546,6 +813,7 @@ class BalanceExercise(Exercise):
 class FlexibilityExercise(Exercise):
     """Creates instances of `FlexibilityExercise`."""
     stretch_type = models.CharField(max_length=50) 
+    objects = FlexibilityExerciseManager()
     
     def __str__(self):
         return self.name
@@ -563,4 +831,3 @@ class FormData:
         self.name = name
         self.type = type
         self.placeholder = placeholder
-        
