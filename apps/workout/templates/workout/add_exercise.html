@@ -16,6 +16,97 @@
   </head>
 
   <body>
-    <h1>Add Exercise</h1>
+    {% include 'workout/header.html' %}
+
+    <div class="d-flex align-items-stretch">
+      {% include 'workout/sidebar.html' %}
+      <div class="page-content">
+        <div class="page-header">
+          <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">Exercise</h2>
+          </div>
+        </div>
+        <section class="no-padding-bottom">
+          <h4 class="ms-4 mt-2 text-light">Add Exercise</h4>
+          <div class="card bg-dark add-exercise mb-4 mt-2">
+            <div class="card-body">
+              <form id="workout-form" action="/workout" method="POST">
+                {% csrf_token %}
+                <!-- Workout Errors -->
+                {% if messages %}
+                  {% for message in messages %}
+                    {% if message.tags == "workout error" %}
+                      <div class="alert alert-danger alert-dismissable" role="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> {{ message }}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+                <!-- Workout Name -->
+                <div class="form-group">
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    required
+                    class="input-material form-control-lg"
+                    placeholder="Name"
+                  />
+                </div>
+                <!-- Workout Description -->
+                <div class="form-group">
+                  <input
+                    id="description"
+                    type="text"
+                    name="description"
+                    class="input-material form-control-lg"
+                    placeholder="Description"
+                  />
+                </div>
+                {% csrf_token %}
+                <input
+                  id="add"
+                  type="submit"
+                  value="Add"
+                  class="btn btn-primary btn-lg mt-3"
+                />
+              </form>
+            </div>
+          </div>
+          <h4 class="ms-4 mt-2 mb-4 text-light">All Exercises</h4>
+            {% if workouts %}
+              {% for workout in workouts %}
+              <div class="col-lg-12 pb-4">
+                <div class="card text-white bg-dark mb-2">
+                  <div class="card-body">
+                    <h4 class="card-title">{{workout.name}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                      {{workout.created_at | date }}
+                    </h6>
+                    <p class="card-text">{{workout.description}}</p>
+                    <a href="/workout/{{workout.id}}" class="card-link">View</a>
+                    <p class="card-text">
+                      <small class="text-muted"
+                        >Updated {{workout.updated_at | timesince}} ago</small
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+            <div class="card bg-dark add-exercise mb-4 mt-2">
+              <div class="card-body text-light">
+                <h4 class="card-title">You don't have any exercises yet.</h4>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  There's no time like the present! 💪
+                </h6>
+              </div>
+            </div>
+            {% endif %}
+        </section>
+      </div>
+    </div>
   </body>
 </html>
