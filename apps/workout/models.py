@@ -688,6 +688,56 @@ class MuscleGroupManager(models.Manager):
             }
             return errors
 
+    def update(self, **kwargs):
+        """
+        Validates and updates a muscle group.
+
+        Parameters:
+        - `self` - Instance to whom this method belongs.
+        - `**kwargs` - Dictionary object of muscle group values from controller to be validated.
+
+        Validations:
+        - Name - Required; No fewer than 2 characters; letters, basic characters, numbers only
+        """
+
+        # Create empty errors list, which we'll return to generate django messages back in our controller:
+        errors = []
+
+        #-----------#
+        #-- NAME: --#
+        #-----------#
+        # Check if name is less than 2 characters:
+        if len(kwargs["name"]) < 2:
+            errors.append('Name is required and must be at least 2 characters long.')
+
+        #------------------#
+        #-- DESCRIPTION: --#
+        #------------------#
+        # Check if size is less than 1:
+        if int(kwargs["size"]) < 1:
+            errors.append('Size is required and must be at least 1.')
+
+        # Check for validation errors:
+        # If none, create muscle group and return created muscle group:
+        if len(errors) == 0:
+            # Update muscle group:
+            muscle_group = MuscleGroup.objects.filter(id=kwargs['muscle_group_id']).update(name=kwargs['name'], size=kwargs["size"], user=kwargs["user"])
+
+            # Return updated Muscle Group:
+            updated_muscle_group = {
+                "updated_muscle_group": muscle_group
+            }
+            return updated_muscle_group
+        else:
+            # Else, if validation fails, print errors to console and return errors object:
+            for error in errors:
+                print("Validation Error: ", error)
+            # Prepare data for controller:
+            errors = {
+                "errors": errors,
+            }
+            return errors
+
 class User(models.Model):
     """Creates instances of `User`."""
     username = models.CharField(max_length=20)

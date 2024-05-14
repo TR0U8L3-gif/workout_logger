@@ -140,10 +140,66 @@ def view_all(request):
 
 # muscle group
 def muscle_group(request, id):
-    """ """
+    """View muscle group."""
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+        
+        muscle_group = MuscleGroup.objects.get(id=id)
+            
+        # Gather any page data:
+        data = {
+            'user': user,
+            'muscle_group': muscle_group,
+        }
+
+        # If get request, load workout page with data:
+        return render(request, "workout/muscle_group.html", data)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        return redirect("/")
 
 def edit_muscle_group(request, id):
-    """If GET, load edit muscle group; if POST, update muscle group."""
+    """if POST, update muscle group."""
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+
+        if request.method == "POST":
+            # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
+            muscle_group = {
+                "muscle_group_id": id,
+                "name": request.POST["name"],
+                "size": request.POST["size"],
+                "user": user
+            }
+
+            # Begin validation of a updated muscle_group:
+            validated = MuscleGroup.objects.update(**muscle_group)
+
+            # If errors, reload register page with errors:
+            try:
+                if len(validated["errors"]) > 0:
+                    print("Muscle group could not be created.")
+                    # Loop through errors and Generate Django Message for each with custom level and tag:
+                    for error in validated["errors"]:
+                        messages.error(request, error, extra_tags='muscle_group')
+                    # Reload workout page:
+                    return redirect("/musclegroup")
+            except KeyError:
+                # If validation successful, load newly created workout page:
+                print("Muscle group passed validation and has been created.")
+
+                id = str(validated['updated_muscle_group'].id)
+                # Load workout:
+                return redirect('/musclegroup/' + id)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        return redirect("/")
 
 def new_muscle_group(request):
     """If GET, load new muscle group; if POST, submit new muscle group."""
@@ -196,6 +252,21 @@ def new_muscle_group(request):
     
 def delete_muscle_group(request, id):
     """Delete a muscle group."""
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+
+        # Delete muscle group:
+        MuscleGroup.objects.get(id=id).delete()
+
+        # Load muscle group:
+        return redirect('/musclegroup')
+
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        return redirect("/")
 
 # exercise
 def exercise(request, id):
@@ -291,18 +362,11 @@ def delete_exercise(request, id):
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
 
-        print(request)
-        
-        class_name = request.GET["exercise_class_name"]
-        redirect_url = request.GET["redirect_url"]
-            
-        exercise = get_exercise_by_class_name(class_name)
-        
         # Delete workout:
         exercise.objects.get(id=id).delete()
         
         # Load dashboard:
-        return redirect(redirect_url)
+        return redirect('/dashboard')
 
 
     except (KeyError, User.DoesNotExist) as err:
