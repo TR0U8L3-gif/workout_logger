@@ -664,7 +664,7 @@ class MuscleGroupManager(models.Manager):
         #-- DESCRIPTION: --#
         #------------------#
         # Check if size is less than 1:
-        if kwargs["size"] < 1:
+        if int(kwargs["size"]) < 1:
             errors.append('Size is required and must be at least 1.')
 
         # Check for validation errors:

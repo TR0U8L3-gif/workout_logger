@@ -147,8 +147,52 @@ def edit_muscle_group(request, id):
 
 def new_muscle_group(request):
     """If GET, load new muscle group; if POST, submit new muscle group."""
-    if request.method == "GET":
-        return render(request, "workout/add_muscle_group.html")
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+        muscle_groups = MuscleGroup.objects.filter(user__id=user.id).order_by('-updated_at')
+        # Gather any page data:
+        data = {
+            'user': user,
+            'muscle_groups': muscle_groups,
+        }
+
+        if request.method == "GET":
+            # If get request, load `add muscle_group` page with data:
+            return render(request, "workout/add_muscle_group.html", data)
+
+        if request.method == "POST":
+            # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
+            muscle_group = {
+                "name": request.POST["name"],
+                "size": request.POST["size"],
+                "user": user
+            }
+
+            # Begin validation of a new muscle_group:
+            validated = MuscleGroup.objects.new(**muscle_group)
+
+            # If errors, reload register page with errors:
+            try:
+                if len(validated["errors"]) > 0:
+                    print("Muscle group could not be created.")
+                    # Loop through errors and Generate Django Message for each with custom level and tag:
+                    for error in validated["errors"]:
+                        messages.error(request, error, extra_tags='muscle_group')
+                    # Reload workout page:
+                    return redirect("/musclegroup")
+            except KeyError:
+                # If validation successful, load newly created workout page:
+                print("Muscle group passed validation and has been created.")
+
+                id = str(validated['muscle_group'].id)
+                # Load workout:
+                return redirect('/musclegroup/' + id)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        return redirect("/")
     
 def delete_muscle_group(request, id):
     """Delete a muscle group."""

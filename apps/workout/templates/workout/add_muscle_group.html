@@ -30,20 +30,19 @@
           <h4 class="ms-4 mt-2 text-light">Add Muscle Group</h4>
           <div class="card bg-dark add-exercise mb-4 mt-2">
             <div class="card-body">
-              <form id="workout-form" action="/workout" method="POST">
+              <form id="muscle_group-form" action="/musclegroup" method="POST">
                 {% csrf_token %}
-                <!-- Workout Errors -->
+                <!-- Muscle Group Errors -->
                 {% if messages %}
                   {% for message in messages %}
-                    {% if message.tags == "workout error" %}
+                    {% if message.tags == "muscle_group error" %}
                       <div class="alert alert-danger alert-dismissable" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Error!</strong> {{ message }}
                       </div>
                     {% endif %}
                   {% endfor %}
                 {% endif %}
-                <!-- Workout Name -->
+                <!-- Muscle Group Name -->
                 <div class="form-group">
                   <input
                     id="name"
@@ -54,14 +53,14 @@
                     placeholder="Name"
                   />
                 </div>
-                <!-- Workout Description -->
+                <!-- Muscle Group Size -->
                 <div class="form-group">
                   <input
-                    id="description"
-                    type="text"
-                    name="description"
+                    id="size"
+                    type="number"
+                    name="size"
                     class="input-material form-control-lg"
-                    placeholder="Description"
+                    placeholder="Size (cm)"
                   />
                 </div>
                 {% csrf_token %}
@@ -75,20 +74,19 @@
             </div>
           </div>
           <h4 class="ms-4 mt-2 mb-4 text-light">All Muscle Groups</h4>
-            {% if workouts %}
-              {% for workout in workouts %}
+            {% if muscle_groups %}
+              {% for muscle_group in muscle_groups %}
               <div class="col-lg-12 pb-4">
                 <div class="card text-white bg-dark mb-2">
                   <div class="card-body">
-                    <h4 class="card-title">{{workout.name}}</h4>
+                    <h4 class="card-title">{{muscle_group.name}} ({{muscle_group.size}} cm)</h4>
                     <h6 class="card-subtitle mb-2 text-muted">
-                      {{workout.created_at | date }}
+                      {{muscle_group.created_at | date }}
                     </h6>
-                    <p class="card-text">{{workout.description}}</p>
-                    <a href="/workout/{{workout.id}}" class="card-link">View</a>
+                    <a href="/musclegroup/{{muscle_group.id}}" class="card-link">View</a>
                     <p class="card-text">
                       <small class="text-muted"
-                        >Updated {{workout.updated_at | timesince}} ago</small
+                        >Updated {{muscle_group.updated_at | timesince}} ago</small
                       >
                     </p>
                   </div>
