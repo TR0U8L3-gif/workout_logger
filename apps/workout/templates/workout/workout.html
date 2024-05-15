@@ -178,28 +178,39 @@
                       {% endfor %}
 
                       <div class="row mt-2 opacity-50">
-                        <div class="col-auto ">
-                        <select name="muscle_group" id="exercise_type" class="bg-dark input-material form-control-lg text-light">
-                          {% for muscle_group in muscle_groups %}
-                            <option value={{muscle_group.id}}>{{muscle_group}}</option>
-                          {% endfor %}
-                        </select>
-                        </div>
-                        <div class="col-auto p-0">
-                          <a href="/musclegroup"
-                          style="text-decoration: none"
-                          class="btn btn-primary btn-lg end-workout">Add Muscle Group</a>
-                        </div>
+                        {% if muscle_groups %}
+                          <div class="col-auto ">
+                          <select name="muscle_group" id="exercise_type" class="bg-dark input-material form-control-lg text-light">
+                            {% for muscle_group in muscle_groups %}
+                              <option value={{muscle_group.id}}>{{muscle_group}}</option>
+                            {% endfor %}
+                          </select>
+                          </div>
+                          <div class="col-auto p-0">
+                            <a href="/musclegroup"
+                            style="text-decoration: none"
+                            class="btn btn-primary btn-lg end-workout">Add Muscle Group</a>
+                          </div>
+                        {% else %}
+                          <div class="col-auto p-0 ms-3">
+                            <a href="/musclegroup"
+                            style="text-decoration: none"
+                            class="btn btn-primary btn-lg end-workout">Add Muscle Group</a>
+                          </div>
+                        {% endif %}
+                        
                       </div>
 
                       <!-- Add Exercise Button -->
                       {% csrf_token %}
+                      {%if muscle_groups %}
                       <input
                         id="add"
                         type="submit"
                         value="Add"
                         class="btn btn-primary btn-lg mt-3"
                       />
+                      {% endif %}
                     </form>
                   </div>
                 </div>

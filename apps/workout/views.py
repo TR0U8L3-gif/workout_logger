@@ -146,6 +146,11 @@ def muscle_group(request, id):
         user = User.objects.get(id=request.session["user_id"])
         
         muscle_group = MuscleGroup.objects.get(id=id)
+        
+        # check if muscle group is owned by user
+        if muscle_group.user != user:
+            messages.error(request, "You do not have permission to view this muscle group.", extra_tags='muscle_group')
+            return redirect("/musclegroup")
             
         # Gather any page data:
         data = {
@@ -175,6 +180,11 @@ def edit_muscle_group(request, id):
                 "size": request.POST["size"],
                 "user": user
             }
+            
+            # check if muscle group is owned by user
+            if(MuscleGroup.objects.get(id=id).user != user):
+                messages.error(request, "You do not have permission to edit this muscle group.", extra_tags='muscle_group')
+                return redirect("/musclegroup")
 
             # Begin validation of a updated muscle_group:
             validated = MuscleGroup.objects.update(**muscle_group)
@@ -193,7 +203,7 @@ def edit_muscle_group(request, id):
                 print("Edited workout passed validation and has been updated.")
 
                 # Load workout:
-                return redirect("/musclegroup/" + str(muscle_group['muscle_group_id']))
+                return redirect("/musclegroup")
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
@@ -258,8 +268,14 @@ def delete_muscle_group(request, id):
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
 
-        # Delete muscle group:
-        MuscleGroup.objects.get(id=id).delete()
+        # check if muscle group is owned by user
+        muscle_group = MuscleGroup.objects.get(id=id)
+        if muscle_group.user != user:
+            messages.error(request, "You do not have permission to delete this muscle group.", extra_tags='muscle_group')
+            return redirect("/musclegroup")
+        else:
+            # Delete muscle group:
+            muscle_group.delete()
 
         # Load muscle group:
         return redirect('/musclegroup')
@@ -363,12 +379,18 @@ def delete_exercise(request, id):
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
-
-        # Delete workout:
-        exercise.objects.get(id=id).delete()
+        
+        # check if exercise is owned by user
+        exercise = Exercise.objects.get(id=id)
+        if exercise.user != user:
+            messages.error(request, "You do not have permission to delete this exercise.", extra_tags='exercise')
+            return redirect("/exercise") 
+        else:
+            # Delete workout:
+            exercise.delete()
         
         # Load dashboard:
-        return redirect('/dashboard')
+        return redirect('/exercise')
 
 
     except (KeyError, User.DoesNotExist) as err:
@@ -386,6 +408,12 @@ def workout(request, id):
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
+        workout = Workout.objects.get(id=id)
+        
+        # check if workout is owned by user
+        if workout.user != user:
+            messages.error(request, "You do not have permission to view this workout.", extra_tags='workout')
+            return redirect("/workout")
 
         # Getting all exercises for this workout: 
         ste = StrengthTrainingExercise.objects.filter(workout__id=id)
@@ -398,7 +426,7 @@ def workout(request, id):
         # Gather any page data:
         data = {
             'user': user,
-            'workout': Workout.objects.get(id=id),
+            'workout': workout,
             'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
             'muscle_groups': MuscleGroup.objects.filter(user = user),
             'exercise_types': get_exercises_types(),
@@ -440,6 +468,12 @@ def edit_workout(request, id):
             return render(request, "workout/edit_workout.html", data)
 
         if request.method == "POST":
+            
+            # check if workout is owned by user
+            if data['workout'].user != user:
+                messages.error(request, "You do not have permission to delete this workout.", extra_tags='workout')
+                return redirect("/workout")
+            
             # If post request, validate update workout data:
             # Unpack request object and build our custom tuple:
             workout = {
@@ -528,12 +562,19 @@ def delete_workout(request, id):
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
-
-        # Delete workout:
-        Workout.objects.get(id=id).delete()
+        
+        # check if workout is owned by user
+        workout = Workout.objects.get(id=id)
+        
+        if workout.user != user:
+            messages.error(request, "You do not have permission to delete this workout.", extra_tags='workout')
+            return redirect("/workout")
+        else:
+            # Delete workout:
+            workout.delete()
 
         # Load dashboard:
-        return redirect('/dashboard')
+        return redirect('/workout')
 
 
     except (KeyError, User.DoesNotExist) as err:
@@ -557,6 +598,12 @@ def complete_workout(request, id):
 
             # Update Workout.completed field for this instance:
             workout = Workout.objects.get(id=id)
+            
+            # check if workout is owned by user
+            if workout.user != user:
+                messages.error(request, "You do not have permission to complete this workout.", extra_tags='workout')
+                return redirect("/workout")
+            
             is_completed = workout.completed
             if is_completed:
                 workout.completed = False
