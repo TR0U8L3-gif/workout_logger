@@ -182,19 +182,18 @@ def edit_muscle_group(request, id):
             # If errors, reload register page with errors:
             try:
                 if len(validated["errors"]) > 0:
-                    print("Muscle group could not be created.")
+                    print("Muscle Group could not be edited.")
                     # Loop through errors and Generate Django Message for each with custom level and tag:
                     for error in validated["errors"]:
                         messages.error(request, error, extra_tags='muscle_group')
                     # Reload workout page:
-                    return redirect("/musclegroup")
+                    return redirect("/musclegroup/" + str(muscle_group['muscle_group_id']))
             except KeyError:
                 # If validation successful, load newly created workout page:
-                print("Muscle group passed validation and has been created.")
+                print("Edited workout passed validation and has been updated.")
 
-                id = str(validated['updated_muscle_group'].id)
                 # Load workout:
-                return redirect('/musclegroup/' + id)
+                return redirect("/musclegroup/" + str(muscle_group['muscle_group_id']))
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
@@ -241,9 +240,12 @@ def new_muscle_group(request):
                 # If validation successful, load newly created workout page:
                 print("Muscle group passed validation and has been created.")
 
+
+                id = str(validated['muscle_group'].id)
+                
                 id = str(validated['muscle_group'].id)
                 # Load workout:
-                return redirect('/musclegroup/' + id)
+                return redirect('/musclegroup')
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:

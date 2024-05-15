@@ -8,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="all,follow" />
     {% load static %}
-    <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.min.css' %}">
-    <link rel="stylesheet" href="../../static/workout/styles.css">
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    <link
+      rel="stylesheet"
+      href="{% static 'fontawesomefree/css/all.min.css' %}"
+    />
+    <link rel="stylesheet" href="../../static/workout/styles.css" />
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
   </head>
 
   <body>
@@ -33,16 +34,12 @@
               <form id="workout-form" action="/workout" method="POST">
                 {% csrf_token %}
                 <!-- Workout Errors -->
-                {% if messages %}
-                  {% for message in messages %}
-                    {% if message.tags == "workout error" %}
-                      <div class="alert alert-danger alert-dismissable" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>Error!</strong> {{ message }}
-                      </div>
-                    {% endif %}
-                  {% endfor %}
-                {% endif %}
+                {% if messages %} {% for message in messages %} 
+                {% if message.tags == "workout error" %}
+                <div class="alert alert-danger alert-dismissable" role="alert">
+                  <strong>Error!</strong> {{ message }}
+                </div>
+                {% endif %} {% endfor %} {% endif %}
                 <!-- Workout Name -->
                 <div class="form-group">
                   <input
@@ -75,36 +72,34 @@
             </div>
           </div>
           <h4 class="ms-4 mt-2 mb-4 text-light">All Exercises</h4>
-            {% if workouts %}
-              {% for workout in workouts %}
-              <div class="col-lg-12 pb-4">
-                <div class="card text-white bg-dark mb-2">
-                  <div class="card-body">
-                    <h4 class="card-title">{{workout.name}}</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                      {{workout.created_at | date }}
-                    </h6>
-                    <p class="card-text">{{workout.description}}</p>
-                    <a href="/workout/{{workout.id}}" class="card-link">View</a>
-                    <p class="card-text">
-                      <small class="text-muted"
-                        >Updated {{workout.updated_at | timesince}} ago</small
-                      >
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {% endfor %}
-            {% else %}
-            <div class="card bg-dark add-exercise mb-4 mt-2">
-              <div class="card-body text-light">
-                <h4 class="card-title">You don't have any exercises yet.</h4>
+          {% if workouts %} {% for workout in workouts %}
+          <div class="col-lg-12 pb-4">
+            <div class="card text-white bg-dark mb-2">
+              <div class="card-body">
+                <h4 class="card-title">{{workout.name}}</h4>
                 <h6 class="card-subtitle mb-2 text-muted">
-                  There's no time like the present! 💪
+                  {{workout.created_at | date }}
                 </h6>
+                <p class="card-text">{{workout.description}}</p>
+                <a href="/workout/{{workout.id}}" class="card-link">View</a>
+                <p class="card-text">
+                  <small class="text-muted"
+                    >Updated {{workout.updated_at | timesince}} ago</small
+                  >
+                </p>
               </div>
             </div>
-            {% endif %}
+          </div>
+          {% endfor %} {% else %}
+          <div class="card bg-dark add-exercise mb-4 mt-2">
+            <div class="card-body text-light">
+              <h4 class="card-title">You don't have any exercises yet.</h4>
+              <h6 class="card-subtitle mb-2 text-muted">
+                There's no time like the present! 💪
+              </h6>
+            </div>
+          </div>
+          {% endif %}
         </section>
       </div>
     </div>

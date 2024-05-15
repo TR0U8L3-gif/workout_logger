@@ -291,7 +291,6 @@ class WorkoutManager(models.Manager):
         # Check for validation errors:
         # If none, create workout and return new workout:
         if len(errors) == 0:
-
             # Update workout:
             workout = Workout.objects.filter(id=kwargs['workout_id']).update(name=kwargs['name'], description=kwargs["description"])
 
@@ -299,6 +298,7 @@ class WorkoutManager(models.Manager):
             updated_workout = {
                 "updated_workout": workout
             }
+            print(updated_workout)
             return updated_workout
         else:
             # Else, if validation fails, print errors to console and return errors object:
@@ -308,6 +308,7 @@ class WorkoutManager(models.Manager):
             errors = {
                 "errors": errors,
             }
+            print(errors)
             return errors
 
 class ExerciseManager(models.Manager):
@@ -723,6 +724,8 @@ class MuscleGroupManager(models.Manager):
             # Update muscle group:
             muscle_group = MuscleGroup.objects.filter(id=kwargs['muscle_group_id']).update(name=kwargs['name'], size=kwargs["size"], user=kwargs["user"])
 
+            print(muscle_group)
+            
             # Return updated Muscle Group:
             updated_muscle_group = {
                 "updated_muscle_group": muscle_group

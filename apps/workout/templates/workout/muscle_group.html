@@ -34,7 +34,7 @@
                             <form id="update-muscle_group-form" action="/musclegroup/{{ muscle_group.id }}/edit" method="POST">
                                 {% csrf_token %}
                                 <!-- Edit Muscle Group Errors -->
-                                {% if messages %} {% for message in messages %} {% if message.tags == "edit error" %}
+                                {% if messages %} {% for message in messages %} {% if message.tags == "muscle_group error" %}
                                 <div class="alert alert-danger alert-dismissable" role="alert">
                                     <strong>Error!</strong> {{ message }}
                                 </div>
