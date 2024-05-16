@@ -288,8 +288,36 @@ def delete_muscle_group(request, id):
 
 # exercise
 def exercise(request, id):
-    """show concrete exercise"""
+    """View exercise."""
+    exercise_type = request.GET.get('exercise_type')
+    if(exercise_type == None):
+        messages.error(request, "You must select an exercise type.", extra_tags='exercise')
+        return redirect("/exercise")
     
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+        exercise_class = get_exercise_by_class_name(exercise_type)
+        exercise = exercise_class.objects.get(id=id)
+        
+        # check if workout is owned by user
+        if exercise.user != user:
+            messages.error(request, "You do not have permission to view this exercise.", extra_tags='exercise')
+            return redirect("/exercise")
+            
+        # Gather any page data:
+        data = {
+            'user': user,
+            'exercise': exercise,
+        }
+
+        # If get request, load exercise page with data:
+        return render(request, "workout/exercise.html", data)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        return redirect("/")
 
 def edit_exercise(request, id):
     """If GET, load edit exercise; if POST, update exercise."""

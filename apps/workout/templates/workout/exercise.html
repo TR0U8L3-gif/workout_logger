@@ -1,23 +1,74 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Workout Logger</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="all,follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
     {% load static %}
     <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.min.css' %}">
     <link rel="stylesheet" href="../../static/workout/styles.css">
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-  </head>
+</head>
 
-  <body>
-    <h1>Exercise nr 1</h1>
+<body>
+    {% include 'workout/header.html' %}
+
+    <div class="d-flex align-items-stretch ">
+        {% include 'workout/sidebar.html' %}
+        <div class="page-content ">
+            <div class="page-header">
+                <div class="container-fluid">
+                    <h2 class="h5 no-margin-bottom">{{exercise.class_name}}</h2>
+                </div>
+            </div>
+            <section class="no-padding-bottom">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form id="update-exercise-form" action="/exercise/{{ exercise.id }}/edit" method="POST">
+                                {% csrf_token %}
+                                <!-- Edit Exercise Errors -->
+                                {% if messages %} {% for message in messages %} {% if message.tags == "exercise error" %}
+                                <div class="alert alert-danger alert-dismissable" role="alert">
+                                    <strong>Error!</strong> {{ message }}
+                                </div>
+                                {% endif %} {% endfor %} {% endif %}
+                                <div class="card bg-dark add-exercise mb-4 mt-2">
+                                    <div class="card-body text-light">
+                                        <!-- Exercise Name -->
+                                        <div class="form-group">
+                                            <input id="name" type="text" name="name" required class="input-material form-control-lg" placeholder="Name" value="{{ exercise.name }}">
+                                        </div>
+                                        <!-- Exercise Description -->
+                                        <div class="form-group">
+                                            <input id="description" type="text" name="description" class="input-material form-control-lg" placeholder="Description" value="{{ exercise.description }}">
+                                        </div>
+                                        <!-- Update Exercise Button -->
+                                        <input id="update" type="submit" value="Update" class="btn btn-success btn-lg my-4">
+                                        <!-- Back Button -->
+                                        <a href="/exercise"
+                                        style="text-decoration: none" class="btn btn-outline-secondary btn-lg ms-3">View All Exercises</a>
+                                        <!-- Delete Button -->
+                                        <a id="delete-exercise" href="/exercise/{{ exercise.id }}/delete" 
+                                        style="text-decoration: none"
+                                        class="btn btn-outline-danger btn-lg ms-3">Delete</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'workout/index.js' %}"></script>
-  </body>
+</body>
+
 </html>

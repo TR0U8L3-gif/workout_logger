@@ -169,7 +169,6 @@
                             class="btn btn-primary btn-lg end-workout">Add Muscle Group</a>
                           </div>
                         {% endif %}
-                        
                       </div>
                       
 
@@ -197,7 +196,7 @@
                 </h6>
                 <p class="card-text">Workout: {{exercise.workout}} <small class="text-muted" ><a href="/workout/{{exercise.workout.id}}" class="card-link">View</a></small></p>
                 <p class="card-text">Muscle Group: {{exercise.muscle_group}} <small class="text-muted" ></small><a href="/musclegroup/{{exercise.muscle_group.id}}" class="card-link">View</a></small></p>
-                <a href="/exercise/{{exercise.id}}" class="card-link">Edit</a>
+                <a href="/exercise/{{exercise.id}}?exercise_type={{exercise.class_name}}" class="card-link">Edit</a>
                 <p class="card-text">
                   <small class="text-muted"
                     >Updated {{exercise.updated_at | timesince}} ago</small
