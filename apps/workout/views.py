@@ -309,6 +309,8 @@ def exercise(request, id):
         data = {
             'user': user,
             'exercise': exercise,
+            'workouts': Workout.objects.filter(user__id=user.id).order_by('-updated_at'),
+            'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
         }
 
         # If get request, load exercise page with data:
@@ -320,7 +322,61 @@ def exercise(request, id):
         return redirect("/")
 
 def edit_exercise(request, id):
-    """If GET, load edit exercise; if POST, update exercise."""
+    """if POST, update exercise."""
+        
+    try:
+        user = User.objects.get(id=request.session["user_id"])
+        
+        if request.method == "GET":
+            # If get request, load edit exercise page with data:
+            return redirect("/exercise/" + id)
+
+        if request.method == "POST":
+            workout_id = request.POST["workout_id"]
+            muscle_group_id = request.POST["muscle_group"]
+            exercise_type = request.POST["exercise_type"]
+
+            exercise = get_exercise_by_class_name(exercise_type)
+            
+            exercise_model = {
+                "exercise_id": id,
+                "name": request.POST["name"],
+                "description": request.POST["description"],
+                "workout": Workout.objects.get(id=workout_id),
+                "muscle_group": MuscleGroup.objects.get(id=muscle_group_id),
+                "user": user,
+            }
+            
+            # Add form data to exercise model:
+            for form_field in exercise().form_data():
+                exercise_model[form_field.name] = request.POST[form_field.name]
+                
+            print("eloooooo")
+
+            # Begin validation of a new exercise:
+            validated = exercise.objects.update_exercise(**exercise_model)
+            
+            # If errors, reload register page with errors:
+            try:
+                if len(validated["errors"]) > 0:
+                    print("Exercise could not be created.")
+
+                    # Loop through errors and Generate Django Message for each with custom level and tag:
+                    for error in validated["errors"]:
+                        messages.error(request, error, extra_tags='exercise')
+
+                    # Reload workout page:
+                    return redirect("/exercise/" + id + "?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
+            except KeyError:
+                # If validation successful, load newly created workout page:
+                print("Exercise passed validation and has been created.")
+
+                # Reload workout:
+                return redirect("/exercise/" + id + "?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        return redirect("/")
 
 def new_exercise(request):
     """If GET, load new exercise; if POST, submit new exercise."""
@@ -328,6 +384,12 @@ def new_exercise(request):
     exercise_type = request.GET.get('exercise_type')
     if(exercise_type == None):
         exercise_type = StrengthTrainingExercise().class_name
+    current_workout_id = request.GET.get('current_workout_id')
+    if(current_workout_id == None):
+        current_workout_id = -1
+    current_muscle_group_id = request.GET.get('current_muscle_group_id')
+    if(current_muscle_group_id == None):
+        current_muscle_group_id = -1
         
     try:
         # Check for valid session:
@@ -346,13 +408,15 @@ def new_exercise(request):
             'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
             'exercise_types': get_exercises_types(),
             'current_exercise': exercise_type,
+            'current_workout_id': int(current_workout_id),
+            'current_muscle_group_id': int(current_muscle_group_id),
             'workouts': Workout.objects.filter(user__id=user.id).order_by('-updated_at'), 
-            'muscle_groups': MuscleGroup.objects.filter(user = user),
+            'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
 
         }
         
         if request.method == "GET":
-            # If get request, load `add workout` page with data:
+            # If get request, load `add exercise` page with data:
             return render(request, "workout/add_exercise.html", data)
 
         if request.method == "POST":
@@ -409,8 +473,14 @@ def delete_exercise(request, id):
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
         
+        exercise_type = request.GET.get('exercise_type')
+        if(exercise_type == None):
+            messages.error(request, "You must select an exercise type.", extra_tags='exercise')
+            return redirect("/exercise/" + id)
+    
         # check if exercise is owned by user
-        exercise = Exercise.objects.get(id=id)
+        exercise_class = get_exercise_by_class_name(exercise_type)
+        exercise = exercise_class.objects.get(id=id)
         if exercise.user != user:
             messages.error(request, "You do not have permission to delete this exercise.", extra_tags='exercise')
             return redirect("/exercise") 
@@ -457,7 +527,7 @@ def workout(request, id):
             'user': user,
             'workout': workout,
             'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
-            'muscle_groups': MuscleGroup.objects.filter(user = user),
+            'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
             'exercise_types': get_exercises_types(),
             'current_exercise': exercise_type,
         }

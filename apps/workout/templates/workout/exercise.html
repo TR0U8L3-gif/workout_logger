@@ -49,15 +49,98 @@
                                         <div class="form-group">
                                             <input id="description" type="text" name="description" class="input-material form-control-lg" placeholder="Description" value="{{ exercise.description }}">
                                         </div>
+
+                                        <!-- Exercise Class -->
+                                        <input
+                                        type="hidden"
+                                        id="exercise_type"
+                                        name="exercise_type"
+                                        value="{{exercise.class_name}}"
+                                        />
+
+                                        <!-- Exercise Data -->
+                                        {% for field in exercise.form_data %}
+                                        <div class="form-group">
+                                            <input
+                                            id="{{ field.name }}"
+                                            type="{{ field.type }}"
+                                            name="{{ field.name }}"
+                                            required
+                                            class="input-material form-control-lg"
+                                            placeholder="{{ field.placeholder }}"
+                                            value="{{ field.value }}"
+                                            />
+                                        </div>
+                                        {% endfor %}
+
+                                        <!-- Workout Id -->
+                                        <div class="row mt-2 opacity-50">
+                                            {% if workouts %}
+                                            <div class="col-auto ">
+                                            <select name="workout_id" id="exercise_type" class="bg-dark input-material form-control-lg text-light">
+                                                {% for workout in workouts %}                            
+                                                {% if workout.id == exercise.workout.id %}  
+                                                    <option selected="selected" value={{workout.id}}>{{workout}}</option>
+                                                {% else %}
+                                                    <option value={{workout.id}}>{{workout}}</option>
+                                                {% endif %}
+                                                {% endfor %}
+                                                
+                                            </select>
+                                            </div>
+                                            <div class="col-auto p-0">
+                                                <a href="/workout"
+                                                style="text-decoration: none"
+                                                class="btn btn-primary btn-lg end-workout">Add Workout</a>
+                                            </div>
+                                            {% else %}
+                                            <div class="col-auto p-0 ms-3 mt-4">
+                                                <a href="/workout"
+                                                style="text-decoration: none"
+                                                class="btn btn-primary btn-lg end-workout">Add Workout</a>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        
+                                        <!-- Muscle Group Id -->
+                                        <div class="row mt-2 opacity-50 mb-2">
+                                            {% if muscle_groups %}
+                                            <div class="col-auto ">
+                                            <select name="muscle_group" id="exercise_type" class="bg-dark input-material form-control-lg text-light">
+                                                {% for muscle_group in muscle_groups %}
+                                                {% if muscle_group.id == exercise.muscle_group.id %}  
+                                                    <option selected="selected" value={{muscle_group.id}}>{{muscle_group}}</option>
+                                                {% else %}
+                                                <option value={{muscle_group.id}}>{{muscle_group}}</option>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                            </div>
+                                            <div class="col-auto p-0">
+                                                <a href="/musclegroup"
+                                                style="text-decoration: none"
+                                                class="btn btn-primary btn-lg end-workout">Add Muscle Group</a>
+                                            </div>
+                                            {% else %}
+                                            <div class="col-auto p-0 ms-3 mt-4">
+                                                <a href="/musclegroup"
+                                                style="text-decoration: none"
+                                                class="btn btn-primary btn-lg end-workout">Add Muscle Group</a>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+
                                         <!-- Update Exercise Button -->
+                                        {% if muscle_groups %} {% if workouts %}
                                         <input id="update" type="submit" value="Update" class="btn btn-success btn-lg my-4">
+                                        {% endif %} {% endif %}
                                         <!-- Back Button -->
                                         <a href="/exercise"
-                                        style="text-decoration: none" class="btn btn-outline-secondary btn-lg ms-3">View All Exercises</a>
+                                        style="text-decoration: none" class="btn btn-outline-secondary btn-lg ms-3 my-4">View All Exercises</a>
                                         <!-- Delete Button -->
-                                        <a id="delete-exercise" href="/exercise/{{ exercise.id }}/delete" 
+                                        <a id="delete-exercise" href="/exercise/{{ exercise.id }}/delete?exercise_type={{ exercise.class_name}}" 
                                         style="text-decoration: none"
-                                        class="btn btn-outline-danger btn-lg ms-3">Delete</a>
+                                        class="btn btn-outline-danger btn-lg ms-3 my-4">Delete</a>
                                     </div>
                                 </div>
                             </form>
