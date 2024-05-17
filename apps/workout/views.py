@@ -4,33 +4,42 @@ from .models import *
 from .views_helper import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
+import logging 
+import datetime
+
+current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+filename = f"workout_{current_date}.log"
+
+logging.basicConfig(level=logging.DEBUG, filename=filename, filemode="a+", format="%(asctime)s - %(levelname)s - %(message)s: ")
 
 # authentication
 def login(request):
     """If GET, load login page, if POST, login user."""
 
     if request.method == "GET":
+        logging.debug("GET request to login")
         return render(request, "workout/index.html")
 
     if request.method == "POST":
+        logging.debug("POST request to login")
         # Validate login data:
         validated = User.objects.login(**request.POST)
         try:
             # If errors, reload login page with errors:
             if len(validated["errors"]) > 0:
                 print("User could not be logged in.")
+                logging.warning("User could not be logged in.")
                 # Loop through errors and Generate Django Message for each with custom level and tag:
                 for error in validated["errors"]:
                     messages.error(request, error, extra_tags='login')
+                    logging.error(error)
                 # Reload login page:
                 return redirect("/")
         except KeyError:
             # If validation successful, set session, and load dashboard based on user level:
             print("User passed validation and is logged in.")
-
             # Set session to validated User:
             request.session["user_id"] = validated["logged_in_user"].id
-
             # Fetch dashboard data and load appropriate dashboard page:
             return redirect("/dashboard")
 
@@ -38,9 +47,11 @@ def register(request):
     """If GET, load registration page; if POST, register user."""
 
     if request.method == "GET":
+        logging.debug("GET request to register")
         return render(request, "workout/register.html")
 
     if request.method == "POST":
+        logging.debug("POST request to register")
         # Validate registration data:
         validated = User.objects.register(**request.POST)
         # If errors, reload register page with errors:
@@ -50,6 +61,7 @@ def register(request):
                 # Loop through errors and Generate Django Message for each with custom level and tag:
                 for error in validated["errors"]:
                     messages.error(request, error, extra_tags='registration')
+                    logging.error(error)
                 # Reload register page:
                 return redirect("/user/register")
         except KeyError:
@@ -68,6 +80,7 @@ def logout(request):
         del request.session['user_id']
         # Adds success message:
         messages.success(request, "You have been logged out.", extra_tags='logout')
+        logging.info("User has been logged out.")
 
     except KeyError:
         pass
@@ -98,6 +111,7 @@ def dashboard(request):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'dashboard'.")
         return redirect("/")
 
 def view_all(request):
@@ -136,6 +150,7 @@ def view_all(request):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'view_all'.")
         return redirect("/")
 
 # muscle group
@@ -150,6 +165,7 @@ def muscle_group(request, id):
         # check if muscle group is owned by user
         if muscle_group.user != user:
             messages.error(request, "You do not have permission to view this muscle group.", extra_tags='muscle_group')
+            logging.error("User does not have permission to view muscle group.")
             return redirect("/musclegroup")
             
         # Gather any page data:
@@ -164,6 +180,7 @@ def muscle_group(request, id):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'muscle_group'.")
         return redirect("/")
 
 def edit_muscle_group(request, id):
@@ -173,6 +190,7 @@ def edit_muscle_group(request, id):
         user = User.objects.get(id=request.session["user_id"])
 
         if request.method == "POST":
+            logging.debug("POST request to edit muscle group")
             # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
             muscle_group = {
                 "muscle_group_id": id,
@@ -184,6 +202,7 @@ def edit_muscle_group(request, id):
             # check if muscle group is owned by user
             if(MuscleGroup.objects.get(id=id).user != user):
                 messages.error(request, "You do not have permission to edit this muscle group.", extra_tags='muscle_group')
+                logging.error("User does not have permission to edit muscle group.")
                 return redirect("/musclegroup")
 
             # Begin validation of a updated muscle_group:
@@ -192,22 +211,24 @@ def edit_muscle_group(request, id):
             # If errors, reload register page with errors:
             try:
                 if len(validated["errors"]) > 0:
+                    logging.error("Muscle Group could not be edited.")
                     print("Muscle Group could not be edited.")
                     # Loop through errors and Generate Django Message for each with custom level and tag:
                     for error in validated["errors"]:
                         messages.error(request, error, extra_tags='muscle_group')
+                        logging.error(error)
                     # Reload workout page:
                     return redirect("/musclegroup/" + str(muscle_group['muscle_group_id']))
             except KeyError:
                 # If validation successful, load newly created workout page:
                 print("Edited workout passed validation and has been updated.")
-
                 # Load workout:
                 return redirect("/musclegroup")
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'edit_muscle_group'.")
         return redirect("/")
 
 def new_muscle_group(request):
@@ -223,10 +244,12 @@ def new_muscle_group(request):
         }
 
         if request.method == "GET":
+            logging.debug("GET request to new muscle group")
             # If get request, load `add muscle_group` page with data:
             return render(request, "workout/add_muscle_group.html", data)
 
         if request.method == "POST":
+            logging.debug("POST request to new muscle group")
             # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
             muscle_group = {
                 "name": request.POST["name"],
@@ -240,26 +263,24 @@ def new_muscle_group(request):
             # If errors, reload register page with errors:
             try:
                 if len(validated["errors"]) > 0:
+                    logging.error("Muscle group could not be created.")
                     print("Muscle group could not be created.")
                     # Loop through errors and Generate Django Message for each with custom level and tag:
                     for error in validated["errors"]:
                         messages.error(request, error, extra_tags='muscle_group')
+                        logging.error(error)
                     # Reload workout page:
                     return redirect("/musclegroup")
             except KeyError:
                 # If validation successful, load newly created workout page:
                 print("Muscle group passed validation and has been created.")
-
-
-                id = str(validated['muscle_group'].id)
-                
-                id = str(validated['muscle_group'].id)
                 # Load workout:
                 return redirect('/musclegroup')
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'new_muscle_group'.")
         return redirect("/")
     
 def delete_muscle_group(request, id):
@@ -272,6 +293,7 @@ def delete_muscle_group(request, id):
         muscle_group = MuscleGroup.objects.get(id=id)
         if muscle_group.user != user:
             messages.error(request, "You do not have permission to delete this muscle group.", extra_tags='muscle_group')
+            logging.error("User does not have permission to delete muscle group.")
             return redirect("/musclegroup")
         else:
             # Delete muscle group:
@@ -284,6 +306,7 @@ def delete_muscle_group(request, id):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'delete_muscle_group'.")
         return redirect("/")
 
 # exercise
@@ -292,6 +315,7 @@ def exercise(request, id):
     exercise_type = request.GET.get('exercise_type')
     if(exercise_type == None):
         messages.error(request, "You must select an exercise type.", extra_tags='exercise')
+        logging.error("User must select an exercise type.")
         return redirect("/exercise")
     
     try:
@@ -303,6 +327,7 @@ def exercise(request, id):
         # check if workout is owned by user
         if exercise.user != user:
             messages.error(request, "You do not have permission to view this exercise.", extra_tags='exercise')
+            logging.error("User does not have permission to view exercise.")
             return redirect("/exercise")
             
         # Gather any page data:
@@ -319,6 +344,7 @@ def exercise(request, id):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'exercise'.")
         return redirect("/")
 
 def edit_exercise(request, id):
@@ -328,10 +354,12 @@ def edit_exercise(request, id):
         user = User.objects.get(id=request.session["user_id"])
         
         if request.method == "GET":
+            logging.debug("GET request to edit exercise")
             # If get request, load edit exercise page with data:
             return redirect("/exercise/" + id)
 
         if request.method == "POST":
+            logging.debug("POST request to edit exercise")
             workout_id = request.POST["workout_id"]
             muscle_group_id = request.POST["muscle_group"]
             exercise_type = request.POST["exercise_type"]
@@ -350,8 +378,6 @@ def edit_exercise(request, id):
             # Add form data to exercise model:
             for form_field in exercise().form_data():
                 exercise_model[form_field.name] = request.POST[form_field.name]
-                
-            print("eloooooo")
 
             # Begin validation of a new exercise:
             validated = exercise.objects.update_exercise(**exercise_model)
@@ -359,23 +385,24 @@ def edit_exercise(request, id):
             # If errors, reload register page with errors:
             try:
                 if len(validated["errors"]) > 0:
+                    logging.error("Exercise could not be edited.")
                     print("Exercise could not be created.")
 
                     # Loop through errors and Generate Django Message for each with custom level and tag:
                     for error in validated["errors"]:
                         messages.error(request, error, extra_tags='exercise')
-
+                        logging.error(error)
                     # Reload workout page:
                     return redirect("/exercise/" + id + "?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
             except KeyError:
                 # If validation successful, load newly created workout page:
                 print("Exercise passed validation and has been created.")
-
                 # Reload workout:
                 return redirect("/exercise/" + id + "?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'edit_exercise'.")
         return redirect("/")
 
 def new_exercise(request):
@@ -416,10 +443,12 @@ def new_exercise(request):
         }
         
         if request.method == "GET":
+            logging.debug("GET request to new exercise")
             # If get request, load `add exercise` page with data:
             return render(request, "workout/add_exercise.html", data)
 
         if request.method == "POST":
+            logging.debug("POST request to new exercise")
             workout_id = request.POST["workout_id"]
             muscle_group_id = request.POST["muscle_group"]
             exercise_type = request.POST["exercise_type"]
@@ -448,23 +477,24 @@ def new_exercise(request):
             # If errors, reload register page with errors:
             try:
                 if len(validated["errors"]) > 0:
+                    logging.error("Exercise could not be created.")
                     print("Exercise could not be created.")
 
                     # Loop through errors and Generate Django Message for each with custom level and tag:
                     for error in validated["errors"]:
                         messages.error(request, error, extra_tags='exercise')
-
+                        logging.error(error)
                     # Reload workout page:
                     return redirect("/exercise?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
             except KeyError:
                 # If validation successful, load newly created workout page:
                 print("Exercise passed validation and has been created.")
-
                 # Reload workout:
                 return redirect("/exercise?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'new_exercise'.")
         return redirect("/")       
     
 def delete_exercise(request, id):
@@ -476,6 +506,7 @@ def delete_exercise(request, id):
         exercise_type = request.GET.get('exercise_type')
         if(exercise_type == None):
             messages.error(request, "You must select an exercise type.", extra_tags='exercise')
+            logging.error("User must select an exercise type.")
             return redirect("/exercise/" + id)
     
         # check if exercise is owned by user
@@ -483,6 +514,7 @@ def delete_exercise(request, id):
         exercise = exercise_class.objects.get(id=id)
         if exercise.user != user:
             messages.error(request, "You do not have permission to delete this exercise.", extra_tags='exercise')
+            logging.error("User does not have permission to delete exercise.")
             return redirect("/exercise") 
         else:
             # Delete workout:
@@ -495,6 +527,7 @@ def delete_exercise(request, id):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'delete_exercise'.")
         return redirect("/")
 
 # workout 
@@ -512,6 +545,7 @@ def workout(request, id):
         # check if workout is owned by user
         if workout.user != user:
             messages.error(request, "You do not have permission to view this workout.", extra_tags='workout')
+            logging.error("User does not have permission to view workout.")
             return redirect("/workout")
 
         # Getting all exercises for this workout: 
@@ -538,6 +572,7 @@ def workout(request, id):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'workout'.")
         return redirect("/")
 
 def edit_workout(request, id):
@@ -563,16 +598,16 @@ def edit_workout(request, id):
         }
 
         if request.method == "GET":
+            logging.debug("GET request to edit workout")
             # If get request, load edit workout page with data:
             return render(request, "workout/edit_workout.html", data)
-
         if request.method == "POST":
-            
+            logging.debug("POST request to edit workout")
             # check if workout is owned by user
             if data['workout'].user != user:
                 messages.error(request, "You do not have permission to delete this workout.", extra_tags='workout')
-                return redirect("/workout")
-            
+                logging.error("User does not have permission to delete workout.")
+                return redirect("/workout") 
             # If post request, validate update workout data:
             # Unpack request object and build our custom tuple:
             workout = {
@@ -580,29 +615,29 @@ def edit_workout(request, id):
                 'description': request.POST['description'],
                 'workout_id': data['workout'].id,
             }
-
             # Begin validation of updated workout:
             validated = Workout.objects.update(**workout)
-
             # If errors, reload register page with errors:
             try:
                 if len(validated["errors"]) > 0:
+                    logging.error("Workout could not be edited.")
                     print("Workout could not be edited.")
                     # Loop through errors and Generate Django Message for each with custom level and tag:
                     for error in validated["errors"]:
                         messages.error(request, error, extra_tags='edit')
+                        logging.error(error)
                     # Reload workout page:
                     return redirect("/workout/" + str(data['workout'].id) + "/edit")
             except KeyError:
                 # If validation successful, load newly created workout page:
                 print("Edited workout passed validation and has been updated.")
-
                 # Load workout:
                 return redirect("/workout/" + str(data['workout'].id))
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'edit_workout'.")
         return redirect("/")
 
 def new_workout(request):
@@ -619,10 +654,12 @@ def new_workout(request):
         }
 
         if request.method == "GET":
+            logging.debug("GET request to new workout")
             # If get request, load `add workout` page with data:
             return render(request, "workout/add_workout.html", data)
 
         if request.method == "POST":
+            logging.debug("POST request to new workout")
             # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
             workout = {
                 "name": request.POST["name"],
@@ -636,16 +673,17 @@ def new_workout(request):
             # If errors, reload register page with errors:
             try:
                 if len(validated["errors"]) > 0:
+                    logging.error("Workout could not be created.")
                     print("Workout could not be created.")
                     # Loop through errors and Generate Django Message for each with custom level and tag:
                     for error in validated["errors"]:
                         messages.error(request, error, extra_tags='workout')
+                        logging.error(error)
                     # Reload workout page:
                     return redirect("/workout")
             except KeyError:
                 # If validation successful, load newly created workout page:
                 print("Workout passed validation and has been created.")
-
                 id = str(validated['workout'].id)
                 # Load workout:
                 return redirect('/workout/' + id)
@@ -653,6 +691,7 @@ def new_workout(request):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'new_workout'.")
         return redirect("/")
 
 def delete_workout(request, id):
@@ -667,6 +706,7 @@ def delete_workout(request, id):
         
         if workout.user != user:
             messages.error(request, "You do not have permission to delete this workout.", extra_tags='workout')
+            logging.error("User does not have permission to delete workout.")
             return redirect("/workout")
         else:
             # Delete workout:
@@ -679,6 +719,7 @@ def delete_workout(request, id):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'delete_workout'.")
         return redirect("/")
 
 def complete_workout(request, id):
@@ -689,18 +730,20 @@ def complete_workout(request, id):
         user = User.objects.get(id=request.session["user_id"])
 
         if request.method == "GET":
+            logging.debug("GET request to complete workout")
             # If get request, bring back to workout page.
             # Note, for now, GET request for this method not being utilized:
             return redirect("/workout/" + id)
 
         if request.method == "POST":
-
+            logging.debug("POST request to complete workout")
             # Update Workout.completed field for this instance:
             workout = Workout.objects.get(id=id)
             
             # check if workout is owned by user
             if workout.user != user:
                 messages.error(request, "You do not have permission to complete this workout.", extra_tags='workout')
+                logging.error("User does not have permission to complete workout.")
                 return redirect("/workout")
             
             is_completed = workout.completed
@@ -716,4 +759,5 @@ def complete_workout(request, id):
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'complete_workout'.")
         return redirect("/")
