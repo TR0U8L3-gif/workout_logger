@@ -917,19 +917,13 @@ class MuscleGroupManager(models.Manager):
         if len(kwargs["name"]) < 2:
             errors.append('Name is required and must be at least 2 characters long.')
 
-        #------------------#
-        #-- DESCRIPTION: --#
-        #------------------#
-        # Check if size is less than 1:
-        if float(kwargs["size"]) < 1:
-            errors.append('Size is required and must be at least 1.')
 
         # Check for validation errors:
         # If none, create muscle group and return created muscle group:
         if len(errors) == 0:
             # Create new validated muscle group:
             validated_muscle_group = {
-                "muscle_group": MuscleGroup(name=kwargs["name"], size=kwargs["size"], user=kwargs["user"]),
+                "muscle_group": MuscleGroup(name=kwargs["name"], size=kwargs["size"]),
             }
             # Save new Muscle Group:
             validated_muscle_group["muscle_group"].save()
@@ -967,18 +961,11 @@ class MuscleGroupManager(models.Manager):
         if len(kwargs["name"]) < 2:
             errors.append('Name is required and must be at least 2 characters long.')
 
-        #------------------#
-        #-- DESCRIPTION: --#
-        #------------------#
-        # Check if size is less than 1:
-        if float(kwargs["size"]) < 1:
-            errors.append('Size is required and must be at least 1.')
-
         # Check for validation errors:
         # If none, create muscle group and return created muscle group:
         if len(errors) == 0:
             # Update muscle group:
-            muscle_group = MuscleGroup.objects.filter(id=kwargs['muscle_group_id']).update(name=kwargs['name'], size=kwargs["size"], user=kwargs["user"])
+            muscle_group = MuscleGroup.objects.filter(id=kwargs['muscle_group_id']).update(name=kwargs['name'], size=kwargs["size"])
 
             print(muscle_group)
             
@@ -1029,8 +1016,7 @@ class Workout(models.Model):
 class MuscleGroup(models.Model):
     """Creates instances of `MuscleGroup`."""
     name = models.CharField(max_length=50)
-    size = models.IntegerField(default=10)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    size = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = MuscleGroupManager()

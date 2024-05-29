@@ -1,0 +1,84 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+    <h1>Combined Models View</h1>
+    <h2>Model A</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Specific Field A</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in data_a %}
+            <tr>
+                <td>{{ obj.id }}</td>
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Model B</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Common Field</th>
+                <th>Specific Field B</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in data_b %}
+            <tr>
+                <td>{{ obj.id }}</td>
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Model C</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Common Field</th>
+                <th>Specific Field C</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in data_c %}
+            <tr>
+                <td>{{ obj.id }}</td>
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Model D</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Common Field</th>
+                <th>Specific Field D</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in data_d %}
+            <tr>
+                <td>{{ obj.id }}</td>
+                <td>{{ obj.name }}</td>
+                <td>{{ obj.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
