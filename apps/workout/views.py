@@ -126,10 +126,9 @@ def view_all(request):
         ete_list = EnduranceTrainingExercise.objects.filter(user__id=user.id)
         be_list = BalanceExercise.objects.filter(user__id=user.id)
         fe_list = FlexibilityExercise.objects.filter(user__id=user.id)
-        mg_list = MuscleGroup.objects.filter(user__id=user.id)
         
         page = request.GET.get('page', 1)
-        data_list = list(chain(workout_list, ste_list,ete_list, be_list, fe_list, mg_list))
+        data_list = list(chain(workout_list, ste_list,ete_list, be_list, fe_list))
         paginator = Paginator(sorted(data_list, key=lambda x: x.updated_at, reverse=True), 12)
         try:
             data = paginator.page(page)
@@ -193,6 +192,7 @@ def exercise(request, id):
         user = User.objects.get(id=request.session["user_id"])
         exercise_class = get_exercise_by_class_name(exercise_type)
         exercise = exercise_class.objects.get(id=id)
+        redirect_url = "/exercise"
         
         # check if workout is owned by user
         if exercise.user != user:
@@ -200,12 +200,29 @@ def exercise(request, id):
             logging.error("User does not have permission to view exercise.")
             return redirect("/exercise")
             
+        workout_id = None
+        try:
+            workout_id = request.GET["redirect_workout"]
+            if(workout_id != None):
+                redirect_url = "/workout/" + workout_id
+        except KeyError as err:
+            pass
+        
+        try:
+            redirect_view_all = request.GET["redirect_view_all"]
+            if(redirect_view_all != None and redirect_view_all == "true"):
+                redirect_url = "/history"
+        except KeyError as err:
+            pass
+        
         # Gather any page data:
         data = {
             'user': user,
             'exercise': exercise,
             'workouts': Workout.objects.filter(user__id=user.id).order_by('-updated_at'),
-            'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
+            'muscle_groups': MuscleGroup.objects.all().order_by('-updated_at'),
+            'redirect_url': redirect_url,
+            'redirect_workout': workout_id,
         }
 
         # If get request, load exercise page with data:
@@ -218,13 +235,14 @@ def exercise(request, id):
         return redirect("/")
 
 def edit_exercise(request, id):
-    """if POST, update exercise."""
+    """if POST, update exercise. if GET, load edit exercise page."""
         
     try:
         user = User.objects.get(id=request.session["user_id"])
         
         if request.method == "GET":
             logging.debug("GET request to edit exercise")
+
             # If get request, load edit exercise page with data:
             return redirect("/exercise/" + id)
 
@@ -233,6 +251,11 @@ def edit_exercise(request, id):
             workout_id = request.POST["workout_id"]
             muscle_group_id = request.POST["muscle_group"]
             exercise_type = request.POST["exercise_type"]
+
+            try:
+                redirect_url = request.POST["redirect"]
+            except KeyError as err:
+                pass
 
             exercise = get_exercise_by_class_name(exercise_type)
             
@@ -379,25 +402,41 @@ def delete_exercise(request, id):
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
         
+        redirect_url = "/exercise" 
+        try:
+            workout_id = request.GET["redirect_workout"]
+            if(workout_id != None):
+                redirect_url = "/workout/" + workout_id
+        except KeyError as err:
+            pass
+        
+        try:
+            redirect_view_all = request.GET["redirect_view_all"]
+            if(redirect_view_all != None and redirect_view_all == "true"):
+                redirect_url = "/history"
+        except KeyError as err:
+            pass
+
         exercise_type = request.GET.get('exercise_type')
         if(exercise_type == None):
             messages.error(request, "You must select an exercise type.", extra_tags='exercise')
             logging.error("User must select an exercise type.")
-            return redirect("/exercise/" + id)
+            return redirect(redirect_url + "/" + id)
     
         # check if exercise is owned by user
         exercise_class = get_exercise_by_class_name(exercise_type)
         exercise = exercise_class.objects.get(id=id)
+
         if exercise.user != user:
             messages.error(request, "You do not have permission to delete this exercise.", extra_tags='exercise')
             logging.error("User does not have permission to delete exercise.")
-            return redirect("/exercise") 
+            return redirect(redirect_url) 
         else:
             # Delete workout:
             exercise.delete()
         
         # Load dashboard:
-        return redirect('/exercise')
+        return redirect(redirect_url)
 
 
     except (KeyError, User.DoesNotExist) as err:
@@ -512,7 +551,7 @@ def edit_workout(request, id):
                 # If validation successful, load newly created workout page:
                 print("Edited workout passed validation and has been updated.")
                 # Load workout:
-                return redirect("/workout/" + str(data['workout'].id))
+                return redirect("/workout/" + str(data['workout'].id) + "/edit")
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:

@@ -13,13 +13,18 @@
       href="{% static 'fontawesomefree/css/all.min.css' %}"
     />
     <link rel="stylesheet" href="../../static/workout/styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'workout/images/favicon.ico' %}"
+    />
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
   </head>
 
   <body>
-    {% include 'workout/header.html' %}
+    {% include 'workout/widgets/header.html' %}
     <div class="d-flex align-items-stretch">
-      {% include 'workout/sidebar.html' %}
+      {% include 'workout/widgets/sidebar.html' %}
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
@@ -58,16 +63,7 @@
                             {% if info.class_name == 'Workout' %}
                             <form action="/workout/{{info.id}}">
                               <button
-                                class="btn btn-link btn-sm view-link"
-                                type="submit"
-                              >
-                                <i class="fa fa-eye"></i> View
-                              </button>
-                            </form>
-                            {% elif info.class_name == 'MuscleGroup' %}
-                            <form action="/musclegroup/{{info.id}}">
-                              <button
-                                class="btn btn-link btn-sm view-link"
+                                class="btn btn-outline-info"
                                 type="submit"
                               >
                                 <i class="fa fa-eye"></i> View
@@ -81,8 +77,14 @@
                                 name="exercise_type"
                                 value="{{info.class_name}}"
                               />
+                              <input
+                                type="hidden"
+                                id="redirect_view_all"
+                                name="redirect_view_all"
+                                value="true"
+                              />
                               <button
-                                class="btn btn-link btn-sm view-link"
+                                class="btn btn-outline-info"
                                 type="submit"
                               >
                                 <i class="fa fa-eye"></i> View
@@ -149,7 +151,11 @@
                     <h6 class="card-subtitle mb-2 text-muted">
                       There's no time like the present! 💪
                     </h6>
-                    <a href="/workout" class="card-link">Start a Workout</a>
+                    <a
+                      href="/workout"
+                      class="btn btn-outline-info"
+                      >Start a Workout</a
+                    >
                   </div>
                 </div>
                 {% endif %}

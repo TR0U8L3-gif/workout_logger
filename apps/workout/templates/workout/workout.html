@@ -274,7 +274,7 @@
                             {% if workout.completed == False %}
                             <!-- <td class="align-middle text-center">{{ exercise.data }}</td> -->
                             <td ><a
-                              href="/exercise/{{ exercise.id }}?exercise_type={{exercise.class_name}}"
+                              href="/exercise/{{ exercise.id }}?exercise_type={{exercise.class_name}}&redirect_workout={{ workout.id }}"
                               class="btn btn-outline-info"
                               >Edit</a
                             ></td>
@@ -282,22 +282,22 @@
                             <td class="align-middle text-center">
                               <form
                                 id="delete-exercise-form"
-                                action="/exercise/{{ exercise.id }}/delete"
+                                action="/exercise/{{ exercise.id }}/delete?exercise_type={{exercise.class_name}}&redirect_workout={{ workout.id }}"
                                 method="GET"
                                 class="p-0"
                               >
                                 {% csrf_token %}
                                 <input
                                   type="hidden"
-                                  id="exercise_class_name"
-                                  name="exercise_class_name"
+                                  id="exercise_type"
+                                  name="exercise_type"
                                   value="{{ exercise.class_name }}"
                                 />
                                 <input
                                   type="hidden"
-                                  id="redirect_url"
-                                  name="redirect_url"
-                                  value="/workout/{{ workout.id }}"
+                                  id="redirect_workout"
+                                  name="redirect_workout"
+                                  value="{{ workout.id }}"
                                 />
                                 <button
                                   id="delete-exercise"

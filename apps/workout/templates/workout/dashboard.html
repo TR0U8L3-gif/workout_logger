@@ -35,6 +35,7 @@
         <section class="no-padding-bottom">
           <div class="container-fluid mb-4">
             <div class="row">
+              <h4 class="ps-4 mt-2 mb-4 text-light">Workouts</h4>
               <!-- Perform django if check here for recent_workouts-->
               {% if recent_workouts %}
               <!-- If so, repeat cards here: -->
@@ -47,7 +48,11 @@
                       {{workout.created_at | date }}
                     </h6>
                     <p class="card-text">{{workout.description}}</p>
-                    <a href="/workout/{{workout.id}}" class="card-link">View</a>
+                    <a
+                      href="/workout/{{workout.id}}"
+                      class="btn btn-outline-info"
+                      >View</a
+                    >
                     <p class="card-text">
                       <small class="text-muted"
                         >Updated {{workout.updated_at | timesince}} ago</small
@@ -57,11 +62,16 @@
                 </div>
               </div>
               {% endfor %}
-              <p class="text-white text-muted ml-3 mr-3 block">
+              <p class="text-white text-muted block">
                 <i class="fa fa-info-circle"></i>
                 <em
                   >Most recent 4 workouts displayed only.
-                  <a href="/workout" class="card-link">View All</a></em
+                  <a
+                    href="/workout"
+                    style="text-decoration: none; color: white"
+                    class="card-link"
+                    >View All</a
+                  ></em
                 >
               </p>
               {% else %}
@@ -72,8 +82,64 @@
                     <h6 class="card-subtitle mb-2 text-muted">
                       There's no time like the present! 💪
                     </h6>
-                    <p class="card-text">{{workout.description}}</p>
-                    <a href="/workout" class="card-link">Start a Workout</a>
+                    <a
+                      href="/workout"
+                      class="btn btn-primary btn-lg end-workout"
+                      >Start a Workout</a
+                    >
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+
+              <h4 class="ps-4 mt-2 mb-4 text-light">Challenges</h4>
+              <!-- Perform django if check here for recent_challenges-->
+              {% if recent_challenges %}
+              <!-- If so, repeat cards here: -->
+              {% for challenge in recent_challenges %}
+              <div class="col-lg-12 pb-4">
+                <div class="card text-white bg-dark mb-2">
+                  <div class="card-body">
+                    <h4 class="card-title">{{challenge.name}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                      {{challenge.created_at | date }}
+                    </h6>
+                    <p class="card-text">{{challenge.description}}</p>
+                    <a
+                      href="/challenge/{{challenge.id}}"
+                      class="btn btn-primary btn-lg end-workout"
+                      >View</a
+                    >
+                    <p class="card-text">
+                      <small class="text-muted"
+                        >Updated {{challenge.updated_at | timesince}} ago</small
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              <p class="text-white text-muted ml-3 mr-3 block">
+                <i class="fa fa-info-circle"></i>
+                <em
+                  >Most recent 4 challenges displayed only.
+                  <a href="/challenge" class="card-link">View All</a></em
+                >
+              </p>
+              {% else %}
+              <div class="col-lg-12 pb-4">
+                <div class="card text-white bg-dark mb-4">
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      You don't participate in any challenge yet.
+                    </h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                      You can join a challenge and push yourself to new limits!
+                      👌🔥
+                    </h6>
+                    <a href="/challenge" class="btn btn-outline-info"
+                      >Join a challenge</a
+                    >
                   </div>
                 </div>
               </div>

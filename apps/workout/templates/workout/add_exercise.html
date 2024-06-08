@@ -169,7 +169,7 @@
                       id="exercise_type"
                       class="bg-dark input-material form-control-lg text-light"
                     >
-                      {% for workout in workouts %} 
+                      {% for workout in workouts %}
                       {% if workout.id == current_workout_id %}
                       <option selected="selected" value="{{workout.id}}">
                         {{workout}}
@@ -297,7 +297,7 @@
                 </p>
                 <a
                   href="/exercise/{{exercise.id}}?exercise_type={{exercise.class_name}}"
-                  class="card-link"
+                  class="btn btn-outline-info"
                   >Edit</a
                 >
                 <p class="card-text">

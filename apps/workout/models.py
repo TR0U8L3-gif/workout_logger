@@ -417,13 +417,17 @@ class StrengthTrainingExerciseManager(ExerciseManager):
             if float(kwargs["weight"]) < 1:
                 errors.append('Weight is required and must be at least 1.')
 
+            if float(kwargs["weight"]) > 9999:
+                errors.append('Weight is required and must be smaller than 9999.')
             #-------------------#
             #-- REPETITIONS: --#
             #-------------------#
             # Check if repetitions is less than 1:
             if float(kwargs["repetitions"]) < 1:
                 errors.append('Repetitions is required and must be at least 1.')
-
+            
+            if float(kwargs["repetitions"]) > 9999:
+                errors.append('Repetitions is required and must be smaller than 9999')
         # Check for validation errors:
         # If none, create strength training exercise and return created strength training exercise:  
 
