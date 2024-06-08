@@ -13,6 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
 import logging 
 import datetime
+from itertools import chain
 
 current_date = datetime.datetime.now().strftime("%Y-%m-%d")
 filename = f"workout_{current_date}.log"
@@ -996,4 +997,80 @@ def profile_online(request, id):
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         logging.warning("User must be logged in to view 'profile'.")
+        return redirect("/")
+   
+#statistics     
+def statistics(request):
+    try:
+        user = User.objects.get(id=request.session["user_id"])
+
+        ste_list = StrengthTrainingExercise.objects.filter(user__id=user.id)
+        ete_list = EnduranceTrainingExercise.objects.filter(user__id=user.id)
+        be_list = BalanceExercise.objects.filter(user__id=user.id)
+        fe_list = FlexibilityExercise.objects.filter(user__id=user.id)
+        
+        sort_field = request.GET.get('sort', 'updated_at')
+        sort_direction = request.GET.get('direction', 'desc')
+
+        data_list = list(chain(ste_list, ete_list, be_list, fe_list))
+
+        # Add workout name attribute for sorting
+        for item in data_list:
+            item.workout_name = item.workout.name if hasattr(item, 'workout') else ''
+
+        def get_sort_key(item):
+            if sort_field == 'muscle_group':
+                return item.muscle_group.name if hasattr(item, 'muscle_group') and item.muscle_group else ''
+            if sort_field == 'workout_name':
+                return item.workout_name
+            value = getattr(item, sort_field, '')
+            if callable(value):
+                value = value()
+            return value
+
+        sorted_data_list = sorted(data_list, key=get_sort_key, reverse=(sort_direction == 'desc'))
+        paginator = Paginator(sorted_data_list, 12)
+
+        page = request.GET.get('page', 1)
+        try:
+            data = paginator.page(page)
+        except PageNotAnInteger:
+            data = paginator.page(1)
+        except EmptyPage:
+            data = paginator.page(paginator.num_pages)
+
+        ste_counts = ste_list.count()
+        ete_counts = ete_list.count()
+        be_counts = be_list.count()
+        fe_counts = fe_list.count()
+
+        muscle_groups = MuscleGroup.objects.all()
+        muscle_counts = {mg.name: 0 for mg in muscle_groups}
+
+        for mg in muscle_groups:
+            muscle_counts[mg.name] += ste_list.filter(muscle_group=mg).count()
+            muscle_counts[mg.name] += ete_list.filter(muscle_group=mg).count()
+            muscle_counts[mg.name] += be_list.filter(muscle_group=mg).count()
+            muscle_counts[mg.name] += fe_list.filter(muscle_group=mg).count()
+
+        chart_data = {
+            'workout_labels': ['Strength', 'Endurance', 'Balance', 'Flexibility'],
+            'workout_data': [ste_counts, ete_counts, be_counts, fe_counts],
+            'muscle_labels': list(muscle_counts.keys()),
+            'muscle_data': list(muscle_counts.values())
+        }
+
+        data = {
+            'user': user,
+            'data': data,
+            'chart_data': chart_data,
+            'sort_field': sort_field,
+            'sort_direction': sort_direction,
+        }
+
+        return render(request, "workout/statistics.html", data)
+
+    except (KeyError, User.DoesNotExist) as err:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'view_all'.")
         return redirect("/")

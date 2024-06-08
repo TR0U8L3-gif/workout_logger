@@ -28,4 +28,5 @@ urlpatterns = [
     re_path(r'^history$', views.view_all), 
     re_path(r'^profile$', views.profile), 
     re_path(r'^profile/(?P<id>\d*)$', views.profile_online), 
+    re_path(r'^statistics$', views.statistics), 
 ]
