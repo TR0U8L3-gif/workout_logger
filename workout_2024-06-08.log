@@ -313,3 +313,433 @@ django.template.exceptions.TemplateDoesNotExist: workout/items/muscle_groups_lis
 2024-06-08 11:58:27,194 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
 2024-06-08 11:58:32,484 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
 2024-06-08 11:58:43,967 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 11:59:45,719 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 311, in new_exercise
+    'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1427, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1237, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1725, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: balanceexercise, created_at, description, endurancetrainingexercise, flexibilityexercise, id, name, strengthtrainingexercise, updated_at
+2024-06-08 11:59:47,825 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 311, in new_exercise
+    'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1427, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1237, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1725, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: balanceexercise, created_at, description, endurancetrainingexercise, flexibilityexercise, id, name, strengthtrainingexercise, updated_at
+2024-06-08 12:00:37,837 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 12:01:36,786 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 12:01:49,311 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 12:01:54,364 - DEBUG - GET request to new exercise: 
+2024-06-08 12:01:54,463 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 212, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+2024-06-08 12:02:14,173 - DEBUG - GET request to new exercise: 
+2024-06-08 12:02:14,268 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 212, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+2024-06-08 12:02:15,432 - DEBUG - GET request to new exercise: 
+2024-06-08 12:02:15,503 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 212, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+2024-06-08 12:02:31,512 - DEBUG - GET request to new exercise: 
+2024-06-08 12:02:31,610 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 212, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+2024-06-08 12:03:15,267 - DEBUG - GET request to new exercise: 
+2024-06-08 12:12:00,396 - DEBUG - GET request to new exercise: 
+2024-06-08 12:12:22,277 - DEBUG - GET request to new exercise: 
+2024-06-08 12:12:32,577 - DEBUG - GET request to new exercise: 
+2024-06-08 12:14:23,272 - DEBUG - GET request to new exercise: 
+2024-06-08 12:15:11,180 - DEBUG - GET request to new exercise: 
+2024-06-08 12:15:33,554 - DEBUG - GET request to new exercise: 
+2024-06-08 12:15:46,875 - DEBUG - GET request to new exercise: 
+2024-06-08 12:16:02,167 - DEBUG - GET request to new exercise: 
+2024-06-08 12:16:15,436 - DEBUG - GET request to new exercise: 
+2024-06-08 12:17:17,274 - DEBUG - GET request to new exercise: 
+2024-06-08 12:17:28,212 - DEBUG - GET request to new exercise: 
+2024-06-08 12:19:13,239 - DEBUG - GET request to new exercise: 
+2024-06-08 12:19:34,352 - DEBUG - GET request to new exercise: 
+2024-06-08 12:19:51,117 - DEBUG - GET request to new exercise: 
+2024-06-08 12:19:59,026 - DEBUG - GET request to new exercise: 
+2024-06-08 12:20:47,837 - DEBUG - GET request to new exercise: 
+2024-06-08 12:22:05,156 - DEBUG - GET request to new exercise: 
+2024-06-08 12:24:03,582 - DEBUG - GET request to new exercise: 
+2024-06-08 12:24:28,052 - DEBUG - GET request to new exercise: 
+2024-06-08 12:24:55,113 - DEBUG - GET request to new exercise: 
+2024-06-08 12:25:14,354 - DEBUG - GET request to new exercise: 
+2024-06-08 12:25:21,440 - DEBUG - GET request to new exercise: 
+2024-06-08 12:25:34,770 - DEBUG - GET request to new exercise: 
+2024-06-08 12:31:00,880 - DEBUG - GET request to new exercise: 
+2024-06-08 12:31:02,498 - DEBUG - GET request to new exercise: 
+2024-06-08 12:31:14,378 - DEBUG - GET request to new exercise: 
+2024-06-08 12:31:15,398 - DEBUG - GET request to new exercise: 
+2024-06-08 12:32:00,530 - DEBUG - GET request to new exercise: 
+2024-06-08 12:32:35,640 - DEBUG - GET request to new exercise: 
+2024-06-08 12:33:03,607 - DEBUG - GET request to new exercise: 
+2024-06-08 12:33:13,084 - DEBUG - GET request to new exercise: 
+2024-06-08 12:33:30,602 - DEBUG - GET request to new exercise: 
+2024-06-08 12:34:11,400 - DEBUG - GET request to new exercise: 
+2024-06-08 12:34:32,431 - DEBUG - GET request to new exercise: 
+2024-06-08 12:34:56,149 - DEBUG - GET request to new exercise: 
+2024-06-08 12:35:02,863 - DEBUG - GET request to new exercise: 
+2024-06-08 12:35:04,255 - DEBUG - GET request to new exercise: 
+2024-06-08 12:35:35,082 - DEBUG - GET request to new exercise: 
+2024-06-08 12:35:39,485 - DEBUG - GET request to new exercise: 
+2024-06-08 12:36:19,233 - DEBUG - GET request to new exercise: 
+2024-06-08 12:36:19,940 - DEBUG - GET request to new exercise: 
+2024-06-08 12:36:49,495 - DEBUG - GET request to new exercise: 
+2024-06-08 12:37:18,957 - DEBUG - GET request to new exercise: 
+2024-06-08 12:37:28,389 - DEBUG - GET request to new exercise: 
+2024-06-08 12:38:10,898 - DEBUG - GET request to new exercise: 
+2024-06-08 12:38:11,672 - DEBUG - GET request to new exercise: 
+2024-06-08 12:38:29,971 - DEBUG - GET request to new exercise: 
+2024-06-08 12:39:01,515 - DEBUG - GET request to new exercise: 
+2024-06-08 12:39:09,269 - DEBUG - GET request to new exercise: 
+2024-06-08 12:39:09,745 - DEBUG - GET request to new exercise: 
+2024-06-08 12:39:13,700 - DEBUG - GET request to new exercise: 
+2024-06-08 12:39:46,402 - DEBUG - GET request to new exercise: 
+2024-06-08 12:39:46,975 - DEBUG - GET request to new exercise: 
+2024-06-08 12:39:56,609 - DEBUG - GET request to new exercise: 
+2024-06-08 12:40:15,595 - DEBUG - GET request to new exercise: 
+2024-06-08 12:40:23,570 - DEBUG - GET request to new exercise: 
+2024-06-08 12:40:34,592 - DEBUG - GET request to new exercise: 
+2024-06-08 12:40:35,830 - DEBUG - GET request to new exercise: 
+2024-06-08 12:40:41,220 - DEBUG - GET request to new exercise: 
+2024-06-08 12:40:41,758 - DEBUG - GET request to new exercise: 
+2024-06-08 12:40:42,309 - DEBUG - GET request to new exercise: 
+2024-06-08 12:40:54,322 - DEBUG - GET request to new exercise: 
+2024-06-08 12:40:58,988 - DEBUG - GET request to new exercise: 
+2024-06-08 12:41:27,038 - DEBUG - GET request to new exercise: 
+2024-06-08 12:41:36,095 - DEBUG - GET request to new exercise: 
+2024-06-08 12:43:28,649 - WARNING - Not Found: /profile: 
+2024-06-08 12:44:20,675 - DEBUG - GET request to new exercise: 
+2024-06-08 12:44:22,323 - DEBUG - GET request to new exercise: 
+2024-06-08 12:44:26,841 - DEBUG - GET request to new exercise: 
+2024-06-08 12:44:41,701 - DEBUG - GET request to new exercise: 
+2024-06-08 12:45:05,936 - DEBUG - GET request to new exercise: 
+2024-06-08 12:45:07,834 - DEBUG - GET request to new exercise: 
+2024-06-08 12:45:32,550 - DEBUG - GET request to new exercise: 
+2024-06-08 12:45:33,637 - DEBUG - GET request to new exercise: 
+2024-06-08 12:45:53,607 - DEBUG - GET request to new exercise: 
+2024-06-08 12:54:17,535 - DEBUG - GET request to new exercise: 
+2024-06-08 12:54:29,239 - DEBUG - GET request to new exercise: 
+2024-06-08 12:54:29,873 - DEBUG - GET request to new exercise: 
+2024-06-08 12:54:30,439 - DEBUG - GET request to new exercise: 
+2024-06-08 12:54:30,919 - DEBUG - GET request to new exercise: 
+2024-06-08 12:54:44,318 - DEBUG - GET request to new exercise: 
+2024-06-08 12:54:51,094 - DEBUG - GET request to new exercise: 
+2024-06-08 12:54:52,287 - DEBUG - GET request to new exercise: 
+2024-06-08 12:55:06,788 - DEBUG - GET request to new exercise: 
+2024-06-08 12:55:32,828 - DEBUG - GET request to new exercise: 
+2024-06-08 12:57:09,746 - DEBUG - GET request to new exercise: 
+2024-06-08 13:01:00,786 - DEBUG - GET request to new exercise: 
+2024-06-08 13:01:02,384 - DEBUG - POST request to new exercise: 
+2024-06-08 13:01:02,384 - WARNING - User must be logged in to view 'new_exercise'.: 
+2024-06-08 13:01:02,403 - DEBUG - GET request to login: 
+2024-06-08 13:01:02,640 - WARNING - Not Found: /favicon.ico: 
+2024-06-08 13:01:13,510 - DEBUG - POST request to login: 
+2024-06-08 13:01:16,229 - DEBUG - GET request to new workout: 
+2024-06-08 13:01:16,295 - ERROR - Internal Server Error: /workout: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 212, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 529, in new_workout
+    return render(request, "workout/add_workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+2024-06-08 13:01:20,218 - DEBUG - GET request to new exercise: 
+2024-06-08 13:03:10,068 - DEBUG - GET request to new exercise: 
+2024-06-08 13:03:15,640 - DEBUG - GET request to new exercise: 
+2024-06-08 13:03:17,155 - DEBUG - GET request to new exercise: 
+2024-06-08 13:03:18,861 - DEBUG - GET request to new exercise: 
+2024-06-08 13:03:20,342 - DEBUG - GET request to new exercise: 
+2024-06-08 13:03:21,736 - DEBUG - GET request to new exercise: 

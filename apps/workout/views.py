@@ -155,7 +155,7 @@ def view_all(request):
 
 # muscle group
 def muscle_group(request):
-    """View muscle group."""
+    """View muscle groups."""
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
@@ -308,7 +308,7 @@ def new_exercise(request):
             'current_workout_id': int(current_workout_id),
             'current_muscle_group_id': int(current_muscle_group_id),
             'workouts': Workout.objects.filter(user__id=user.id).order_by('-updated_at'), 
-            'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
+            'muscle_groups': MuscleGroup.objects.order_by('name'),
 
         }
         

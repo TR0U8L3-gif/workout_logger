@@ -1,157 +1,223 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Workout Logger</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all,follow" />
     {% load static %}
-    <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.min.css' %}">
-    <link rel="stylesheet" href="../../static/workout/styles.css">
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
+    <link
+      rel="stylesheet"
+      href="{% static 'fontawesomefree/css/all.min.css' %}"
+    />
+    <link rel="stylesheet" href="../../static/workout/styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'workout/images/favicon.ico' %}"
+    />
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+  </head>
 
-<body>
-    {% include 'workout/header.html' %}
+  <body>
+    {% include 'workout/widgets/header.html' %}
 
-    <div class="d-flex align-items-stretch ">
-        {% include 'workout/sidebar.html' %}
-        <div class="page-content ">
-            <div class="page-header">
-                <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">{{exercise.class_name}}</h2>
-                </div>
-            </div>
-            <section class="no-padding-bottom">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <form id="update-exercise-form" action="/exercise/{{ exercise.id }}/edit" method="POST">
-                                {% csrf_token %}
-                                <!-- Edit Exercise Errors -->
-                                {% if messages %} {% for message in messages %} {% if message.tags == "exercise error" %}
-                                <div class="alert alert-danger alert-dismissable" role="alert">
-                                    <strong>Error!</strong> {{ message }}
-                                </div>
-                                {% endif %} {% endfor %} {% endif %}
-                                <div class="card bg-dark add-exercise mb-4 mt-2">
-                                    <div class="card-body text-light">
-                                        <!-- Exercise Name -->
-                                        <div class="form-group">
-                                            <input id="name" type="text" name="name" required class="input-material form-control-lg" placeholder="Name" value="{{ exercise.name }}">
-                                        </div>
-                                        <!-- Exercise Description -->
-                                        <div class="form-group">
-                                            <input id="description" type="text" name="description" class="input-material form-control-lg" placeholder="Description" value="{{ exercise.description }}">
-                                        </div>
-
-                                        <!-- Exercise Class -->
-                                        <input
-                                        type="hidden"
-                                        id="exercise_type"
-                                        name="exercise_type"
-                                        value="{{exercise.class_name}}"
-                                        />
-
-                                        <!-- Exercise Data -->
-                                        {% for field in exercise.form_data %}
-                                        <div class="form-group">
-                                            <input
-                                            id="{{ field.name }}"
-                                            type="{{ field.type }}"
-                                            name="{{ field.name }}"
-                                            required
-                                            class="input-material form-control-lg"
-                                            placeholder="{{ field.placeholder }}"
-                                            value="{{ field.value }}"
-                                            />
-                                        </div>
-                                        {% endfor %}
-
-                                        <!-- Workout Id -->
-                                        <div class="row mt-2 opacity-50">
-                                            {% if workouts %}
-                                            <div class="col-auto ">
-                                            <select name="workout_id" id="exercise_type" class="bg-dark input-material form-control-lg text-light">
-                                                {% for workout in workouts %}                            
-                                                {% if workout.id == exercise.workout.id %}  
-                                                    <option selected="selected" value={{workout.id}}>{{workout}}</option>
-                                                {% else %}
-                                                    <option value={{workout.id}}>{{workout}}</option>
-                                                {% endif %}
-                                                {% endfor %}
-                                                
-                                            </select>
-                                            </div>
-                                            <div class="col-auto p-0">
-                                                <a href="/workout"
-                                                style="text-decoration: none"
-                                                class="btn btn-primary btn-lg end-workout">Add Workout</a>
-                                            </div>
-                                            {% else %}
-                                            <div class="col-auto p-0 ms-3 mt-4">
-                                                <a href="/workout"
-                                                style="text-decoration: none"
-                                                class="btn btn-primary btn-lg end-workout">Add Workout</a>
-                                            </div>
-                                            {% endif %}
-                                        </div>
-                                        
-                                        <!-- Muscle Group Id -->
-                                        <div class="row mt-2 opacity-50 mb-2">
-                                            {% if muscle_groups %}
-                                            <div class="col-auto ">
-                                            <select name="muscle_group" id="exercise_type" class="bg-dark input-material form-control-lg text-light">
-                                                {% for muscle_group in muscle_groups %}
-                                                {% if muscle_group.id == exercise.muscle_group.id %}  
-                                                    <option selected="selected" value={{muscle_group.id}}>{{muscle_group}}</option>
-                                                {% else %}
-                                                <option value={{muscle_group.id}}>{{muscle_group}}</option>
-                                                {% endif %}
-                                                {% endfor %}
-                                            </select>
-                                            </div>
-                                            <div class="col-auto p-0">
-                                                <a href="/musclegroup"
-                                                style="text-decoration: none"
-                                                class="btn btn-primary btn-lg end-workout">Add Muscle Group</a>
-                                            </div>
-                                            {% else %}
-                                            <div class="col-auto p-0 ms-3 mt-4">
-                                                <a href="/musclegroup"
-                                                style="text-decoration: none"
-                                                class="btn btn-primary btn-lg end-workout">Add Muscle Group</a>
-                                            </div>
-                                            {% endif %}
-                                        </div>
-
-                                        <!-- Update Exercise Button -->
-                                        {% if muscle_groups %} {% if workouts %}
-                                        <input id="update" type="submit" value="Update" class="btn btn-success btn-lg my-4">
-                                        {% endif %} {% endif %}
-                                        <!-- Back Button -->
-                                        <a href="/exercise"
-                                        style="text-decoration: none" class="btn btn-outline-secondary btn-lg ms-3 my-4">View All Exercises</a>
-                                        <!-- Delete Button -->
-                                        <a id="delete-exercise" href="/exercise/{{ exercise.id }}/delete?exercise_type={{ exercise.class_name}}" 
-                                        style="text-decoration: none"
-                                        class="btn btn-outline-danger btn-lg ms-3 my-4">Delete</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <div class="d-flex align-items-stretch">
+      {% include 'workout/widgets/sidebar.html' %}
+      <div class="page-content">
+        <div class="page-header">
+          <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">{{exercise.class_name}}</h2>
+          </div>
         </div>
+        <section class="no-padding-bottom">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <form
+                  id="update-exercise-form"
+                  action="/exercise/{{ exercise.id }}/edit"
+                  method="POST"
+                >
+                  {% csrf_token %}
+                  <!-- Edit Exercise Errors -->
+                  {% if messages %} {% for message in messages %} {% if
+                  message.tags == "exercise error" %}
+                  <div
+                    class="alert alert-danger alert-dismissable"
+                    role="alert"
+                  >
+                    <strong>Error!</strong> {{ message }}
+                  </div>
+                  {% endif %} {% endfor %} {% endif %}
+                  <div class="card bg-dark add-exercise mb-4 mt-2">
+                    <div class="card-body text-light">
+                      <!-- Exercise Name -->
+                      <div class="form-group">
+                        <input
+                          id="name"
+                          type="text"
+                          name="name"
+                          required
+                          class="input-material form-control-lg"
+                          placeholder="Name"
+                          value="{{ exercise.name }}"
+                        />
+                      </div>
+                      <!-- Exercise Description -->
+                      <div class="form-group">
+                        <input
+                          id="description"
+                          type="text"
+                          name="description"
+                          class="input-material form-control-lg"
+                          placeholder="Description"
+                          value="{{ exercise.description }}"
+                        />
+                      </div>
+
+                      <!-- Exercise Class -->
+                      <input
+                        type="hidden"
+                        id="exercise_type"
+                        name="exercise_type"
+                        value="{{exercise.class_name}}"
+                      />
+
+                      <!-- Exercise Data -->
+                      {% for field in exercise.form_data %}
+                      <div class="form-group">
+                        <input
+                          id="{{ field.name }}"
+                          type="{{ field.type }}"
+                          name="{{ field.name }}"
+                          required
+                          class="input-material form-control-lg"
+                          placeholder="{{ field.placeholder }}"
+                          value="{{ field.value }}"
+                        />
+                      </div>
+                      {% endfor %}
+
+                      <!-- Workout Id -->
+                      <div class="row mt-2 opacity-50">
+                        {% if workouts %}
+                        <div class="col-auto">
+                          <select
+                            name="workout_id"
+                            id="exercise_type"
+                            class="bg-dark input-material form-control-lg text-light"
+                          >
+                            {% for workout in workouts %} {% if workout.id ==
+                            exercise.workout.id %}
+                            <option selected="selected" value="{{workout.id}}">
+                              {{workout}}
+                            </option>
+                            {% else %}
+                            <option value="{{workout.id}}">{{workout}}</option>
+                            {% endif %} {% endfor %}
+                          </select>
+                        </div>
+                        <div class="col-auto p-0">
+                          <a
+                            href="/workout"
+                            style="text-decoration: none"
+                            class="btn btn-primary btn-lg end-workout"
+                            >Add Workout</a
+                          >
+                        </div>
+                        {% else %}
+                        <div class="col-auto p-0 ms-3 mt-4">
+                          <a
+                            href="/workout"
+                            style="text-decoration: none"
+                            class="btn btn-primary btn-lg end-workout"
+                            >Add Workout</a
+                          >
+                        </div>
+                        {% endif %}
+                      </div>
+
+                      <!-- Muscle Group Id -->
+                      <div class="row mt-2 opacity-50 mb-2">
+                        {% if muscle_groups %}
+                        <div class="col-auto">
+                          <select
+                            name="muscle_group"
+                            id="exercise_type"
+                            class="bg-dark input-material form-control-lg text-light"
+                          >
+                            {% for muscle_group in muscle_groups %} {% if
+                            muscle_group.id == exercise.muscle_group.id %}
+                            <option
+                              selected="selected"
+                              value="{{muscle_group.id}}"
+                            >
+                              {{muscle_group}}
+                            </option>
+                            {% else %}
+                            <option value="{{muscle_group.id}}">
+                              {{muscle_group}}
+                            </option>
+                            {% endif %} {% endfor %}
+                          </select>
+                        </div>
+                        <div class="col-auto p-0">
+                          <a
+                            href="/musclegroup"
+                            style="text-decoration: none"
+                            class="btn btn-primary btn-lg end-workout"
+                            >Add Muscle Group</a
+                          >
+                        </div>
+                        {% else %}
+                        <div class="col-auto p-0 ms-3 mt-4">
+                          <a
+                            href="/musclegroup"
+                            style="text-decoration: none"
+                            class="btn btn-primary btn-lg end-workout"
+                            >Add Muscle Group</a
+                          >
+                        </div>
+                        {% endif %}
+                      </div>
+
+                      <!-- Update Exercise Button -->
+                      {% if muscle_groups %} {% if workouts %}
+                      <input
+                        id="update"
+                        type="submit"
+                        value="Update"
+                        class="btn btn-success btn-lg my-4"
+                      />
+                      {% endif %} {% endif %}
+                      <!-- Back Button -->
+                      <a
+                        href="/exercise"
+                        style="text-decoration: none"
+                        class="btn btn-outline-secondary btn-lg ms-3 my-4"
+                        >View All Exercises</a
+                      >
+                      <!-- Delete Button -->
+                      <a
+                        id="delete-exercise"
+                        href="/exercise/{{ exercise.id }}/delete?exercise_type={{ exercise.class_name}}"
+                        style="text-decoration: none"
+                        class="btn btn-outline-danger btn-lg ms-3 my-4"
+                        >Delete</a
+                      >
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'workout/index.js' %}"></script>
-</body>
-
+  </body>
 </html>

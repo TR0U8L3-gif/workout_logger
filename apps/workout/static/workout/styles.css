@@ -142,7 +142,7 @@ body {
   }
   
   .page-content {
-    background: #22252a;
+    background: #37476d;
     min-height: 100vh;
     width: calc(100% - 280px);
     padding: 0;
@@ -678,7 +678,7 @@ body {
   nav#sidebar ul ul a {
     padding: 14px;
     padding-left: 60px;
-    background: #22252a;
+    background: #37476d;
   }
   
   nav#sidebar .sidebar-header {
