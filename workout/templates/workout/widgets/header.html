@@ -23,12 +23,12 @@
             </div>
           </div>
         </li>
-        {% endif %} {% if user.profile_picture %}
+        {% endif %} {% if user.profile_photo_url %}
         <li class="list-inline-item">
-          <a href="/user/profile" class="nav-link">
+          <a href="/profile" class="nav-link">
             <div class="avatar">
               <img
-                src="{{ user.profile_picture }}"
+                src="{{ user.profile_photo_url }}"
                 alt="User Profile Picture"
                 height="64"
                 width="64"
@@ -39,7 +39,7 @@
         </li>
         {% else %} {% load static %}
         <li class="list-inline-item">
-          <a href="/user/profile" class="nav-link">
+          <a href="/profile" class="nav-link">
             <div class="avatar">
               <img
                 src="{% static 'workout/images/workout_logger.png' %}"

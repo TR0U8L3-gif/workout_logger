@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Workout Logger</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all,follow" />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'fontawesomefree/css/all.min.css' %}"
+    />
+    <link rel="stylesheet" href="../../static/workout/styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'workout/images/favicon.ico' %}"
+    />
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+  </head>
+
+  <body>
+    {% include 'workout/widgets/header.html' %}
+
+    <div class="d-flex align-items-stretch">
+      {% include 'workout/widgets/sidebar.html' %}
+      <div class="page-content">
+        <div class="page-header mb-0">
+          <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">Profile</h2>
+          </div>
+        </div>
+        <div class="mb-2" style="width: 100%; height: 300px; position: relative">
+          {% if profile.background_photo_url %}
+          <img
+            src="{{ profile.background_photo_url }}"
+            alt="User Profile Picture"
+            width="100%"
+            height="300px"
+            style="object-fit: cover; object-position: center"
+          />
+          {% else %} {% load static %}
+          <img
+            src="{% static 'workout/images/bg.png' %}"
+            alt="User Profile Picture"
+            width="100%"
+            height="300px"
+            style="object-fit: cover; object-position: center"
+          />
+          {% endif %}
+          <div style="position: absolute; left: 0; top: 0">
+            {% if profile.profile_photo_url %}
+            <li class="list-inline-item">
+              <a href="/profile" class="nav-link">
+                <div class="avatar">
+                  <img
+                    src="{{ profile.profile_photo_url }}"
+                    alt="User Profile Picture"
+                    height="280px"
+                    width="280px"
+                    class="rounded-circle"
+                  />
+                </div>
+              </a>
+            </li>
+            {% else %} {% load static %}
+            <li class="list-inline-item">
+              <a href="/profile" class="nav-link">
+                <div class="avatar">
+                  <img
+                    src="{% static 'workout/images/workout_logger.png' %}"
+                    alt="User Profile Picture"
+                    height="280px"
+                    width="280px"
+                    class="rounded-circle"
+                  />
+                </div>
+              </a>
+            </li>
+            {% endif %}
+          </div>
+
+          <div style="position: absolute; right: 0; top: 0">
+            <div class="card bg-dark add-exercise mt-2 me-4" >
+              <div class="card-body mb-0 pb-0">
+                <div class="container-fluid">
+                    <h4 class="card-title text-white">{{profile.username}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                      {{profile.created_at | date }}
+                    </h6>
+                    <h5 class="card-title text-white mt-4 mb-4">{{profile.email}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4 class="ms-4 ps-4 mt-4 mb-4 text-light">Shared Workouts</h4>
+        {% if shared_workouts %}
+            {% for workout in shared_workouts %}  
+                <div class="mx-4">
+                    <div class="col-lg-12 pb-4">
+                        <div class="card text-white bg-dark mb-2">
+                          <div class="card-body">
+                            <h4 class="card-title">{{workout.name}}</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                              {{workout.created_at | date }}
+                            </h6>
+                            <p class="card-text mb-0">{{workout.description}}</p>
+                            <p class="card-text ">
+                              <small class="text-muted"
+                                >Updated {{workout.updated_at | timesince}} ago</small
+                              >
+                            </p>
+                            <!-- view exercises -->
+                            <div id="exercise-wrapper" class="mb-4">
+                                <hr  class="mb-0"/>
+                                <table class="table table-dark table-striped text-light">
+                                </thead>
+                                  <tbody>
+                                    {% for exercise in shared_exercises %}
+                                    {% if exercise.workout_id == workout.id %}
+                                    <tr>
+                                      <th scope="row" class="align-middle text-center">{{ exercise.exercise_name }}</th>
+                                      <td class="align-middle text-center">{{ exercise.name }}</td>
+                                      {% for data in exercise.data %}
+                                      <td class="align-middle text-center">{{ data }}</td>
+                                      {% endfor %}
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                              </div>
+                            {% if user.id == profile.id %}
+                            <a
+                              href="/workout/{{workout.id}}"
+                              class="btn btn-outline-info"
+                              >View</a
+                            >
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        <div class="mx-4">
+            <div class="col-lg-12 pb-4">
+            <div class="card text-white bg-dark mb-4">
+              <div class="card-body">
+                {% if user.id == profile.id %}
+                <h4 class="card-title">You don't have any shared workouts yet.</h4>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  Don't be shy! Share your workouts with friends. 🌍
+                </h6>
+                <a
+                  href="/workout"
+                  class="btn btn-outline-info"
+                  >Pin Workout</a
+                >
+                {% else %}
+                <h4 class="card-title">{{profile.username}} don't have any shared workouts yet.</h4>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    Check back later for updates. 🌍
+                </h6>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'workout/index.js' %}"></script>
+  </body>
+</html>

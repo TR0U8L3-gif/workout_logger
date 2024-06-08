@@ -64,7 +64,7 @@ def register(request):
 
     Args:
         request: Django HttpRequest object.
-        
+
     Returns:
         Django HttpResponse object.
     """
@@ -851,4 +851,149 @@ def complete_workout(request, id):
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         logging.warning("User must be logged in to view 'complete_workout'.")
+        return redirect("/")
+
+def share_workout(request, id):
+    """
+    POST - share a workout
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: Workout object.
+
+    Returns:
+        Django HttpResponse object.
+    """
+
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+
+        if request.method == "GET":
+            logging.debug("GET request to share workout")
+            # If get request, bring back to workout page.
+            # Note, for now, GET request for this method not being utilized:
+            return redirect("/workout/" + id)
+
+        if request.method == "POST":
+            logging.debug("POST request to share workout")
+            # Update Workout.is_shared field for this instance:
+            workout = Workout.objects.get(id=id)
+            redirect_url = "/workout/" + id
+
+            try:
+                redirect_url = request.POST["redirect"]
+            except KeyError as err:
+                pass
+
+            # check if workout is owned by user
+            if workout.user != user:
+                messages.error(request, "You do not have permission to share this workout.", extra_tags='workout')
+                logging.error("User does not have permission to share workout.")
+                redirect_url = "/workout"
+                return redirect(redirect_url)
+            
+            is_shared = workout.is_shared
+            if is_shared:
+                workout.is_shared = False
+            else:    
+                workout.is_shared = True 
+            workout.save()
+
+            # Return to workout:
+            return redirect(redirect_url)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'share_workout'.")
+        return redirect("/")
+
+#profile
+def profile(request):
+    """
+    GET - View profile.
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: QuerySet of recent workouts.
+        exercise: List of all exercises.
+
+    Returns:
+        Django HttpResponse object.
+    """
+
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+        workout = Workout.objects.filter(user__id=user.id, is_shared=True).order_by('-updated_at')[:5]
+        exercise = []
+
+        for w in workout:
+            exercise.extend(StrengthTrainingExercise.objects.filter(workout__id=w.id))
+            exercise.extend(EnduranceTrainingExercise.objects.filter(workout__id=w.id))
+            exercise.extend(BalanceExercise.objects.filter(workout__id=w.id))
+            exercise.extend(FlexibilityExercise.objects.filter(workout__id=w.id))
+        
+        # Gather any page data:
+        data = {
+            'id': user.id,
+            'user': user,
+            'shared_workouts': workout,
+            'shared_exercises': sorted(exercise, key=lambda x: x.updated_at, reverse=True),
+        }
+
+        # If get request, load profile page with data:
+        return render(request, "workout/profile.html", data)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'profile'.")
+        return redirect("/")
+    
+def profile_online(request, id):
+    """
+    GET - View profile.
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: QuerySet of recent workouts.
+        exercise: List of all exercises.
+
+    Returns:
+        Django HttpResponse object.
+    """
+
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+        profile = User.objects.get(id=id)
+        workout = Workout.objects.filter(user__id=profile.id, is_shared=True).order_by('-updated_at')[:5]
+        exercise = []
+
+        for w in workout:
+            exercise.extend(StrengthTrainingExercise.objects.filter(workout__id=w.id))
+            exercise.extend(EnduranceTrainingExercise.objects.filter(workout__id=w.id))
+            exercise.extend(BalanceExercise.objects.filter(workout__id=w.id))
+            exercise.extend(FlexibilityExercise.objects.filter(workout__id=w.id))
+        
+        # Gather any page data:
+        data = {
+            'user': user,
+            'profile': profile,
+            'shared_workouts': workout,
+            'shared_exercises': sorted(exercise, key=lambda x: x.updated_at, reverse=True),
+        }
+
+        # If get request, load profile page with data:
+        return render(request, "workout/profile.html", data)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'profile'.")
         return redirect("/")

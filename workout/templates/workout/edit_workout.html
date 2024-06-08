@@ -138,6 +138,42 @@
                           {% endif %}
                         </form>
                       </div>
+
+                      <div class="col-auto text-left">
+                        <!-- Share Workout -->
+                        <form 
+                        id="end-workout-form"
+                        action="/workout/{{ workout.id }}/share"
+                        method="POST"
+                      >
+                        {% csrf_token %}
+                        <input
+                            type="hidden"
+                            id="redirect"
+                            name="redirect"
+                            value="/workout/{{ workout.id }}/edit"
+                          />
+                        <!-- Share Workout Button -->
+                        {% if workout.is_shared == False %}
+                        <button
+                          id="end-workout"
+                          type="submit"
+                          class="btn btn-outline-info btn-lg"
+                        >
+                          Pin Workout
+                        </button>
+                        {% else %}
+                        <button
+                          id="end-workout"
+                          type="submit"
+                          class="btn btn-primary btn-lg end-workout"
+                          >
+                          <b>Unpin Workout</b>
+                        </button>
+                        {% endif %}
+                      </form>
+                      </div>
+
                       <div class="col-auto text-left">
                         <!-- View All Button -->
                         <a
