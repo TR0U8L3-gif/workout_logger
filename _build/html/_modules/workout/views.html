@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>workout.views &#8212; workout Logger 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for workout.views</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">views.py</span>
+
+<span class="sd">This module contains the views for the workout app.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+ 
+
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">messages</span> <span class="c1"># access django&#39;s `messages` module.</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.views_helper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span><span class="p">,</span> <span class="n">EmptyPage</span><span class="p">,</span> <span class="n">PageNotAnInteger</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">import</span> <span class="nn">logging</span> 
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">current_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;workout_</span><span class="si">{</span><span class="n">current_date</span><span class="si">}</span><span class="s2">.log&quot;</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">filemode</span><span class="o">=</span><span class="s2">&quot;a+&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">: &quot;</span><span class="p">)</span>
+
+<span class="c1"># authentication</span>
+<div class="viewcode-block" id="login">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.login">[docs]</a>
+<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - Loads login page. POST - Logs in user.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;GET request to login&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/index.html&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;POST request to login&quot;</span><span class="p">)</span>
+        <span class="c1"># Validate login data:</span>
+        <span class="n">validated</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># If errors, reload login page with errors:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;User could not be logged in.&quot;</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User could not be logged in.&quot;</span><span class="p">)</span>
+                <span class="c1"># Loop through errors and Generate Django Message for each with custom level and tag:</span>
+                <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">]:</span>
+                    <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;login&#39;</span><span class="p">)</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="c1"># Reload login page:</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># If validation successful, set session, and load dashboard based on user level:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;User passed validation and is logged in.&quot;</span><span class="p">)</span>
+            <span class="c1"># Set session to validated User:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">validated</span><span class="p">[</span><span class="s2">&quot;logged_in_user&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">id</span>
+            <span class="c1"># Fetch dashboard data and load appropriate dashboard page:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/dashboard&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="register">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.register">[docs]</a>
+<span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - Load register page. POST - Register user.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;GET request to register&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/register.html&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;POST request to register&quot;</span><span class="p">)</span>
+        <span class="c1"># Validate registration data:</span>
+        <span class="n">validated</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+        <span class="c1"># If errors, reload register page with errors:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;User could not be registered.&quot;</span><span class="p">)</span>
+                <span class="c1"># Loop through errors and Generate Django Message for each with custom level and tag:</span>
+                <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">]:</span>
+                    <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;registration&#39;</span><span class="p">)</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                <span class="c1"># Reload register page:</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/user/register&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># If validation successful, set session and load dashboard based on user level:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;User passed validation and has been created.&quot;</span><span class="p">)</span>
+            <span class="c1"># Set session to validated User:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">validated</span><span class="p">[</span><span class="s2">&quot;logged_in_user&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">id</span>
+            <span class="c1"># Load Dashboard:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/dashboard&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="logout">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.logout">[docs]</a>
+<span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Logs out current user&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Deletes session:</span>
+        <span class="k">del</span> <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span>
+        <span class="c1"># Adds success message:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You have been logged out.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;logout&#39;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;User has been logged out.&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># Return to index page:</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<span class="c1"># dashboard</span>
+<div class="viewcode-block" id="dashboard">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.dashboard">[docs]</a>
+<span class="k">def</span> <span class="nf">dashboard</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - Loads dashboard.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        recent_workouts: QuerySet of recent workouts.</span>
+<span class="sd">        data: Dictionary of page data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+
+        <span class="c1"># Get recent workouts for logged in user:</span>
+        <span class="n">recent_workouts</span> <span class="o">=</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-id&#39;</span><span class="p">)[:</span><span class="mi">4</span><span class="p">]</span>
+
+        <span class="c1"># Gather any page data:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="s1">&#39;recent_workouts&#39;</span><span class="p">:</span> <span class="n">recent_workouts</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Load dashboard with data:</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/dashboard.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;dashboard&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="view_all">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.view_all">[docs]</a>
+<span class="k">def</span> <span class="nf">view_all</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - Loads `View All` Workouts page.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        workout_list: QuerySet of all workouts.</span>
+<span class="sd">        ste_list: QuerySet of all StrengthTrainingExercises.</span>
+<span class="sd">        ete_list: QuerySet of all EnduranceTrainingExercises.</span>
+<span class="sd">        be_list: QuerySet of all BalanceExercises.</span>
+<span class="sd">        fe_list: QuerySet of all FlexibilityExercises.</span>
+<span class="sd">        page: Current page number.</span>
+<span class="sd">        data_list: List of all exercises.</span>
+<span class="sd">        paginator: Paginator object.</span>
+<span class="sd">        data: Dictionary of page data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+
+        <span class="n">workout_list</span> <span class="o">=</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">ste_list</span> <span class="o">=</span> <span class="n">StrengthTrainingExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">ete_list</span> <span class="o">=</span> <span class="n">EnduranceTrainingExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">be_list</span> <span class="o">=</span> <span class="n">BalanceExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">fe_list</span> <span class="o">=</span> <span class="n">FlexibilityExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        
+        <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">data_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">workout_list</span><span class="p">,</span> <span class="n">ste_list</span><span class="p">,</span><span class="n">ete_list</span><span class="p">,</span> <span class="n">be_list</span><span class="p">,</span> <span class="n">fe_list</span><span class="p">))</span>
+        <span class="n">paginator</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">data_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">updated_at</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PageNotAnInteger</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">EmptyPage</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">paginator</span><span class="o">.</span><span class="n">num_pages</span><span class="p">)</span>
+
+        <span class="c1"># Gather any page data:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Load dashboard with data:</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/view_all.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;view_all&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<span class="c1"># muscle group</span>
+<div class="viewcode-block" id="muscle_group">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.muscle_group">[docs]</a>
+<span class="k">def</span> <span class="nf">muscle_group</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - View muscle groups.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        muscle_group: QuerySet of all muscle groups.</span>
+<span class="sd">        data: Dictionary of page data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+        
+        <span class="n">muscle_group</span> <span class="o">=</span> <span class="n">MuscleGroup</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">muscle_group</span><span class="p">)</span>
+        
+        <span class="c1"># Gather any page data:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="s1">&#39;muscle_group&#39;</span><span class="p">:</span> <span class="n">muscle_group</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># If get request, load workout page with data:</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/muscle_group.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;muscle_group&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<span class="c1"># exercise</span>
+<div class="viewcode-block" id="exercise">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.exercise">[docs]</a>
+<span class="k">def</span> <span class="nf">exercise</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - View exercise.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        exercise: Exercise object.</span>
+<span class="sd">        data: Dictionary of page data.  </span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">exercise_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;exercise_type&#39;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">exercise_type</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must select an exercise type.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;exercise&#39;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;User must select an exercise type.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/exercise&quot;</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+        <span class="n">exercise_class</span> <span class="o">=</span> <span class="n">get_exercise_by_class_name</span><span class="p">(</span><span class="n">exercise_type</span><span class="p">)</span>
+        <span class="n">exercise</span> <span class="o">=</span> <span class="n">exercise_class</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">redirect_url</span> <span class="o">=</span> <span class="s2">&quot;/exercise&quot;</span>
+        
+        <span class="c1"># check if workout is owned by user</span>
+        <span class="k">if</span> <span class="n">exercise</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">user</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You do not have permission to view this exercise.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;exercise&#39;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;User does not have permission to view exercise.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/exercise&quot;</span><span class="p">)</span>
+            
+        <span class="n">workout_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">workout_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s2">&quot;redirect_workout&quot;</span><span class="p">]</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">workout_id</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">redirect_url</span> <span class="o">=</span> <span class="s2">&quot;/workout/&quot;</span> <span class="o">+</span> <span class="n">workout_id</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">pass</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">redirect_view_all</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s2">&quot;redirect_view_all&quot;</span><span class="p">]</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">redirect_view_all</span> <span class="o">!=</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">redirect_view_all</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">):</span>
+                <span class="n">redirect_url</span> <span class="o">=</span> <span class="s2">&quot;/history&quot;</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">pass</span>
+        
+        <span class="c1"># Gather any page data:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="s1">&#39;exercise&#39;</span><span class="p">:</span> <span class="n">exercise</span><span class="p">,</span>
+            <span class="s1">&#39;workouts&#39;</span><span class="p">:</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-updated_at&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;muscle_groups&#39;</span><span class="p">:</span> <span class="n">MuscleGroup</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-updated_at&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;redirect_url&#39;</span><span class="p">:</span> <span class="n">redirect_url</span><span class="p">,</span>
+            <span class="s1">&#39;redirect_workout&#39;</span><span class="p">:</span> <span class="n">workout_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># If get request, load exercise page with data:</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/exercise.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;exercise&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="edit_exercise">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.edit_exercise">[docs]</a>
+<span class="k">def</span> <span class="nf">edit_exercise</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - load edit exercise, POST - submit edit exercise</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        exercise: Exercise object.</span>
+<span class="sd">        data: Dictionary of page data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;GET request to edit exercise&quot;</span><span class="p">)</span>
+
+            <span class="c1"># If get request, load edit exercise page with data:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/exercise/&quot;</span> <span class="o">+</span> <span class="nb">id</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;POST request to edit exercise&quot;</span><span class="p">)</span>
+            <span class="n">workout_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;workout_id&quot;</span><span class="p">]</span>
+            <span class="n">muscle_group_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;muscle_group&quot;</span><span class="p">]</span>
+            <span class="n">exercise_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;exercise_type&quot;</span><span class="p">]</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">redirect_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="n">exercise</span> <span class="o">=</span> <span class="n">get_exercise_by_class_name</span><span class="p">(</span><span class="n">exercise_type</span><span class="p">)</span>
+            
+            <span class="n">exercise_model</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;exercise_id&quot;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;workout&quot;</span><span class="p">:</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">workout_id</span><span class="p">),</span>
+                <span class="s2">&quot;muscle_group&quot;</span><span class="p">:</span> <span class="n">MuscleGroup</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">muscle_group_id</span><span class="p">),</span>
+                <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="p">}</span>
+            
+            <span class="c1"># Add form data to exercise model:</span>
+            <span class="k">for</span> <span class="n">form_field</span> <span class="ow">in</span> <span class="n">exercise</span><span class="p">()</span><span class="o">.</span><span class="n">form_data</span><span class="p">():</span>
+                <span class="n">exercise_model</span><span class="p">[</span><span class="n">form_field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="n">form_field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+
+            <span class="c1"># Begin validation of a new exercise:</span>
+            <span class="n">validated</span> <span class="o">=</span> <span class="n">exercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">update_exercise</span><span class="p">(</span><span class="o">**</span><span class="n">exercise_model</span><span class="p">)</span>
+            
+            <span class="c1"># If errors, reload register page with errors:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Exercise could not be edited.&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exercise could not be created.&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># Loop through errors and Generate Django Message for each with custom level and tag:</span>
+                    <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">]:</span>
+                        <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;exercise&#39;</span><span class="p">)</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                    <span class="c1"># Reload workout page:</span>
+                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/exercise/&quot;</span> <span class="o">+</span> <span class="nb">id</span> <span class="o">+</span> <span class="s2">&quot;?exercise_type=&quot;</span> <span class="o">+</span> <span class="n">exercise_type</span> <span class="o">+</span> <span class="s2">&quot;&amp;current_muscle_group_id=&quot;</span> <span class="o">+</span> <span class="n">muscle_group_id</span> <span class="o">+</span> <span class="s2">&quot;&amp;current_workout_id=&quot;</span> <span class="o">+</span> <span class="n">workout_id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="c1"># If validation successful, load newly created workout page:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exercise passed validation and has been created.&quot;</span><span class="p">)</span>
+                <span class="c1"># Reload workout:</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/exercise/&quot;</span> <span class="o">+</span> <span class="nb">id</span> <span class="o">+</span> <span class="s2">&quot;?exercise_type=&quot;</span> <span class="o">+</span> <span class="n">exercise_type</span> <span class="o">+</span> <span class="s2">&quot;&amp;current_muscle_group_id=&quot;</span> <span class="o">+</span> <span class="n">muscle_group_id</span> <span class="o">+</span> <span class="s2">&quot;&amp;current_workout_id=&quot;</span> <span class="o">+</span> <span class="n">workout_id</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;edit_exercise&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="new_exercise">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.new_exercise">[docs]</a>
+<span class="k">def</span> <span class="nf">new_exercise</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - load new exercise, POST - submit new exercise</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        exercise: Exercise object.</span>
+<span class="sd">        data: Dictionary of page data.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">exercise_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;exercise_type&#39;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">exercise_type</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">exercise_type</span> <span class="o">=</span> <span class="n">StrengthTrainingExercise</span><span class="p">()</span><span class="o">.</span><span class="n">class_name</span>
+    <span class="n">current_workout_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;current_workout_id&#39;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">current_workout_id</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">current_workout_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">current_muscle_group_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;current_muscle_group_id&#39;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">current_muscle_group_id</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">current_muscle_group_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span> 
+        
+        <span class="n">ste</span> <span class="o">=</span> <span class="n">StrengthTrainingExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">ete</span> <span class="o">=</span> <span class="n">EnduranceTrainingExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">be</span> <span class="o">=</span> <span class="n">BalanceExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">fe</span> <span class="o">=</span> <span class="n">FlexibilityExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        
+        <span class="n">exercises</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">ste</span><span class="p">,</span> <span class="n">ete</span><span class="p">,</span> <span class="n">be</span><span class="p">,</span> <span class="n">fe</span><span class="p">))</span>
+        
+        <span class="c1"># Gather any page data:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="s1">&#39;exercises&#39;</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">exercises</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">updated_at</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="s1">&#39;exercise_types&#39;</span><span class="p">:</span> <span class="n">get_exercises_types</span><span class="p">(),</span>
+            <span class="s1">&#39;current_exercise&#39;</span><span class="p">:</span> <span class="n">exercise_type</span><span class="p">,</span>
+            <span class="s1">&#39;current_workout_id&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">current_workout_id</span><span class="p">),</span>
+            <span class="s1">&#39;current_muscle_group_id&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">current_muscle_group_id</span><span class="p">),</span>
+            <span class="s1">&#39;workouts&#39;</span><span class="p">:</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-updated_at&#39;</span><span class="p">),</span> 
+            <span class="s1">&#39;muscle_groups&#39;</span><span class="p">:</span> <span class="n">MuscleGroup</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;GET request to new exercise&quot;</span><span class="p">)</span>
+            <span class="c1"># If get request, load `add exercise` page with data:</span>
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/add_exercise.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;POST request to new exercise&quot;</span><span class="p">)</span>
+            <span class="n">workout_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;workout_id&quot;</span><span class="p">]</span>
+            <span class="n">muscle_group_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;muscle_group&quot;</span><span class="p">]</span>
+            <span class="n">exercise_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;exercise_type&quot;</span><span class="p">]</span>
+            <span class="n">redirect_url</span> <span class="o">=</span> <span class="s2">&quot;/exercise&quot;</span>
+            
+            
+            <span class="k">if</span><span class="p">(</span><span class="n">exercise_type</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">exercise_type</span> <span class="o">=</span> <span class="n">StrengthTrainingExercise</span><span class="p">()</span><span class="o">.</span><span class="n">class_name</span>
+            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">redirect_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="n">exercise</span> <span class="o">=</span> <span class="n">get_exercise_by_class_name</span><span class="p">(</span><span class="n">exercise_type</span><span class="p">)</span>
+            
+            <span class="n">exercise_model</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;workout&quot;</span><span class="p">:</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">workout_id</span><span class="p">),</span>
+                <span class="s2">&quot;muscle_group&quot;</span><span class="p">:</span> <span class="n">MuscleGroup</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">muscle_group_id</span><span class="p">),</span>
+                <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="p">}</span>
+            
+            <span class="c1"># Add form data to exercise model:</span>
+            <span class="k">for</span> <span class="n">form_field</span> <span class="ow">in</span> <span class="n">exercise</span><span class="p">()</span><span class="o">.</span><span class="n">form_data</span><span class="p">():</span>
+                <span class="n">exercise_model</span><span class="p">[</span><span class="n">form_field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="n">form_field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+
+            <span class="c1"># Begin validation of a new exercise:</span>
+            <span class="n">validated</span> <span class="o">=</span> <span class="n">exercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">new_exercise</span><span class="p">(</span><span class="o">**</span><span class="n">exercise_model</span><span class="p">)</span>
+            
+            <span class="c1"># If errors, reload register page with errors:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Exercise could not be created.&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exercise could not be created.&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># Loop through errors and Generate Django Message for each with custom level and tag:</span>
+                    <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">]:</span>
+                        <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;exercise&#39;</span><span class="p">)</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                    <span class="c1"># Reload workout page:</span>
+                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">redirect_url</span> <span class="o">+</span> <span class="s2">&quot;?exercise_type=&quot;</span> <span class="o">+</span> <span class="n">exercise_type</span> <span class="o">+</span> <span class="s2">&quot;&amp;current_muscle_group_id=&quot;</span> <span class="o">+</span> <span class="n">muscle_group_id</span> <span class="o">+</span> <span class="s2">&quot;&amp;current_workout_id=&quot;</span> <span class="o">+</span> <span class="n">workout_id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="c1"># If validation successful, load newly created workout page:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exercise passed validation and has been created.&quot;</span><span class="p">)</span>
+                <span class="c1"># Reload workout:</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span> <span class="n">redirect_url</span> <span class="o">+</span> <span class="s2">&quot;?exercise_type=&quot;</span> <span class="o">+</span> <span class="n">exercise_type</span> <span class="o">+</span> <span class="s2">&quot;&amp;current_muscle_group_id=&quot;</span> <span class="o">+</span> <span class="n">muscle_group_id</span> <span class="o">+</span> <span class="s2">&quot;&amp;current_workout_id=&quot;</span> <span class="o">+</span> <span class="n">workout_id</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;new_exercise&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>       </div>
+
+    
+<div class="viewcode-block" id="delete_exercise">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.delete_exercise">[docs]</a>
+<span class="k">def</span> <span class="nf">delete_exercise</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - Delete a exercise.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        exercise: Exercise object.</span>
+<span class="sd">        data: Dictionary of page data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+        
+        <span class="n">redirect_url</span> <span class="o">=</span> <span class="s2">&quot;/exercise&quot;</span> 
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">workout_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s2">&quot;redirect_workout&quot;</span><span class="p">]</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">workout_id</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">redirect_url</span> <span class="o">=</span> <span class="s2">&quot;/workout/&quot;</span> <span class="o">+</span> <span class="n">workout_id</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">pass</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">redirect_view_all</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s2">&quot;redirect_view_all&quot;</span><span class="p">]</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">redirect_view_all</span> <span class="o">!=</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">redirect_view_all</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">):</span>
+                <span class="n">redirect_url</span> <span class="o">=</span> <span class="s2">&quot;/history&quot;</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">exercise_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;exercise_type&#39;</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">exercise_type</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must select an exercise type.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;exercise&#39;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;User must select an exercise type.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">redirect_url</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">id</span><span class="p">)</span>
+    
+        <span class="c1"># check if exercise is owned by user</span>
+        <span class="n">exercise_class</span> <span class="o">=</span> <span class="n">get_exercise_by_class_name</span><span class="p">(</span><span class="n">exercise_type</span><span class="p">)</span>
+        <span class="n">exercise</span> <span class="o">=</span> <span class="n">exercise_class</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">exercise</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">user</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You do not have permission to delete this exercise.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;exercise&#39;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;User does not have permission to delete exercise.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">redirect_url</span><span class="p">)</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Delete workout:</span>
+            <span class="n">exercise</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        
+        <span class="c1"># Load dashboard:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">redirect_url</span><span class="p">)</span>
+
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;delete_exercise&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<span class="c1"># workout </span>
+<div class="viewcode-block" id="workout">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.workout">[docs]</a>
+<span class="k">def</span> <span class="nf">workout</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - View workout.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        workout: Workout object.</span>
+<span class="sd">        data: Dictionary of page data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">exercise_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;exercise_type&#39;</span><span class="p">)</span>
+    <span class="n">current_muscle_group_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;current_muscle_group_id&#39;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">exercise_type</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">exercise_type</span> <span class="o">=</span> <span class="n">StrengthTrainingExercise</span><span class="p">()</span><span class="o">.</span><span class="n">class_name</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">current_muscle_group_id</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">current_muscle_group_id</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+        <span class="n">workout</span> <span class="o">=</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        
+        <span class="c1"># check if workout is owned by user</span>
+        <span class="k">if</span> <span class="n">workout</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">user</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You do not have permission to view this workout.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;workout&#39;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;User does not have permission to view workout.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/workout&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Getting all exercises for this workout: </span>
+        <span class="n">ste</span> <span class="o">=</span> <span class="n">StrengthTrainingExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">workout__id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">ete</span> <span class="o">=</span> <span class="n">EnduranceTrainingExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">workout__id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">be</span> <span class="o">=</span> <span class="n">BalanceExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">workout__id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">fe</span> <span class="o">=</span> <span class="n">FlexibilityExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">workout__id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        
+        <span class="n">exercises</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">ste</span><span class="p">,</span> <span class="n">ete</span><span class="p">,</span> <span class="n">be</span><span class="p">,</span> <span class="n">fe</span><span class="p">))</span>
+
+        <span class="c1"># Gather any page data:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="s1">&#39;workout&#39;</span><span class="p">:</span> <span class="n">workout</span><span class="p">,</span>
+            <span class="s1">&#39;exercises&#39;</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">exercises</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">updated_at</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="s1">&#39;muscle_groups&#39;</span><span class="p">:</span> <span class="n">MuscleGroup</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;exercise_types&#39;</span><span class="p">:</span> <span class="n">get_exercises_types</span><span class="p">(),</span>
+            <span class="s1">&#39;current_exercise&#39;</span><span class="p">:</span> <span class="n">exercise_type</span><span class="p">,</span>
+            <span class="s1">&#39;current_muscle_group_id&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">current_muscle_group_id</span><span class="p">),</span>
+        <span class="p">}</span>
+
+        <span class="c1"># If get request, load workout page with data:</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/workout.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;workout&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="edit_workout">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.edit_workout">[docs]</a>
+<span class="k">def</span> <span class="nf">edit_workout</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - load edit workout, POST - submit edit workout</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        workout: Workout object.</span>
+<span class="sd">        data: Dictionary of page data.  </span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+        
+        <span class="c1"># Getting all exercises for this workout: </span>
+        <span class="n">ste</span> <span class="o">=</span> <span class="n">StrengthTrainingExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">workout__id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">ete</span> <span class="o">=</span> <span class="n">EnduranceTrainingExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">workout__id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">be</span> <span class="o">=</span> <span class="n">BalanceExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">workout__id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">fe</span> <span class="o">=</span> <span class="n">FlexibilityExercise</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">workout__id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        
+        <span class="n">exercises</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">ste</span><span class="p">,</span> <span class="n">ete</span><span class="p">,</span> <span class="n">be</span><span class="p">,</span> <span class="n">fe</span><span class="p">))</span>
+            
+        <span class="c1"># Gather any page data:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="s1">&#39;workout&#39;</span><span class="p">:</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span>
+            <span class="s1">&#39;exercises&#39;</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">exercises</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">updated_at</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;GET request to edit workout&quot;</span><span class="p">)</span>
+            <span class="c1"># If get request, load edit workout page with data:</span>
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/edit_workout.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;POST request to edit workout&quot;</span><span class="p">)</span>
+            <span class="c1"># check if workout is owned by user</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;workout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">user</span><span class="p">:</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You do not have permission to delete this workout.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;workout&#39;</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;User does not have permission to delete workout.&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/workout&quot;</span><span class="p">)</span> 
+            <span class="c1"># If post request, validate update workout data:</span>
+            <span class="c1"># Unpack request object and build our custom tuple:</span>
+            <span class="n">workout</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
+                <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">],</span>
+                <span class="s1">&#39;workout_id&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;workout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="c1"># Begin validation of updated workout:</span>
+            <span class="n">validated</span> <span class="o">=</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">workout</span><span class="p">)</span>
+            <span class="c1"># If errors, reload register page with errors:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Workout could not be edited.&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workout could not be edited.&quot;</span><span class="p">)</span>
+                    <span class="c1"># Loop through errors and Generate Django Message for each with custom level and tag:</span>
+                    <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">]:</span>
+                        <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;edit&#39;</span><span class="p">)</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                    <span class="c1"># Reload workout page:</span>
+                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/workout/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;workout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/edit&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="c1"># If validation successful, load newly created workout page:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Edited workout passed validation and has been updated.&quot;</span><span class="p">)</span>
+                <span class="c1"># Load workout:</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/workout/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;workout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/edit&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;edit_workout&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="new_workout">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.new_workout">[docs]</a>
+<span class="k">def</span> <span class="nf">new_workout</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - load new workout, POST - submit new workout</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        workout: Workout object.</span>
+<span class="sd">        data: Dictionary of page data.  </span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+        <span class="n">workouts</span> <span class="o">=</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user__id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-updated_at&#39;</span><span class="p">)</span>
+        <span class="c1"># Gather any page data:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="s1">&#39;workouts&#39;</span><span class="p">:</span> <span class="n">workouts</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;GET request to new workout&quot;</span><span class="p">)</span>
+            <span class="c1"># If get request, load `add workout` page with data:</span>
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;workout/add_workout.html&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;POST request to new workout&quot;</span><span class="p">)</span>
+            <span class="c1"># Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it&#39;s a tuple:</span>
+            <span class="n">workout</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">user</span>
+            <span class="p">}</span>
+
+            <span class="c1"># Begin validation of a new workout:</span>
+            <span class="n">validated</span> <span class="o">=</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">**</span><span class="n">workout</span><span class="p">)</span>
+
+            <span class="c1"># If errors, reload register page with errors:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Workout could not be created.&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workout could not be created.&quot;</span><span class="p">)</span>
+                    <span class="c1"># Loop through errors and Generate Django Message for each with custom level and tag:</span>
+                    <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">validated</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">]:</span>
+                        <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;workout&#39;</span><span class="p">)</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                    <span class="c1"># Reload workout page:</span>
+                    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/workout&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="c1"># If validation successful, load newly created workout page:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Workout passed validation and has been created.&quot;</span><span class="p">)</span>
+                <span class="nb">id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">validated</span><span class="p">[</span><span class="s1">&#39;workout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="c1"># Load workout:</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/workout/&#39;</span> <span class="o">+</span> <span class="nb">id</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;new_workout&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="delete_workout">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.delete_workout">[docs]</a>
+<span class="k">def</span> <span class="nf">delete_workout</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    GET - Delete a workout.</span>
+
+<span class="sd">    Args:   </span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        workout: Workout object.</span>
+<span class="sd">        data: Dictionary of page data. </span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+        
+        <span class="c1"># check if workout is owned by user</span>
+        <span class="n">workout</span> <span class="o">=</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">workout</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">user</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You do not have permission to delete this workout.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;workout&#39;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;User does not have permission to delete workout.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/workout&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Delete workout:</span>
+            <span class="n">workout</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+        <span class="c1"># Load dashboard:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/workout&#39;</span><span class="p">)</span>
+
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;delete_workout&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="complete_workout">
+<a class="viewcode-back" href="../../source/workout.html#workout.views.complete_workout">[docs]</a>
+<span class="k">def</span> <span class="nf">complete_workout</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    POST - complete a workout</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: Django HttpRequest object.</span>
+<span class="sd">        user: User object.</span>
+<span class="sd">        workout: Workout object.</span>
+<span class="sd">        data: Dictionary of page data.  </span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Django HttpResponse object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check for valid session:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;GET request to complete workout&quot;</span><span class="p">)</span>
+            <span class="c1"># If get request, bring back to workout page.</span>
+            <span class="c1"># Note, for now, GET request for this method not being utilized:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/workout/&quot;</span> <span class="o">+</span> <span class="nb">id</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;POST request to complete workout&quot;</span><span class="p">)</span>
+            <span class="c1"># Update Workout.completed field for this instance:</span>
+            <span class="n">workout</span> <span class="o">=</span> <span class="n">Workout</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+            <span class="n">redirect_url</span> <span class="o">=</span> <span class="s2">&quot;/workout/&quot;</span> <span class="o">+</span> <span class="nb">id</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">redirect_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s2">&quot;redirect&quot;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="k">pass</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;redirect_url: totoot tto &quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">redirect_url</span><span class="p">)</span>
+
+            <span class="c1"># check if workout is owned by user</span>
+            <span class="k">if</span> <span class="n">workout</span><span class="o">.</span><span class="n">user</span> <span class="o">!=</span> <span class="n">user</span><span class="p">:</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You do not have permission to complete this workout.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s1">&#39;workout&#39;</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;User does not have permission to complete workout.&quot;</span><span class="p">)</span>
+                <span class="n">redirect_url</span> <span class="o">=</span> <span class="s2">&quot;/workout&quot;</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">redirect_url</span><span class="p">)</span>
+            
+            <span class="n">is_completed</span> <span class="o">=</span> <span class="n">workout</span><span class="o">.</span><span class="n">completed</span>
+            <span class="k">if</span> <span class="n">is_completed</span><span class="p">:</span>
+                <span class="n">workout</span><span class="o">.</span><span class="n">completed</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>    
+                <span class="n">workout</span><span class="o">.</span><span class="n">completed</span> <span class="o">=</span> <span class="kc">True</span> 
+            <span class="n">workout</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+            <span class="c1"># Return to workout:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">redirect_url</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="c1"># If existing session not found:</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;You must be logged in to view this page.&quot;</span><span class="p">,</span> <span class="n">extra_tags</span><span class="o">=</span><span class="s2">&quot;invalid_session&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;User must be logged in to view &#39;complete_workout&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">workout Logger</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/modules.html">workout_logger</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Radosław Sienkiewicz, Mateusz Lewocz, Wojciech Szoda, Jan Rydzewski.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -4582,3 +4582,8 @@ django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 68: 'e
 2024-06-08 17:20:13,759 - DEBUG - GET request to new workout: 
 2024-06-08 17:20:17,562 - DEBUG - GET request to new workout: 
 2024-06-08 17:20:29,888 - WARNING - Not Found: /challenge: 
+2024-06-08 18:04:27,999 - DEBUG - GET request to login: 
+2024-06-08 18:04:29,420 - DEBUG - POST request to login: 
+2024-06-08 18:04:35,566 - WARNING - Not Found: /challenge: 
+2024-06-08 18:04:36,934 - INFO - User has been logged out.: 
+2024-06-08 18:04:36,946 - DEBUG - GET request to login: 

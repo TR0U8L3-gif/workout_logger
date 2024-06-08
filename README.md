@@ -8,6 +8,8 @@ bootstrap ```pip install django-bootstrap-v5```
 
 fontawesomefree ```pip install fontawesomefree```
 
+sphinx ```pip install sphinx```
+
 ### The development server
 
 Change into the outer **exercise_logger** directory, if you haven’t already, and run the following commands:
@@ -28,3 +30,13 @@ If you want to change the server’s IP, pass it along with the port:
 ```python manage.py sqlmigrate [module name] [file]```
 
 ```python manage.py createsuperuser```
+
+### Documentation
+
+```sphinx-quickstart```
+
+```sphinx-apidoc -f -o source/ .```
+
+```./make clean```
+
+```./make html```

@@ -1,3 +1,10 @@
+"""
+views.py
+
+This module contains the views for the workout app.
+"""
+ 
+
 from django.shortcuts import render, redirect
 from django.contrib import messages # access django's `messages` module.
 from .models import *
@@ -14,7 +21,15 @@ logging.basicConfig(level=logging.DEBUG, filename=filename, filemode="a+", forma
 
 # authentication
 def login(request):
-    """If GET, load login page, if POST, login user."""
+    """
+    GET - Loads login page. POST - Logs in user.
+
+    Args:
+        request: Django HttpRequest object.
+
+    Returns:
+        Django HttpResponse object.
+    """
 
     if request.method == "GET":
         logging.debug("GET request to login")
@@ -44,7 +59,15 @@ def login(request):
             return redirect("/dashboard")
 
 def register(request):
-    """If GET, load registration page; if POST, register user."""
+    """
+    GET - Load register page. POST - Register user.
+
+    Args:
+        request: Django HttpRequest object.
+        
+    Returns:
+        Django HttpResponse object.
+    """
 
     if request.method == "GET":
         logging.debug("GET request to register")
@@ -73,7 +96,7 @@ def register(request):
             return redirect('/dashboard')
 
 def logout(request):
-    """Logs out current user."""
+    """Logs out current user"""
 
     try:
         # Deletes session:
@@ -90,7 +113,18 @@ def logout(request):
 
 # dashboard
 def dashboard(request):
-    """Loads dashboard."""
+    """
+    GET - Loads dashboard.
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        recent_workouts: QuerySet of recent workouts.
+        data: Dictionary of page data.
+
+    Returns:
+        Django HttpResponse object.
+    """
 
     try:
         # Check for valid session:
@@ -115,7 +149,25 @@ def dashboard(request):
         return redirect("/")
 
 def view_all(request):
-    """Loads `View All` Workouts page."""
+    """
+    GET - Loads `View All` Workouts page.
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout_list: QuerySet of all workouts.
+        ste_list: QuerySet of all StrengthTrainingExercises.
+        ete_list: QuerySet of all EnduranceTrainingExercises.
+        be_list: QuerySet of all BalanceExercises.
+        fe_list: QuerySet of all FlexibilityExercises.
+        page: Current page number.
+        data_list: List of all exercises.
+        paginator: Paginator object.
+        data: Dictionary of page data.
+
+    Returns:
+        Django HttpResponse object.
+    """
 
     try:
         # Check for valid session:
@@ -154,7 +206,18 @@ def view_all(request):
 
 # muscle group
 def muscle_group(request):
-    """View muscle groups."""
+    """
+    GET - View muscle groups.
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        muscle_group: QuerySet of all muscle groups.
+        data: Dictionary of page data.
+
+    Returns:
+        Django HttpResponse object.
+    """
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
@@ -180,7 +243,18 @@ def muscle_group(request):
 
 # exercise
 def exercise(request, id):
-    """View exercise."""
+    """
+    GET - View exercise.
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        exercise: Exercise object.
+        data: Dictionary of page data.  
+
+    Returns:
+        Django HttpResponse object.
+    """
     exercise_type = request.GET.get('exercise_type')
     if(exercise_type == None):
         messages.error(request, "You must select an exercise type.", extra_tags='exercise')
@@ -235,7 +309,18 @@ def exercise(request, id):
         return redirect("/")
 
 def edit_exercise(request, id):
-    """if POST, update exercise. if GET, load edit exercise page."""
+    """
+    GET - load edit exercise, POST - submit edit exercise
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        exercise: Exercise object.
+        data: Dictionary of page data.
+
+    Returns:
+        Django HttpResponse object. 
+    """
         
     try:
         user = User.objects.get(id=request.session["user_id"])
@@ -299,7 +384,18 @@ def edit_exercise(request, id):
         return redirect("/")
 
 def new_exercise(request):
-    """If GET, load new exercise; if POST, submit new exercise."""
+    """
+    GET - load new exercise, POST - submit new exercise
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        exercise: Exercise object.
+        data: Dictionary of page data.
+    
+    Returns:
+        Django HttpResponse object.
+    """
     
     exercise_type = request.GET.get('exercise_type')
     if(exercise_type == None):
@@ -397,7 +493,18 @@ def new_exercise(request):
         return redirect("/")       
     
 def delete_exercise(request, id):
-    """Delete a exercise."""
+    """
+    GET - Delete a exercise.
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        exercise: Exercise object.
+        data: Dictionary of page data.
+
+    Returns:
+        Django HttpResponse object.
+    """
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
@@ -447,7 +554,18 @@ def delete_exercise(request, id):
 
 # workout 
 def workout(request, id):
-    """View workout."""
+    """
+    GET - View workout.
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: Workout object.
+        data: Dictionary of page data.
+
+    Returns:
+        Django HttpResponse object.
+    """
     exercise_type = request.GET.get('exercise_type')
     current_muscle_group_id = request.GET.get('current_muscle_group_id')
     if(exercise_type == None):
@@ -495,7 +613,18 @@ def workout(request, id):
         return redirect("/")
 
 def edit_workout(request, id):
-    """If GET, load edit workout; if POST, update workout."""
+    """
+    GET - load edit workout, POST - submit edit workout
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: Workout object.
+        data: Dictionary of page data.  
+
+    Returns:
+        Django HttpResponse object.
+    """
 
     try:
         # Check for valid session:
@@ -560,7 +689,18 @@ def edit_workout(request, id):
         return redirect("/")
 
 def new_workout(request):
-    """If GET, load new workout; if POST, submit new workout."""
+    """
+    GET - load new workout, POST - submit new workout
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: Workout object.
+        data: Dictionary of page data.  
+
+    Returns:
+        Django HttpResponse object.
+    """
 
     try:
         # Check for valid session:
@@ -614,7 +754,18 @@ def new_workout(request):
         return redirect("/")
 
 def delete_workout(request, id):
-    """Delete a workout."""
+    """
+    GET - Delete a workout.
+
+    Args:   
+        request: Django HttpRequest object.
+        user: User object.
+        workout: Workout object.
+        data: Dictionary of page data. 
+
+    Returns:
+        Django HttpResponse object.
+    """
 
     try:
         # Check for valid session:
@@ -642,7 +793,18 @@ def delete_workout(request, id):
         return redirect("/")
 
 def complete_workout(request, id):
-    """If POST, complete a workout."""
+    """
+    POST - complete a workout
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: Workout object.
+        data: Dictionary of page data.  
+
+    Returns:
+        Django HttpResponse object.
+    """
 
     try:
         # Check for valid session:
