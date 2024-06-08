@@ -3,6 +3,26 @@
 *     GENERAL
 * ==========================================================
 */
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2d3035; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #750dfd; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #952beb;
+}
+
 body {
     position: relative;
   }

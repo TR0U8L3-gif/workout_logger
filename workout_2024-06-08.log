@@ -743,3 +743,1351 @@ django.template.exceptions.TemplateDoesNotExist: workout/header.html
 2024-06-08 13:03:18,861 - DEBUG - GET request to new exercise: 
 2024-06-08 13:03:20,342 - DEBUG - GET request to new exercise: 
 2024-06-08 13:03:21,736 - DEBUG - GET request to new exercise: 
+2024-06-08 13:04:49,993 - DEBUG - GET request to new workout: 
+2024-06-08 13:04:50,072 - ERROR - Internal Server Error: /workout: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 212, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 529, in new_workout
+    return render(request, "workout/add_workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+2024-06-08 13:21:51,252 - DEBUG - GET request to new exercise: 
+2024-06-08 13:21:54,464 - DEBUG - GET request to new exercise: 
+2024-06-08 13:21:57,193 - DEBUG - GET request to new exercise: 
+2024-06-08 13:21:58,297 - DEBUG - GET request to new exercise: 
+2024-06-08 13:21:59,369 - DEBUG - GET request to new exercise: 
+2024-06-08 13:22:00,558 - DEBUG - GET request to new exercise: 
+2024-06-08 13:22:11,691 - DEBUG - GET request to new workout: 
+2024-06-08 13:22:11,753 - ERROR - Internal Server Error: /workout: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 212, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 529, in new_workout
+    return render(request, "workout/add_workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+2024-06-08 13:22:39,062 - DEBUG - GET request to new workout: 
+2024-06-08 13:22:39,142 - ERROR - Internal Server Error: /workout: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 529, in new_workout
+    return render(request, "workout/add_workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 41: 'endif', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 13:23:09,497 - DEBUG - GET request to new workout: 
+2024-06-08 13:24:17,101 - DEBUG - POST request to new workout: 
+2024-06-08 13:24:17,181 - ERROR - Internal Server Error: /workout/1: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 434, in workout
+    'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1427, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1237, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1725, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: balanceexercise, created_at, description, endurancetrainingexercise, flexibilityexercise, id, name, strengthtrainingexercise, updated_at
+2024-06-08 13:24:40,345 - DEBUG - GET request to new workout: 
+2024-06-08 13:24:50,663 - DEBUG - GET request to new workout: 
+2024-06-08 13:26:29,696 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:26:31,865 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:26:33,128 - DEBUG - GET request to new workout: 
+2024-06-08 13:27:05,314 - DEBUG - GET request to new exercise: 
+2024-06-08 13:29:35,954 - DEBUG - GET request to new workout: 
+2024-06-08 13:31:59,236 - DEBUG - GET request to new exercise: 
+2024-06-08 13:32:07,035 - DEBUG - GET request to new workout: 
+2024-06-08 13:32:11,195 - DEBUG - GET request to edit workout: 
+2024-06-08 13:32:11,266 - ERROR - Internal Server Error: /workout/1/edit: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 212, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 473, in edit_workout
+    return render(request, "workout/edit_workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+2024-06-08 13:34:49,776 - ERROR - Internal Server Error: /workout/1: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 440, in workout
+    return render(request, "workout/workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 250: 'endif'. Did you forget to register or load this tag?
+2024-06-08 13:38:56,327 - WARNING - Not Found: /workout/{workout.id}: 
+2024-06-08 13:39:14,550 - WARNING - Not Found: /workout/{workout.id}: 
+2024-06-08 13:39:48,093 - WARNING - Not Found: /workout/{workout.id}: 
+2024-06-08 13:39:50,859 - WARNING - Not Found: /workout/{workout.id}: 
+2024-06-08 13:42:03,707 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:42:29,523 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:43:03,233 - DEBUG - POST request to new exercise: 
+2024-06-08 13:43:03,266 - DEBUG - GET request to new exercise: 
+2024-06-08 13:43:06,040 - ERROR - Internal Server Error: /exercise/1: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 208, in exercise
+    'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1427, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1237, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1725, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: balanceexercise, created_at, description, endurancetrainingexercise, flexibilityexercise, id, name, strengthtrainingexercise, updated_at
+2024-06-08 13:43:21,607 - DEBUG - GET request to new workout: 
+2024-06-08 13:43:46,628 - DEBUG - POST request to complete workout: 
+2024-06-08 13:43:49,256 - DEBUG - POST request to complete workout: 
+2024-06-08 13:48:37,445 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:48:39,644 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:48:41,825 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:48:45,107 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:48:50,362 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:48:55,715 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:49:27,572 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:49:30,778 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:49:45,393 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:49:49,661 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:49:53,957 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:49:56,168 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:50:00,424 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 13:50:07,643 - ERROR - User must select an exercise type.: 
+2024-06-08 13:50:07,658 - ERROR - User must select an exercise type.: 
+2024-06-08 13:50:07,670 - DEBUG - GET request to new exercise: 
+2024-06-08 13:50:22,356 - DEBUG - GET request to new workout: 
+2024-06-08 13:50:42,764 - DEBUG - GET request to new exercise: 
+2024-06-08 13:51:17,304 - DEBUG - GET request to new workout: 
+2024-06-08 13:55:15,583 - DEBUG - GET request to new exercise: 
+2024-06-08 13:55:19,188 - DEBUG - GET request to new workout: 
+2024-06-08 13:56:10,608 - DEBUG - POST request to new exercise: 
+2024-06-08 13:56:10,609 - ERROR - Exercise could not be created.: 
+2024-06-08 13:56:10,610 - ERROR - Name is required and must be at least 2 characters long.: 
+2024-06-08 13:56:10,610 - ERROR - Description is required and must be at least 2 characters long.: 
+2024-06-08 13:56:44,894 - DEBUG - POST request to new exercise: 
+2024-06-08 14:01:17,006 - DEBUG - GET request to new workout: 
+2024-06-08 14:01:45,501 - DEBUG - GET request to new workout: 
+2024-06-08 14:01:46,522 - DEBUG - GET request to new workout: 
+2024-06-08 14:02:05,893 - DEBUG - GET request to new workout: 
+2024-06-08 14:02:06,469 - WARNING - Not Found: /challenge: 
+2024-06-08 14:02:13,676 - DEBUG - GET request to new workout: 
+2024-06-08 14:04:34,925 - DEBUG - GET request to new workout: 
+2024-06-08 14:04:50,910 - DEBUG - GET request to new exercise: 
+2024-06-08 14:05:03,952 - WARNING - Not Found: /musclegroup/6: 
+2024-06-08 14:05:10,093 - ERROR - Internal Server Error: /exercise/1: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 208, in exercise
+    'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1427, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1237, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1725, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'user' into field. Choices are: balanceexercise, created_at, description, endurancetrainingexercise, flexibilityexercise, id, name, strengthtrainingexercise, updated_at
+2024-06-08 14:05:26,290 - DEBUG - GET request to new workout: 
+2024-06-08 14:05:56,059 - DEBUG - POST request to complete workout: 
+2024-06-08 14:06:00,324 - DEBUG - POST request to complete workout: 
+2024-06-08 14:06:36,560 - DEBUG - POST request to complete workout: 
+2024-06-08 14:06:40,482 - DEBUG - POST request to complete workout: 
+2024-06-08 14:06:42,143 - DEBUG - POST request to complete workout: 
+2024-06-08 14:06:44,218 - DEBUG - POST request to complete workout: 
+2024-06-08 14:07:15,333 - DEBUG - POST request to new exercise: 
+2024-06-08 14:09:56,514 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:09:59,725 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:10:04,970 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:10:07,182 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:10:25,922 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:10:42,702 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:11:04,544 - DEBUG - POST request to new exercise: 
+2024-06-08 14:11:38,003 - DEBUG - POST request to complete workout: 
+2024-06-08 14:11:39,292 - DEBUG - POST request to complete workout: 
+2024-06-08 14:11:40,289 - DEBUG - GET request to edit workout: 
+2024-06-08 14:11:40,343 - ERROR - Internal Server Error: /workout/1/edit: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader_tags.py", line 197, in render
+    template = context.template.engine.select_template(template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 212, in select_template
+    raise TemplateDoesNotExist(", ".join(not_found))
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 480, in edit_workout
+    return render(request, "workout/edit_workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: workout/header.html
+2024-06-08 14:12:08,289 - DEBUG - GET request to edit workout: 
+2024-06-08 14:12:11,899 - DEBUG - GET request to new workout: 
+2024-06-08 14:12:16,600 - DEBUG - GET request to edit workout: 
+2024-06-08 14:12:19,248 - DEBUG - GET request to new workout: 
+2024-06-08 14:12:33,903 - DEBUG - POST request to new workout: 
+2024-06-08 14:12:35,222 - DEBUG - GET request to edit workout: 
+2024-06-08 14:12:51,064 - DEBUG - POST request to edit workout: 
+2024-06-08 14:12:56,606 - DEBUG - GET request to edit workout: 
+2024-06-08 14:14:28,997 - ERROR - Internal Server Error: /workout/2: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 447, in workout
+    return render(request, "workout/workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    self.unclosed_block_tag(parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 581, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 44: 'if'. Looking for one of: elif, else, endif.
+2024-06-08 14:14:34,253 - DEBUG - GET request to edit workout: 
+2024-06-08 14:15:12,586 - DEBUG - GET request to edit workout: 
+2024-06-08 14:15:13,993 - DEBUG - GET request to edit workout: 
+2024-06-08 14:15:25,851 - DEBUG - GET request to edit workout: 
+2024-06-08 14:15:26,895 - DEBUG - GET request to edit workout: 
+2024-06-08 14:15:28,025 - DEBUG - GET request to edit workout: 
+2024-06-08 14:15:32,693 - DEBUG - GET request to edit workout: 
+2024-06-08 14:15:41,595 - DEBUG - GET request to edit workout: 
+2024-06-08 14:16:00,420 - DEBUG - GET request to edit workout: 
+2024-06-08 14:16:01,859 - DEBUG - POST request to edit workout: 
+2024-06-08 14:16:05,066 - DEBUG - POST request to complete workout: 
+2024-06-08 14:16:06,225 - DEBUG - POST request to complete workout: 
+2024-06-08 14:16:16,848 - DEBUG - POST request to complete workout: 
+2024-06-08 14:16:18,936 - DEBUG - GET request to edit workout: 
+2024-06-08 14:16:20,190 - DEBUG - POST request to edit workout: 
+2024-06-08 14:16:26,706 - DEBUG - GET request to edit workout: 
+2024-06-08 14:17:37,645 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:17:55,453 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:02,754 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:04,992 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:07,247 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:10,445 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:20,901 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:39,664 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:41,851 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:44,091 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:49,355 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:52,621 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:18:54,851 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:19:09,468 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:19:11,683 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:19:14,942 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:19:22,345 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:19:30,732 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:19:37,023 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:19:38,044 - DEBUG - GET request to edit workout: 
+2024-06-08 14:19:39,241 - DEBUG - POST request to edit workout: 
+2024-06-08 14:19:43,970 - DEBUG - POST request to complete workout: 
+2024-06-08 14:19:43,972 - WARNING - User must be logged in to view 'complete_workout'.: 
+2024-06-08 14:19:43,976 - DEBUG - GET request to login: 
+2024-06-08 14:19:53,664 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:20:03,163 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:20:24,044 - DEBUG - POST request to login: 
+2024-06-08 14:20:26,344 - DEBUG - GET request to new exercise: 
+2024-06-08 14:20:39,943 - DEBUG - POST request to new exercise: 
+2024-06-08 14:20:39,943 - WARNING - User must be logged in to view 'new_exercise'.: 
+2024-06-08 14:20:39,948 - DEBUG - GET request to login: 
+2024-06-08 14:20:55,709 - DEBUG - POST request to login: 
+2024-06-08 14:21:09,968 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:21:10,955 - DEBUG - GET request to new workout: 
+2024-06-08 14:21:12,011 - DEBUG - GET request to new workout: 
+2024-06-08 14:21:14,704 - DEBUG - POST request to complete workout: 
+2024-06-08 14:21:14,705 - WARNING - User must be logged in to view 'complete_workout'.: 
+2024-06-08 14:21:14,719 - DEBUG - GET request to login: 
+2024-06-08 14:21:47,410 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:22:21,860 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:22:27,139 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:22:28,177 - DEBUG - GET request to login: 
+2024-06-08 14:22:29,535 - DEBUG - POST request to login: 
+2024-06-08 14:22:35,443 - DEBUG - GET request to new workout: 
+2024-06-08 14:22:37,805 - DEBUG - POST request to complete workout: 
+2024-06-08 14:22:37,847 - ERROR - Internal Server Error: /workout/2/complete: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\utils\datastructures.py", line 84, in __getitem__
+    list_ = super().__getitem__(key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'redirect'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 622, in complete_workout
+    redirect_url = request.POST["redirect"]
+                   ~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\utils\datastructures.py", line 86, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'redirect'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 623, in complete_workout
+    except err:
+           ^^^
+UnboundLocalError: cannot access local variable 'err' where it is not associated with a value
+2024-06-08 14:22:59,550 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:23:07,508 - DEBUG - POST request to complete workout: 
+2024-06-08 14:23:08,769 - DEBUG - POST request to complete workout: 
+2024-06-08 14:23:09,541 - DEBUG - POST request to complete workout: 
+2024-06-08 14:23:10,192 - DEBUG - POST request to complete workout: 
+2024-06-08 14:23:10,629 - DEBUG - POST request to complete workout: 
+2024-06-08 14:23:25,544 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:23:43,744 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:23:44,848 - DEBUG - GET request to new exercise: 
+2024-06-08 14:23:47,702 - DEBUG - GET request to new exercise: 
+2024-06-08 14:23:55,770 - DEBUG - POST request to new exercise: 
+2024-06-08 14:23:55,801 - DEBUG - GET request to new exercise: 
+2024-06-08 14:24:29,018 - WARNING - Not Found: /challenge: 
+2024-06-08 14:24:31,288 - DEBUG - GET request to new exercise: 
+2024-06-08 14:25:32,584 - DEBUG - GET request to new exercise: 
+2024-06-08 14:26:01,581 - DEBUG - GET request to new exercise: 
+2024-06-08 14:26:35,622 - DEBUG - GET request to new exercise: 
+2024-06-08 14:26:57,599 - DEBUG - GET request to new exercise: 
+2024-06-08 14:26:59,610 - DEBUG - GET request to new exercise: 
+2024-06-08 14:27:14,865 - DEBUG - GET request to new exercise: 
+2024-06-08 14:28:12,271 - DEBUG - GET request to new exercise: 
+2024-06-08 14:28:54,399 - DEBUG - GET request to new exercise: 
+2024-06-08 14:29:15,957 - DEBUG - GET request to new exercise: 
+2024-06-08 14:29:16,043 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 68: 'else', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 14:29:20,917 - DEBUG - GET request to new exercise: 
+2024-06-08 14:29:36,991 - DEBUG - GET request to new exercise: 
+2024-06-08 14:29:40,275 - DEBUG - GET request to new exercise: 
+2024-06-08 14:30:05,143 - DEBUG - GET request to new exercise: 
+2024-06-08 14:30:49,691 - DEBUG - GET request to new exercise: 
+2024-06-08 14:31:04,380 - DEBUG - GET request to new workout: 
+2024-06-08 14:31:48,570 - DEBUG - GET request to new exercise: 
+2024-06-08 14:31:48,658 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 68: 'else', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 14:32:08,072 - DEBUG - GET request to new exercise: 
+2024-06-08 14:32:08,162 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 109: 'endif', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 14:32:16,945 - DEBUG - GET request to new exercise: 
+2024-06-08 14:32:17,030 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 153: 'endif', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 14:32:27,041 - DEBUG - GET request to new exercise: 
+2024-06-08 14:32:27,145 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 177: 'else', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 14:32:34,601 - DEBUG - GET request to new exercise: 
+2024-06-08 14:32:34,707 - ERROR - Internal Server Error: /exercise: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 318, in new_exercise
+    return render(request, "workout/add_exercise.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 228: 'else', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 14:32:44,602 - DEBUG - GET request to new exercise: 
+2024-06-08 14:32:56,253 - DEBUG - GET request to new workout: 
+2024-06-08 14:33:00,256 - DEBUG - POST request to complete workout: 
+2024-06-08 14:33:01,054 - DEBUG - POST request to complete workout: 
+2024-06-08 14:33:01,748 - DEBUG - GET request to edit workout: 
+2024-06-08 14:33:02,486 - DEBUG - POST request to edit workout: 
+2024-06-08 14:33:03,791 - DEBUG - GET request to edit workout: 
+2024-06-08 14:33:06,700 - DEBUG - POST request to edit workout: 
+2024-06-08 14:33:14,371 - DEBUG - GET request to edit workout: 
+2024-06-08 14:33:15,793 - DEBUG - POST request to edit workout: 
+2024-06-08 14:33:16,654 - DEBUG - GET request to edit workout: 
+2024-06-08 14:33:59,452 - DEBUG - POST request to new exercise: 
+2024-06-08 14:34:09,490 - DEBUG - GET request to edit workout: 
+2024-06-08 14:34:43,068 - DEBUG - POST request to edit workout: 
+2024-06-08 14:34:52,896 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:34:59,081 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:35:04,383 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py changed, reloading.: 
+2024-06-08 14:36:24,208 - DEBUG - GET request to edit workout: 
+2024-06-08 14:36:29,231 - DEBUG - GET request to edit workout: 
+2024-06-08 14:36:31,510 - DEBUG - POST request to edit workout: 
+2024-06-08 14:36:52,306 - DEBUG - GET request to edit workout: 
+2024-06-08 14:37:36,082 - DEBUG - GET request to edit workout: 
+2024-06-08 14:37:36,168 - ERROR - Internal Server Error: /workout/2/edit: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 483, in edit_workout
+    return render(request, "workout/edit_workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 53: 'endif', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 14:37:48,570 - DEBUG - GET request to edit workout: 
+2024-06-08 14:37:48,644 - ERROR - Internal Server Error: /workout/2/edit: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'ifmessage.tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 483, in edit_workout
+    return render(request, "workout/edit_workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 46: 'ifmessage.tags', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 14:37:53,305 - DEBUG - GET request to edit workout: 
+2024-06-08 14:38:28,247 - DEBUG - GET request to edit workout: 
+2024-06-08 14:38:52,991 - DEBUG - GET request to edit workout: 
+2024-06-08 14:38:54,643 - DEBUG - POST request to complete workout: 
+2024-06-08 14:38:54,676 - DEBUG - GET request to edit workout: 
+2024-06-08 14:38:58,434 - DEBUG - POST request to complete workout: 
+2024-06-08 14:38:59,140 - DEBUG - GET request to edit workout: 
+2024-06-08 14:39:01,054 - DEBUG - POST request to complete workout: 
+2024-06-08 14:39:01,074 - DEBUG - GET request to edit workout: 
+2024-06-08 14:39:02,609 - DEBUG - POST request to complete workout: 
+2024-06-08 14:39:15,782 - DEBUG - GET request to edit workout: 
+2024-06-08 14:39:32,290 - DEBUG - GET request to edit workout: 
+2024-06-08 14:40:26,512 - DEBUG - GET request to edit workout: 
+2024-06-08 14:40:26,580 - ERROR - Internal Server Error: /workout/2/edit: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\apps\workout\views.py", line 483, in edit_workout
+    return render(request, "workout/edit_workout.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 55: 'endif', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2024-06-08 14:40:37,393 - DEBUG - GET request to edit workout: 
+2024-06-08 14:40:44,742 - DEBUG - GET request to edit workout: 

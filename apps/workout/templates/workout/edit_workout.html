@@ -13,14 +13,18 @@
       href="{% static 'fontawesomefree/css/all.min.css' %}"
     />
     <link rel="stylesheet" href="../../static/workout/styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'workout/images/favicon.ico' %}"
+    />
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
   </head>
 
   <body>
-    {% include 'workout/header.html' %}
-
+    {% include 'workout/widgets/header.html' %}
     <div class="d-flex align-items-stretch">
-      {% include 'workout/sidebar.html' %}
+      {% include 'workout/widgets/sidebar.html' %}
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
@@ -29,26 +33,26 @@
         </div>
         <section class="no-padding-bottom">
           <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-12">
-                <form
-                  id="update-workout-form"
-                  action="/workout/{{ workout.id }}/edit"
-                  method="POST"
-                >
-                  {% csrf_token %}
-                  <!-- Edit Workout Errors -->
-                  {% if messages %} {% for message in messages %} 
-                  {% if message.tags == "edit error" %}
-                  <div
-                    class="alert alert-danger alert-dismissable"
-                    role="alert"
-                  >
-                    <strong>Error!</strong> {{ message }}
-                  </div>
-                  {% endif %} {% endfor %} {% endif %}
-                  <div class="card bg-dark add-exercise mb-4 mt-2">
-                    <div class="card-body text-light">
+            <div class="card bg-dark add-exercise mb-4 mt-2">
+              <div class="card-body text-light">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <form
+                      id="update-workout-form"
+                      action="/workout/{{ workout.id }}/edit"
+                      method="POST"
+                    >
+                      {% csrf_token %}
+                      <!-- Edit Workout Errors -->
+                      {% if messages %} {% for message in messages %} 
+                      {% if message.tags == "edit error" %}
+                      <div
+                        class="alert alert-danger alert-dismissable"
+                        role="alert"
+                      >
+                        <strong>Error!</strong> {{ message }}
+                      </div>
+                      {% endif %} {% endfor %} {% endif %}
                       <!-- Workout Name -->
                       <div class="form-group">
                         <input
@@ -79,13 +83,6 @@
                         value="Update"
                         class="btn btn-success btn-lg my-4"
                       />
-                      <!-- Back Button -->
-                      <a
-                        href="/workout"
-                        style="text-decoration: none"
-                        class="btn btn-outline-secondary btn-lg ms-3"
-                        >View All Workouts</a
-                      >
                       <!-- Delete Button -->
                       <a
                         id="delete-workout"
@@ -94,9 +91,65 @@
                         class="btn btn-outline-danger btn-lg ms-3"
                         >Delete</a
                       >
+                    </form>
+                    <div class="row mb-2">
+                      <div class="col-auto text-left">
+                        <!-- Edit Workout Button -->
+                        <a
+                          href="/workout/{{ workout.id }}"
+                          style="text-decoration: none"
+                          class="btn btn-primary btn-lg end-workout"
+                          >Back</a
+                        >
+                      </div>
+                      <div class="col-auto text-left">
+                        <!-- End Workout -->
+                        <form
+                          id="end-workout-form"
+                          action="/workout/{{ workout.id }}/complete"
+                          method="POST"
+                        >
+                          {% csrf_token %}
+                          <!-- Redirect -->
+                          <input
+                            type="hidden"
+                            id="redirect"
+                            name="redirect"
+                            value="/workout/{{ workout.id }}/edit"
+                          />
+
+                          <!-- End Workout Button -->
+                          {% if workout.completed == False %}
+                          <button
+                            id="end-workout"
+                            type="submit"
+                            class="btn btn-outline-info btn-lg"
+                          >
+                            End Workout
+                          </button>
+                          {% else %}
+                          <button
+                            id="end-workout"
+                            type="submit"
+                            class="btn btn-primary btn-lg end-workout"
+                          >
+                            <b>Continue Workout </b>
+                          </button>
+                          {% endif %}
+                        </form>
+                      </div>
+                      <div class="col-auto text-left">
+                        <!-- View All Button -->
+                        <a
+                          href="/workout"
+                          style="text-decoration: none"
+                          class="btn btn-outline-secondary btn-lg "
+                          >View All Workouts</a
+                        >
+                      </div>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>

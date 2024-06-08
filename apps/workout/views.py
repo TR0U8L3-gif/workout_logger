@@ -322,10 +322,16 @@ def new_exercise(request):
             workout_id = request.POST["workout_id"]
             muscle_group_id = request.POST["muscle_group"]
             exercise_type = request.POST["exercise_type"]
+            redirect_url = "/exercise"
             
             
             if(exercise_type == None):
                 exercise_type = StrengthTrainingExercise().class_name
+            
+            try:
+                redirect_url = request.POST["redirect"]
+            except KeyError as err:
+                pass
 
             exercise = get_exercise_by_class_name(exercise_type)
             
@@ -355,12 +361,12 @@ def new_exercise(request):
                         messages.error(request, error, extra_tags='exercise')
                         logging.error(error)
                     # Reload workout page:
-                    return redirect("/exercise?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
+                    return redirect(redirect_url + "?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
             except KeyError:
                 # If validation successful, load newly created workout page:
                 print("Exercise passed validation and has been created.")
                 # Reload workout:
-                return redirect("/exercise?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
+                return redirect( redirect_url + "?exercise_type=" + exercise_type + "&current_muscle_group_id=" + muscle_group_id + "&current_workout_id=" + workout_id)
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
@@ -404,8 +410,11 @@ def delete_exercise(request, id):
 def workout(request, id):
     """View workout."""
     exercise_type = request.GET.get('exercise_type')
+    current_muscle_group_id = request.GET.get('current_muscle_group_id')
     if(exercise_type == None):
         exercise_type = StrengthTrainingExercise().class_name
+    if(current_muscle_group_id == None):
+        current_muscle_group_id = 0
     
     try:
         # Check for valid session:
@@ -425,15 +434,16 @@ def workout(request, id):
         fe = FlexibilityExercise.objects.filter(workout__id=id)
         
         exercises = list(chain(ste, ete, be, fe))
-            
+
         # Gather any page data:
         data = {
             'user': user,
             'workout': workout,
             'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
-            'muscle_groups': MuscleGroup.objects.filter(user = user).order_by('-updated_at'),
+            'muscle_groups': MuscleGroup.objects.order_by('name'),
             'exercise_types': get_exercises_types(),
             'current_exercise': exercise_type,
+            'current_muscle_group_id': int(current_muscle_group_id),
         }
 
         # If get request, load workout page with data:
@@ -609,12 +619,22 @@ def complete_workout(request, id):
             logging.debug("POST request to complete workout")
             # Update Workout.completed field for this instance:
             workout = Workout.objects.get(id=id)
+            redirect_url = "/workout/" + id
+
+            try:
+                redirect_url = request.POST["redirect"]
+            except KeyError as err:
+                pass
             
+            print("redirect_url: totoot tto ")
+            print(redirect_url)
+
             # check if workout is owned by user
             if workout.user != user:
                 messages.error(request, "You do not have permission to complete this workout.", extra_tags='workout')
                 logging.error("User does not have permission to complete workout.")
-                return redirect("/workout")
+                redirect_url = "/workout"
+                return redirect(redirect_url)
             
             is_completed = workout.completed
             if is_completed:
@@ -624,7 +644,7 @@ def complete_workout(request, id):
             workout.save()
 
             # Return to workout:
-            return redirect('/workout/' + id)
+            return redirect(redirect_url)
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:

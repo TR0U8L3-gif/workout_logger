@@ -13,14 +13,18 @@
       href="{% static 'fontawesomefree/css/all.min.css' %}"
     />
     <link rel="stylesheet" href="../../static/workout/styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'workout/images/favicon.ico' %}"
+    />
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
   </head>
 
   <body>
-    {% include 'workout/header.html' %}
-
+    {% include 'workout/widgets/header.html' %}
     <div class="d-flex align-items-stretch">
-      {% include 'workout/sidebar.html' %}
+      {% include 'workout/widgets/sidebar.html' %}
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">
@@ -28,13 +32,14 @@
           </div>
         </div>
         <section class="no-padding-bottom">
-          <h4 class="ms-4 mt-2 text-light">Add Workout</h4>
+          <h4 class="ms-4 my-2 mb-4 text-light">Add Workout</h4>
           <div class="card bg-dark add-exercise mb-4 mt-2">
             <div class="card-body">
               <form id="workout-form" action="/workout" method="POST">
                 {% csrf_token %}
                 <!-- Workout Errors -->
-                {% if messages %} {% for message in messages %} 
+                {% if messages %} 
+                {% for message in messages %} 
                 {% if message.tags == "workout error" %}
                 <div class="alert alert-danger alert-dismissable" role="alert">
                   <strong>Error!</strong> {{ message }}
@@ -105,5 +110,6 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'workout/index.js' %}"></script>
+    
   </body>
 </html>
