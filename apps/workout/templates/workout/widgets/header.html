@@ -1,0 +1,63 @@
+<header class="header">
+  <nav class="navbar navbar-expand-lg my-0 py-1">
+    <div
+      class="container-fluid d-flex align-items-center justify-content-between"
+    >
+      <div class="navbar-header">
+        <a href="/dashboard" class="navbar-brand">
+          <div class="brand-text brand-big visible text-uppercase">
+            <strong class="text-primary">Workout </strong
+            ><strong>Logger</strong>
+          </div>
+        </a>
+        <button class="sidebar-toggle">
+          <i class="fa fa-long-arrow-left"></i>
+        </button>
+      </div>
+      <ul class="right-menu list-inline no-margin-bottom">
+        {% if user.username %}
+        <li class="list-inline-item">
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="title">
+              <h1 class="h4">{{ user.username }}</h1>
+            </div>
+          </div>
+        </li>
+        {% endif %} {% if user.profile_picture %}
+        <li class="list-inline-item">
+          <a href="/user/profile" class="nav-link">
+            <div class="avatar">
+              <img
+                src="{{ user.profile_picture }}"
+                alt="User Profile Picture"
+                height="64"
+                width="64"
+                class="rounded-circle"
+              />
+            </div>
+          </a>
+        </li>
+        {% else %} {% load static %}
+        <li class="list-inline-item">
+          <a href="/user/profile" class="nav-link">
+            <div class="avatar">
+              <img
+                src="{% static 'workout/images/workout_logger.png' %}"
+                alt="User Profile Picture"
+                height="64"
+                width="64"
+                class="rounded-circle"
+              />
+            </div>
+          </a>
+        </li>
+        {% endif %}
+        <li class="list-inline-item ms-2">
+          <a href="/user/logout" class="nav-link">
+            <i class="fa fa-sign -out-alt"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

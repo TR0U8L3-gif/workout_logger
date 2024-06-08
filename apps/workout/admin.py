@@ -1,11 +1,12 @@
 from django.contrib import admin
 
 from .models import User, Workout, MuscleGroup, StrengthTrainingExercise, EnduranceTrainingExercise, BalanceExercise, \
-    FlexibilityExercise, Exercise
+    FlexibilityExercise, Exercise, Challenge
 
 admin.site.register(User)
 admin.site.register(Workout)
 admin.site.register(MuscleGroup)
+admin.site.register(Challenge)
 
 
 
@@ -34,20 +35,20 @@ admin.site.register(MuscleGroup)
 
 class FlexibilityExerciseAdmin(admin.ModelAdmin):
     list_display = [field.name for field in FlexibilityExercise._meta.fields]
-    list_filter = ["muscle_group__size"]
+    list_filter = ["muscle_group__name"]
     search_fields = ["name"]
 
 class StrengthTrainingExerciseAdmin(admin.ModelAdmin):
     list_display = [field.name for field in StrengthTrainingExercise._meta.fields]
-    list_filter = ["muscle_group__size"]
+    list_filter = ["muscle_group__name"]
     search_fields = ["name"]
 class EnduranceTrainingExerciseAdmin(admin.ModelAdmin):
     list_display = [field.name for field in EnduranceTrainingExercise._meta.fields]
-    list_filter = ["muscle_group__size"]
+    list_filter = ["muscle_group__name"]
     search_fields = ["name"]
 class BalanceExerciseAdmin(admin.ModelAdmin):
     list_display = [field.name for field in BalanceExercise._meta.fields]
-    list_filter = ["muscle_group__size"]
+    list_filter = ["muscle_group__name"]
     search_fields = ["name"]
 
 

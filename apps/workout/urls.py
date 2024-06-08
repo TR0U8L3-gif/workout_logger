@@ -20,12 +20,9 @@ urlpatterns = [
     re_path(r'^workout/(?P<id>\d*)/exercise$', views.new_exercise),
     re_path(r'^workout/(?P<id>\d*)/complete$', views.complete_workout),
     re_path(r'^exercise$', views.new_exercise), 
+    re_path(r'^musclegroup$', views.muscle_group), 
     re_path(r'^exercise/(?P<id>\d*)$', views.exercise), 
     re_path(r'^exercise/(?P<id>\d*)/edit$', views.edit_exercise), 
     re_path(r'^exercise/(?P<id>\d*)/delete$', views.delete_exercise),
-    re_path(r'^musclegroup$', views.new_muscle_group), 
-    re_path(r'^musclegroup/(?P<id>\d*)$', views.muscle_group), 
-    re_path(r'^musclegroup/(?P<id>\d*)/edit$', views.edit_muscle_group), 
-    re_path(r'^musclegroup/(?P<id>\d*)/delete$', views.delete_muscle_group), 
     re_path(r'^history$', views.view_all), # get all workouts
 ]

@@ -1,0 +1,28 @@
+<section>
+  <!-- Perform django if check here for recent_workouts-->
+  {% if muscle_group %}
+  <!-- If so, repeat cards here: -->
+  {% for muscle in muscle_group %}
+  <div class="col-lg-12 pb-4">
+    <div class="card text-white bg-dark mb-2">
+      <div class="card-body">
+        <h4 class="card-title">{{muscle.name}}</h4>
+        <p class="card-text text-muted">{{muscle.description}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <div class="col-lg-12 pb-4">
+    <div class="card text-white bg-dark mb-4">
+      <div class="card-body">
+        <h5 class="card-title">
+          Muscle groups are being created and will be available soon. 💪
+        </h5>
+        <h6 class="card-subtitle mt-3 mb-1 text-muted">
+          Get ready to unleash the power of your muscles! 🔥🔥🔥
+        </h6>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</section>

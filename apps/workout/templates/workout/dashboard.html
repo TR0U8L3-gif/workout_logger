@@ -13,14 +13,19 @@
       href="{% static 'fontawesomefree/css/all.min.css' %}"
     />
     <link rel="stylesheet" href="../../static/workout/styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'workout/images/favicon.ico' %}"
+    />
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
   </head>
 
   <body>
-    {% include 'workout/header.html' %}
+    {% include 'workout/widgets/header.html' %}
 
     <div class="d-flex align-items-stretch">
-      {% include 'workout/sidebar.html' %}
+      {% include 'workout/widgets/sidebar.html' %}
       <div class="page-content">
         <div class="page-header">
           <div class="container-fluid">

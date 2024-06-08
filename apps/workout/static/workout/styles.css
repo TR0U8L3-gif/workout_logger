@@ -122,7 +122,7 @@ body {
   }
   
   .breadcrumb a {
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
     text-decoration: none !important;
   }
   
@@ -178,7 +178,7 @@ body {
   }
   
   .dropdown-menu a:hover {
-    background: #ff3f3f;
+    background: rgba(42, 79, 247, 0.95);
     color: #fff;
   }
   
@@ -270,7 +270,7 @@ body {
   
   .megamenu ul a:hover {
     background: none;
-    color: #ff3f3f !important;
+    color: rgba(42, 79, 247, 0.95) !important;
   }
   
   .megamenu .megamenu-buttons {
@@ -293,7 +293,7 @@ body {
   }
   
   .megamenu .megamenu-buttons .megamenu-button-link.dashbg-3:hover {
-    background: #e6495d !important;
+    background: rgba(42, 114, 247, 0.95) !important;
   }
   
   .megamenu .megamenu-buttons .megamenu-button-link.dashbg-4:hover {
@@ -508,7 +508,7 @@ body {
   }
   
   nav.navbar .dropdown-item.message .profile .status.busy {
-    background: #dc3545;
+    background: rgba(42, 79, 247, 0.95);
   }
   
   nav.navbar .dropdown-item.message .profile .status.offline {
@@ -733,7 +733,7 @@ body {
   }
   
   nav#sidebar ul a:hover i {
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
   }
   
   nav#sidebar ul a i {
@@ -761,7 +761,7 @@ body {
   }
   
   nav#sidebar li.active::before {
-    background: #ff3f3f;
+    background: rgba(42, 79, 247, 0.95);
   }
   
   nav#sidebar li.active a {
@@ -770,7 +770,7 @@ body {
   }
   
   nav#sidebar li.active i {
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
   }
   
   nav#sidebar.shrinked {
@@ -1003,7 +1003,7 @@ body {
   }
   
   .stats-2-block .stats-2-arrow.low {
-    color: #dc3545;
+    color: rgba(42, 79, 247, 0.95);
   }
   
   .stats-2-block .stats-2-arrow.height {
@@ -1409,7 +1409,7 @@ body {
   }
   
   .messages-block .profile .status.busy {
-    background: #dc3545;
+    background: rgba(42, 79, 247, 0.95);
   }
   
   .messages-block .profile .status.offline {
@@ -1499,7 +1499,7 @@ body {
     height: 100%;
     display: block;
     z-index: -1;
-    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(172,20,51,1) 100%);
+    background: radial-gradient(circle, rgb(4, 159, 248) 0%, rgb(190, 4, 247) 100%);
     background-size: cover;
     position: absolute;
     top: 0;
@@ -1531,7 +1531,7 @@ body {
   }
   
   .login-page .form-holder .info {
-    background: rgba(255, 63, 63, 0.95);
+    background: rgba(42, 79, 247, 0.95);
     color: #fff;
   }
   
@@ -1572,7 +1572,7 @@ body {
   .login-page .form-holder .form a.forgot-pass,
   .login-page .form-holder .form a.signup {
     font-size: 0.9rem;
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
   }
   
   .login-page .form-holder .form small {
@@ -1630,7 +1630,7 @@ body {
   }
   
   .form-control:focus {
-    border-color: #ff3f3f;
+    border-color: rgba(42, 79, 247, 0.95);
     background: none;
     color: #979a9f;
   }
@@ -1704,7 +1704,7 @@ body {
   }
   
   .checkbox-template:checked::before, .radio-template:checked::before {
-    background: #ff3f3f;
+    background: rgba(42, 79, 247, 0.95);
   }
   
   .checkbox-template:checked::after, .radio-template:checked::after {
@@ -1743,7 +1743,7 @@ body {
   }
   
   input.input-material:focus {
-    border-color: #ff3f3f;
+    border-color: rgba(42, 79, 247, 0.95);
   }
   
   input.input-material ~ label {
@@ -1769,7 +1769,7 @@ body {
   input.input-material ~ label.active {
     font-size: 0.85rem;
     top: -10px;
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
   }
   
   .form-group-material {
@@ -1815,7 +1815,7 @@ body {
   }
   
   .input-group ul.dropdown-menu a:hover {
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
   }
   
   .form-page .block {
@@ -2012,31 +2012,31 @@ body {
   
   .btn-primary {
     color: #fff;
-    background-color: #ff3f3f;
-    border-color: #ff3f3f;
+    background-color: rgba(42, 79, 247, 0.95);
+    border-color: rgba(42, 97, 247, 0.95);
   }
   
   .btn-primary:hover {
     color: #fff;
-    background-color: #ff1919;
-    border-color: #ff0c0c;
+    background-color: rgba(42, 79, 247, 0.95);
+    border-color: rgba(42, 97, 247, 0.95);
   }
   
   .btn-primary:focus, .btn-primary.focus {
-    -webkit-box-shadow: 0 0 0 3px rgba(255, 63, 63, 0.5);
-    box-shadow: 0 0 0 3px rgba(255, 63, 63, 0.5);
+    -webkit-box-shadow: 0 0 0 3px rgba(24, 42, 121, 0.95);
+    box-shadow: 0 0 0 3px rgba(24, 42, 121, 0.95);
   }
   
   .btn-primary.disabled, .btn-primary:disabled {
-    background-color: #ff3f3f;
-    border-color: #ff3f3f;
+    background-color: rgba(42, 79, 247, 0.95);
+    border-color: rgba(42, 97, 247, 0.95);
   }
   
   .btn-primary:active, .btn-primary.active,
   .show > .btn-primary.dropdown-toggle {
-    background-color: #ff1919;
+    background-color: rgba(42, 79, 247, 0.95);
+    border-color: rgba(42, 97, 247, 0.95);
     background-image: none;
-    border-color: #ff0c0c;
   }
   
   .btn-secondary {
@@ -2243,16 +2243,16 @@ body {
   }
   
   .btn-outline-primary {
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
     background-color: transparent;
     background-image: none;
-    border-color: #ff3f3f;
+    border-color: rgba(42, 97, 247, 0.95);
   }
   
   .btn-outline-primary:hover {
     color: #fff;
-    background-color: #ff3f3f;
-    border-color: #ff3f3f;
+    background-color: rgba(42, 79, 247, 0.95);
+    border-color: rgba(42, 97, 247, 0.95);
   }
   
   .btn-outline-primary:focus, .btn-outline-primary.focus {
@@ -2261,15 +2261,15 @@ body {
   }
   
   .btn-outline-primary.disabled, .btn-outline-primary:disabled {
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
     background-color: transparent;
   }
   
   .btn-outline-primary:active, .btn-outline-primary.active,
   .show > .btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: #ff3f3f;
-    border-color: #ff3f3f;
+    background-color: rgba(42, 79, 247, 0.95);
+    border-color: rgba(42, 97, 247, 0.95);
   }
   
   .btn-outline-secondary {
@@ -2509,12 +2509,12 @@ body {
   }
   
   a {
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
     text-decoration: none;
   }
   
   a:focus, a:hover {
-    color: #f20000;
+    color: rgba(42, 79, 247, 0.95);
     text-decoration: underline;
   }
   
@@ -2616,7 +2616,7 @@ body {
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     font-size: 1.25rem;
-    border-left: 5px solid #ff3f3f;
+    border-left: 5px solid rgba(42, 79, 247, 0.95);
   }
   
   .blockquote-footer {
@@ -2628,11 +2628,11 @@ body {
   }
   
   .text-primary {
-    color: #ff3f3f !important;
+    color: rgba(42, 79, 247, 0.95) !important;
   }
   
   a.text-primary:focus, a.text-primary:hover {
-    color: #ff0c0c !important;
+    color: rgba(42, 79, 247, 0.95) !important;
   }
   
   /*
@@ -2650,8 +2650,8 @@ body {
   
   .page-item.active .page-link {
     color: #fff;
-    background-color: #ff3f3f;
-    border-color: #ff3f3f;
+    background-color: rgba(42, 79, 247, 0.95);
+    border-color: rgba(42, 97, 247, 0.95);
   }
   
   .page-item.disabled .page-link {
@@ -2663,13 +2663,13 @@ body {
   .page-link {
     padding: 0.5rem 0.75rem;
     line-height: 1.25;
-    color: #ff3f3f;
+    color: rgba(42, 79, 247, 0.95);
     background-color: #fff;
     border: 1px solid #ddd;
   }
   
   .page-link:focus, .page-link:hover {
-    color: #f20000;
+    color: rgba(42, 79, 247, 0.95);
     text-decoration: none;
     background-color: #e9ecef;
     border-color: #ddd;
@@ -2711,11 +2711,11 @@ body {
   * 5. UTILITIES
   */
   .bg-primary {
-    background-color: #ff3f3f !important;
+    background-color: rgba(42, 79, 247, 0.95) !important;
   }
   
   a.bg-primary:focus, a.bg-primary:hover {
-    background-color: #ff0c0c !important;
+    background-color: rgba(42, 79, 247, 0.95) !important;
   }
   
   .bg-secondary {
@@ -2775,7 +2775,7 @@ body {
   }
   
   .border-primary {
-    border-color: #ff3f3f !important;
+    border-color: rgba(42, 79, 247, 0.95) !important;
   }
   
   .border-secondary {
@@ -2807,11 +2807,11 @@ body {
   }
   
   .text-primary {
-    color: #ff3f3f !important;
+    color: rgba(42, 79, 247, 0.95) !important;
   }
   
   a.text-primary:focus, a.text-primary:hover {
-    color: #ff0c0c !important;
+    color: rgba(42, 79, 247, 0.95) !important;
   }
   
   .text-secondary {
