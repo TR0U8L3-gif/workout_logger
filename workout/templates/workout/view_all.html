@@ -57,7 +57,13 @@
                         <tr>
                           <td scope="row">{{info.updated_at | date}}</td>
                           <td scope="row">{{info.created_at | date}}</td>
-                          <td scope="row">{{info.class_name}}</td>
+                          <td scope="row">
+                            {% if info.exercise_name %}
+                                {{ info.exercise_name }}
+                            {% else %}
+                                Workout
+                            {% endif %}
+                        </td>
                           <td><em>{{info.name}}</em></td>
                           <td>
                             {% if info.class_name == 'Workout' %}
