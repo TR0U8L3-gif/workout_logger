@@ -8,6 +8,7 @@ This module contains the views for the workout app.
 from django.shortcuts import render, redirect
 from django.contrib import messages # access django's `messages` module.
 from .models import *
+from django.db.models import Q
 from .views_helper import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
@@ -133,7 +134,6 @@ def dashboard(request):
 
         # Get recent workouts for logged in user:
         recent_workouts = Workout.objects.filter(user__id=user.id).order_by('-id')[:4]
-
         # Gather any page data:
         data = {
             'user': user,
@@ -204,6 +204,32 @@ def view_all(request):
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         logging.warning("User must be logged in to view 'view_all'.")
         return redirect("/")
+
+
+# challanges
+def challenges(request):
+    try:
+        # Check if the session is valid:
+        user = User.objects.get(id=request.session["user_id"])
+
+        # Get workouts assigned to the logged-in user or shared workouts:
+        challenges = Workout.objects.filter(Q(is_shared=True) & ~Q(challenge=None))
+        print(challenges)
+
+        # Get unique challenges from those workouts:
+        # challenges = Challenge.objects.filter(workout__in=workouts).distinct()
+
+        # Collect page data:
+        data = {
+            'user': user,
+            'challenges': challenges,
+        }
+
+        # Load the page with challenges with data:
+        return render(request, "workout/challenges.html", data)
+    except User.DoesNotExist:
+        # Handling case when the user is not logged in or does not exist
+        return redirect('login')  # Redirect to login page or handle the error appropriately
 
 # muscle group
 def muscle_group(request):

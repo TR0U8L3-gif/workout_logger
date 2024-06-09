@@ -934,13 +934,13 @@ class Workout(models.Model):
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE, default=None, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    objects = WorkoutManager()
-    
+
     def __str__(self):
         return self.name
     
     def class_name(self):
         return self.__class__.__name__
+
 
 class MuscleGroup(models.Model):
     """Creates instances of `MuscleGroup`."""

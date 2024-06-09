@@ -29,4 +29,5 @@ urlpatterns = [
     re_path(r'^profile$', views.profile), 
     re_path(r'^profile/(?P<id>\d*)$', views.profile_online), 
     re_path(r'^statistics$', views.statistics), 
+    re_path(r'^challenges$', views.challenges), 
 ]

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Workout Logger</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all,follow" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'workout/styles.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'workout/images/favicon.ico' %}" />
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+</head>
+
+<body>
+    {% include 'workout/widgets/header.html' %}
+
+    <div class="d-flex align-items-stretch">
+        {% include 'workout/widgets/sidebar.html' %}
+        <div class="page-content">
+            <div class="page-header">
+                <div class="container-fluid">
+                    <h2 class="h5 no-margin-bottom">Challenges</h2>
+                </div>
+            </div>
+            <section class="no-padding-bottom">
+                <div class="container-fluid mb-4">
+                    <div class="row">
+                        <h4 class="ps-4 mt-2 mb-4 text-light">Challenges</h4>
+                        <!-- Perform django if check here for challenges-->
+                        {% if challenges %}
+                        <!-- If so, repeat cards here: -->
+                        {% for challenge in challenges %}
+                        <div class="col-lg-12 pb-4">
+                            <div class="card text-white bg-dark mb-2">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ challenge.name }}</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        {{ challenge.created_at | date }}
+                                    </h6>
+                                    <p class="card-text">{{ challenge.description }}</p>
+                                    <a href="/challenge/{{ challenge.id }}" class="btn btn-outline-info">View</a>
+                                    <a href="/challenge/join/{{ challenge.id }}" class="btn btn-outline-success">Join the Challenge</a>
+                                    <p class="card-text">
+                                        <small class="text-muted">Updated {{ challenge.updated_at | timesince }} ago</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <!-- If nochallenges, display message -->
+                        <div class="col-lg-12 pb-4">
+                            <div class="card text-white bg-dark mb-4">
+                                <div class="card-body">
+                                    <h4 class="card-title">No available challenges</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">You can create or join a challenge to push yourself to new limits! 👌🔥</h6>
+                                    <a href="/challenge" class="btn btn-outline-info">Join a challenge</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'workout/index.js' %}"></script>
+</body>
+</html>
