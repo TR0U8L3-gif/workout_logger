@@ -29,9 +29,7 @@
                 <div class="container-fluid mb-4">
                     <div class="row">
                         <h4 class="ps-4 mt-2 mb-4 text-light">Challenges</h4>
-                        <!-- Perform django if check here for challenges-->
                         {% if challenges %}
-                        <!-- If so, repeat cards here: -->
                         {% for challenge in challenges %}
                         <div class="col-lg-12 pb-4">
                             <div class="card text-white bg-dark mb-2">
@@ -41,8 +39,11 @@
                                         {{ challenge.created_at | date }}
                                     </h6>
                                     <p class="card-text">{{ challenge.description }}</p>
-                                    <a href="/challenge/{{ challenge.id }}" class="btn btn-outline-info">View</a>
-                                    <a href="/challenge/join/{{ challenge.id }}" class="btn btn-outline-success">Join the Challenge</a>
+                                    <form action="{% url 'join_challenge' challenge.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-success">Join the Challenge</button>
+                                    </form>
+                                    <a href="{% url 'join_challenge' challenge.id %}" class="btn btn-outline-info">View</a>
                                     <p class="card-text">
                                         <small class="text-muted">Updated {{ challenge.updated_at | timesince }} ago</small>
                                     </p>
@@ -51,13 +52,11 @@
                         </div>
                         {% endfor %}
                         {% else %}
-                        <!-- If nochallenges, display message -->
                         <div class="col-lg-12 pb-4">
                             <div class="card text-white bg-dark mb-4">
                                 <div class="card-body">
                                     <h4 class="card-title">No available challenges</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">You can create or join a challenge to push yourself to new limits! 👌🔥</h6>
-                                    <a href="/challenge" class="btn btn-outline-info">Join a challenge</a>
+                                    <h6 class="card-subtitle mb-2 text-muted">You can ask the administrator to create some challenges!</h6>
                                 </div>
                             </div>
                         </div>

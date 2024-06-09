@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Join Challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'workout/styles.css' %}" />
+</head>
+<body>
+    {% include 'workout/widgets/header.html' %}
+    
+    <div class="container mt-4">
+        <h2>{{ challenge.name }}</h2>
+        <p>{{ challenge.description }}</p>
+        <p>Created at: {{ challenge.created_at }}</p>
+        <p>Updated at: {{ challenge.updated_at }}</p>
+        
+        <form action="{% url 'join_challenge' challenge.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Join the Challenge</button>
+        </form>
+        
+        <a href="{% url 'challenges' %}" class="btn btn-primary mt-3">Back to Challenges</a>
+    </div>
+</body>
+</html>

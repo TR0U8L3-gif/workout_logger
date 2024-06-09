@@ -15,6 +15,8 @@ from itertools import chain
 import logging 
 import datetime
 from itertools import chain
+from django.shortcuts import redirect, get_object_or_404
+
 
 current_date = datetime.datetime.now().strftime("%Y-%m-%d")
 filename = f"workout_{current_date}.log"
@@ -134,10 +136,14 @@ def dashboard(request):
 
         # Get recent workouts for logged in user:
         recent_workouts = Workout.objects.filter(user__id=user.id).order_by('-id')[:4]
+        # user_challenges = UserChallenge.objects.filter(user__id=user.id)
+        user_challenges = UserChallenge.objects.filter(user=user)
+        print(user_challenges)
         # Gather any page data:
         data = {
             'user': user,
             'recent_workouts': recent_workouts,
+            'user_challenges': user_challenges,
         }
 
         # Load dashboard with data:
@@ -231,6 +237,27 @@ def challenges(request):
         # Handling case when the user is not logged in or does not exist
         return redirect('login')  # Redirect to login page or handle the error appropriately
 
+def join_challenge(request, challenge_id):
+    user = User.objects.get(id=request.session["user_id"])
+    challenge = Challenge.objects.get(id=1)
+    workout = Workout.objects.get(id=challenge_id)
+    print(workout)
+    print(challenge)
+    
+    if request.method == "GET":
+        data = {
+            'user': user,
+            'challenge': challenge,
+        }
+        return render(request, "workout/join_challenge.html", data)
+
+    if request.method == "POST":
+        user_challenge, created = UserChallenge.objects.get_or_create(user=user, challenge=challenge, workout=workout)
+        if created:
+            messages.success(request, "Successfully joined the challenge.")
+        else:
+            messages.info(request, "You have already joined this challenge.")
+        return redirect("challenges")
 # muscle group
 def muscle_group(request):
     """
