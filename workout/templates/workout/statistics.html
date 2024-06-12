@@ -32,6 +32,7 @@
                             {% if data %}
                             <div class="card bg-dark add-exercise mb-4 mt-2">
                                 <div class="card-body">
+                                    <h4 class="ps-4 mt-2 mb-4 text-light">Last Week</h4>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <canvas id="workoutChart_week"></canvas>
@@ -40,6 +41,7 @@
                                             <canvas id="muscleChart_week"></canvas>
                                         </div>
                                     </div>
+                                    <h4 class="ps-4 mt-2 mb-4 text-light">Last Month</h4>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <canvas id="workoutChart_month"></canvas>
@@ -48,6 +50,7 @@
                                             <canvas id="muscleChart_month"></canvas>
                                         </div>
                                     </div>
+                                    <h4 class="ps-4 mt-2 mb-4 text-light">All</h4>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <canvas id="workoutChart"></canvas>
@@ -196,7 +199,7 @@
                     labels: chartData.muscle_labels,
                     datasets: [{
                         label: 'Count',
-                        data: chartData.muscle_data,
+                        data: chartData.muscle_data_week,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -249,7 +252,7 @@
                     labels: chartData.muscle_labels,
                     datasets: [{
                         label: 'Count',
-                        data: chartData.muscle_data,
+                        data: chartData.muscle_data_month,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',

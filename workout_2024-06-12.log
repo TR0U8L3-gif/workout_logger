@@ -50,3 +50,7 @@
 2024-06-12 13:22:37,560 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
 2024-06-12 13:27:00,644 - DEBUG - GET request to login: 
 2024-06-12 13:27:04,067 - DEBUG - POST request to login: 
+2024-06-12 13:30:31,663 - DEBUG - GET request to login: 
+2024-06-12 13:30:35,036 - DEBUG - POST request to login: 
+2024-06-12 13:32:03,421 - DEBUG - GET request to login: 
+2024-06-12 13:32:10,677 - DEBUG - POST request to login: 

@@ -1125,6 +1125,8 @@ def statistics(request):
 
         muscle_groups = MuscleGroup.objects.all()
         muscle_counts = {mg.name: 0 for mg in muscle_groups}
+        muscle_counts_week = {mg.name: 0 for mg in muscle_groups}
+        muscle_counts_month = {mg.name: 0 for mg in muscle_groups}
 
         for mg in muscle_groups:
             muscle_counts[mg.name] += ste_list.filter(muscle_group=mg).count()
@@ -1132,13 +1134,25 @@ def statistics(request):
             muscle_counts[mg.name] += be_list.filter(muscle_group=mg).count()
             muscle_counts[mg.name] += fe_list.filter(muscle_group=mg).count()
 
+            muscle_counts_week[mg.name] += ste_list_week.filter(muscle_group=mg).count()
+            muscle_counts_week[mg.name] += ete_list_week.filter(muscle_group=mg).count()
+            muscle_counts_week[mg.name] += be_list_week.filter(muscle_group=mg).count()
+            muscle_counts_week[mg.name] += fe_list_week.filter(muscle_group=mg).count()
+
+            muscle_counts_month[mg.name] += ste_list_month.filter(muscle_group=mg).count()
+            muscle_counts_month[mg.name] += ete_list_month.filter(muscle_group=mg).count()
+            muscle_counts_month[mg.name] += be_list_month.filter(muscle_group=mg).count()
+            muscle_counts_month[mg.name] += fe_list_month.filter(muscle_group=mg).count()
+
         chart_data = {
             'workout_labels': ['Strength', 'Endurance', 'Balance', 'Flexibility'],
             'workout_data': [ste_counts, ete_counts, be_counts, fe_counts],
             'workout_data_week': [ste_counts_week, ete_counts_week, be_counts_week, fe_counts_week],
             'workout_data_month': [ste_counts_month, ete_counts_month, be_counts_month, fe_counts_month],
             'muscle_labels': list(muscle_counts.keys()),
-            'muscle_data': list(muscle_counts.values())
+            'muscle_data': list(muscle_counts.values()),
+            'muscle_data_week': list(muscle_counts_week.values()),
+            'muscle_data_month': list(muscle_counts_month.values())
         }
 
         data = {
