@@ -1,0 +1,52 @@
+2024-06-12 13:13:26,080 - DEBUG - GET request to login: 
+2024-06-12 13:13:26,566 - WARNING - Not Found: /favicon.ico: 
+2024-06-12 13:13:29,830 - DEBUG - POST request to login: 
+2024-06-12 13:13:58,490 - DEBUG - GET request to login: 
+2024-06-12 13:14:02,446 - DEBUG - POST request to login: 
+2024-06-12 13:14:19,885 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:17:48,799 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:18:00,363 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:18:08,738 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:19:22,397 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:19:23,678 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:19:24,934 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:19:27,192 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:19:28,465 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:19:29,739 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:19:35,052 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:19:36,319 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:19:37,596 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:03,284 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:11,677 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:32,276 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:37,576 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:38,884 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:42,171 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:45,457 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:48,750 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:52,035 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:55,326 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:20:57,622 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:04,957 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:12,326 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:14,621 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:17,921 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:23,249 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:24,534 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:25,818 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:27,102 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:28,382 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:30,660 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:31,944 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:37,235 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:40,537 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:42,822 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:44,110 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:47,404 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:49,695 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:51,992 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:21:53,292 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:22:24,024 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:22:37,560 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-12 13:27:00,644 - DEBUG - GET request to login: 
+2024-06-12 13:27:04,067 - DEBUG - POST request to login: 

@@ -15,7 +15,9 @@ from itertools import chain
 import logging 
 import datetime
 from itertools import chain
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect
+from django.utils import timezone
+from datetime import timedelta
 
 
 current_date = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -210,7 +212,6 @@ def view_all(request):
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         logging.warning("User must be logged in to view 'view_all'.")
         return redirect("/")
-
 
 # challanges
 def challenges(request):
@@ -1056,11 +1057,26 @@ def profile_online(request, id):
 def statistics(request):
     try:
         user = User.objects.get(id=request.session["user_id"])
+        
+        now = timezone.now()
+        last_week = now - timedelta(weeks=1)
+        last_month = now - timedelta(days=30)
 
         ste_list = StrengthTrainingExercise.objects.filter(user__id=user.id)
         ete_list = EnduranceTrainingExercise.objects.filter(user__id=user.id)
         be_list = BalanceExercise.objects.filter(user__id=user.id)
         fe_list = FlexibilityExercise.objects.filter(user__id=user.id)
+
+        # Filtering data
+        ste_list_week = ste_list.filter(updated_at__gte=last_week)
+        ete_list_week = ete_list.filter(updated_at__gte=last_week)
+        be_list_week = be_list.filter(updated_at__gte=last_week)
+        fe_list_week = fe_list.filter(updated_at__gte=last_week)
+
+        ste_list_month = ste_list.filter(updated_at__gte=last_month)
+        ete_list_month = ete_list.filter(updated_at__gte=last_month)
+        be_list_month = be_list.filter(updated_at__gte=last_month)
+        fe_list_month = fe_list.filter(updated_at__gte=last_month)
         
         sort_field = request.GET.get('sort', 'updated_at')
         sort_direction = request.GET.get('direction', 'desc')
@@ -1096,6 +1112,16 @@ def statistics(request):
         ete_counts = ete_list.count()
         be_counts = be_list.count()
         fe_counts = fe_list.count()
+        
+        ste_counts_week = ste_list_week.count()
+        ete_counts_week = ete_list_week.count()
+        be_counts_week = be_list_week.count()
+        fe_counts_week = fe_list_week.count()
+        
+        ste_counts_month = ste_list_month.count()
+        ete_counts_month = ete_list_month.count()
+        be_counts_month = be_list_month.count()
+        fe_counts_month = fe_list_month.count()
 
         muscle_groups = MuscleGroup.objects.all()
         muscle_counts = {mg.name: 0 for mg in muscle_groups}
@@ -1109,6 +1135,8 @@ def statistics(request):
         chart_data = {
             'workout_labels': ['Strength', 'Endurance', 'Balance', 'Flexibility'],
             'workout_data': [ste_counts, ete_counts, be_counts, fe_counts],
+            'workout_data_week': [ste_counts_week, ete_counts_week, be_counts_week, fe_counts_week],
+            'workout_data_month': [ste_counts_month, ete_counts_month, be_counts_month, fe_counts_month],
             'muscle_labels': list(muscle_counts.keys()),
             'muscle_data': list(muscle_counts.values())
         }
