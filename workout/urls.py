@@ -27,8 +27,10 @@ urlpatterns = [
     re_path(r'^exercise/(?P<id>\d*)/delete$', views.delete_exercise),
     re_path(r'^history$', views.view_all), 
     re_path(r'^profile$', views.profile), 
+    re_path(r'^profile/edit$', views.edit_profile), 
     re_path(r'^profile/(?P<id>\d*)$', views.profile_online), 
     re_path(r'^statistics$', views.statistics), 
     re_path(r'^challenges$', views.challenges, name='challenges'),
     re_path(r'^challenge/(?P<challenge_id>\d+)/join$', views.join_challenge, name='join_challenge'),
+    re_path(r'^.*$', views.redirect_to_dashboard),
 ]

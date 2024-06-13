@@ -1,0 +1,301 @@
+2024-06-13 18:50:21,351 - DEBUG - GET request to login: 
+2024-06-13 18:50:21,566 - WARNING - Not Found: /favicon.ico: 
+2024-06-13 18:50:22,813 - DEBUG - POST request to login: 
+2024-06-13 19:02:14,731 - ERROR - Internal Server Error: /statistics: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py", line 1166, in statistics
+    return render(request, "workout/statistics.html", data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 518, in parse
+    self.unclosed_block_tag(parse_until)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\template\base.py", line 581, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 32: 'if'. Looking for one of: elif, else, endif.
+2024-06-13 19:02:19,518 - WARNING - User must be logged in to view 'view_all'.: 
+2024-06-13 19:02:19,522 - DEBUG - GET request to login: 
+2024-06-13 19:02:20,782 - DEBUG - POST request to login: 
+2024-06-13 19:03:05,847 - DEBUG - GET request to new exercise: 
+2024-06-13 19:03:07,307 - DEBUG - GET request to new workout: 
+2024-06-13 19:03:08,012 - DEBUG - GET request to new exercise: 
+2024-06-13 19:05:45,121 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:05:49,382 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:05:55,829 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:06:00,178 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:06:02,425 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:06:05,981 - ERROR - Internal Server Error: /profile: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view workout.views.profile didn't return an HttpResponse object. It returned None instead.
+2024-06-13 19:06:21,450 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:06:30,928 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:06:34,174 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:07:34,221 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:07:37,457 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:07:46,861 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:07:53,144 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:07:55,129 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:07:57,359 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:08:04,295 - WARNING - Not Found: /profile/editdsf: 
+2024-06-13 19:08:15,099 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:08:17,285 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:08:20,426 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:08:22,331 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:11:41,986 - DEBUG - GET request to login: 
+2024-06-13 19:11:52,502 - INFO - User has been logged out.: 
+2024-06-13 19:11:52,523 - DEBUG - GET request to login: 
+2024-06-13 19:11:56,499 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-13 19:11:56,502 - DEBUG - GET request to login: 
+2024-06-13 19:12:01,135 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-13 19:12:01,139 - DEBUG - GET request to login: 
+2024-06-13 19:12:07,555 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-13 19:12:07,559 - DEBUG - GET request to login: 
+2024-06-13 19:12:18,424 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:12:24,837 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 19:12:39,269 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:12:52,047 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 19:12:55,818 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-13 19:12:55,823 - DEBUG - GET request to login: 
+2024-06-13 19:12:58,752 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-13 19:12:58,758 - DEBUG - GET request to login: 
+2024-06-13 19:13:02,296 - DEBUG - POST request to login: 
+2024-06-13 19:14:05,147 - DEBUG - GET request to new workout: 
+2024-06-13 19:14:07,838 - DEBUG - POST request to share workout: 
+2024-06-13 19:14:22,006 - INFO - User has been logged out.: 
+2024-06-13 19:14:22,015 - DEBUG - GET request to login: 
+2024-06-13 19:14:24,753 - DEBUG - POST request to login: 
+2024-06-13 19:14:24,756 - WARNING - User could not be logged in.: 
+2024-06-13 19:14:24,756 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-13 19:14:24,759 - DEBUG - GET request to login: 
+2024-06-13 19:14:26,385 - DEBUG - GET request to register: 
+2024-06-13 19:14:37,445 - DEBUG - POST request to register: 
+2024-06-13 19:14:37,448 - ERROR - Username is already registered to another user.: 
+2024-06-13 19:14:37,448 - ERROR - Email address is already registered to another user.: 
+2024-06-13 19:14:37,453 - DEBUG - GET request to register: 
+2024-06-13 19:14:51,326 - DEBUG - POST request to register: 
+2024-06-13 19:14:51,327 - ERROR - Username is already registered to another user.: 
+2024-06-13 19:14:51,327 - ERROR - Email address is already registered to another user.: 
+2024-06-13 19:14:51,327 - DEBUG - GET request to register: 
+2024-06-13 19:14:55,823 - DEBUG - GET request to login: 
+2024-06-13 19:14:58,058 - DEBUG - POST request to login: 
+2024-06-13 19:14:58,061 - WARNING - User could not be logged in.: 
+2024-06-13 19:14:58,061 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-13 19:14:58,061 - DEBUG - GET request to login: 
+2024-06-13 19:15:00,982 - DEBUG - GET request to register: 
+2024-06-13 19:15:06,731 - DEBUG - GET request to login: 
+2024-06-13 19:15:14,815 - DEBUG - GET request to register: 
+2024-06-13 19:15:25,047 - DEBUG - POST request to register: 
+2024-06-13 19:15:41,744 - INFO - User has been logged out.: 
+2024-06-13 19:15:41,754 - DEBUG - GET request to login: 
+2024-06-13 19:15:43,355 - DEBUG - POST request to login: 
+2024-06-13 19:16:44,682 - DEBUG - POST request to new exercise: 
+2024-06-13 19:16:54,490 - DEBUG - POST request to new exercise: 
+2024-06-13 19:17:03,374 - DEBUG - POST request to new exercise: 
+2024-06-13 19:18:51,504 - INFO - User has been logged out.: 
+2024-06-13 19:18:51,516 - DEBUG - GET request to login: 
+2024-06-13 19:18:54,916 - DEBUG - POST request to login: 
+2024-06-13 19:19:06,470 - INFO - User has been logged out.: 
+2024-06-13 19:19:06,480 - DEBUG - GET request to login: 
+2024-06-13 19:19:08,004 - DEBUG - POST request to login: 
+2024-06-13 20:26:30,285 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-13 20:26:51,948 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:26:55,932 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:03,837 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:08,931 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:11,952 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:14,970 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:17,015 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:22,114 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:24,078 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:29,162 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:33,184 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:35,147 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:39,186 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:43,238 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:47,238 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:27:50,235 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:13,872 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:15,883 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:21,816 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:26,922 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:28,912 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:31,932 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:43,181 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:46,196 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:54,327 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:28:58,377 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:29:02,383 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:29:23,912 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:29:29,970 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:30:07,138 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:30:23,753 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:30:26,071 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:30:32,498 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:30:35,783 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:31:11,129 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:31:23,593 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:31:33,087 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:31:43,583 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:32:19,955 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:32:24,212 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:32:49,155 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:32:53,490 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:33:28,528 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:33:58,522 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:34:02,809 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:34:07,173 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:34:16,595 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:34:21,918 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:34:24,181 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:34:33,623 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:34:36,853 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:34:51,508 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:35:04,054 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:35:08,359 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 20:35:20,389 - DEBUG - GET request to edit profile: 
+2024-06-13 20:41:01,217 - DEBUG - GET request to edit profile: 
+2024-06-13 20:42:06,922 - DEBUG - GET request to edit profile: 
+2024-06-13 20:42:21,090 - DEBUG - GET request to edit profile: 
+2024-06-13 20:42:54,304 - DEBUG - GET request to edit profile: 
+2024-06-13 20:43:24,390 - DEBUG - GET request to edit profile: 
+2024-06-13 20:47:39,617 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\settings.py changed, reloading.: 
+2024-06-13 20:47:44,900 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\settings.py changed, reloading.: 
+2024-06-13 20:47:54,393 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\settings.py changed, reloading.: 
+2024-06-13 20:47:57,283 - DEBUG - GET request to login: 
+2024-06-13 20:47:58,749 - DEBUG - POST request to login: 
+2024-06-13 20:48:52,518 - DEBUG - GET request to edit profile: 
+2024-06-13 20:49:10,071 - DEBUG - GET request to login: 
+2024-06-13 20:49:11,724 - DEBUG - POST request to login: 
+2024-06-13 20:49:36,415 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:49:54,559 - ERROR - Internal Server Error: /profile: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py", line 8, in __call__
+    if request.path.contains('/static/'):
+       ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'contains'
+2024-06-13 20:49:58,753 - ERROR - Internal Server Error: /profile: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py", line 8, in __call__
+    if request.path.contains('/static/'):
+       ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'contains'
+2024-06-13 20:50:23,253 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:50:37,059 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:51:35,142 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:51:38,504 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:52:23,319 - DEBUG - GET request to login: 
+2024-06-13 20:52:24,523 - DEBUG - POST request to login: 
+2024-06-13 20:55:22,658 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:55:26,937 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:55:35,298 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:56:01,236 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:56:06,556 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:58:01,676 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:58:04,853 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:58:09,095 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:58:13,365 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:58:23,827 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:58:29,115 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\middleware.py changed, reloading.: 
+2024-06-13 20:58:37,296 - DEBUG - GET request to new workout: 
+2024-06-13 20:58:37,741 - DEBUG - GET request to new exercise: 
+2024-06-13 20:59:12,835 - DEBUG - GET request to edit profile: 
+2024-06-13 20:59:56,914 - DEBUG - GET request to edit profile: 
+2024-06-13 20:59:58,247 - DEBUG - GET request to edit profile: 
+2024-06-13 21:00:01,420 - DEBUG - GET request to edit profile: 
+2024-06-13 21:00:01,952 - DEBUG - GET request to edit profile: 
+2024-06-13 21:00:02,105 - DEBUG - GET request to edit profile: 
+2024-06-13 21:00:26,868 - DEBUG - GET request to edit profile: 
+2024-06-13 21:04:44,315 - DEBUG - GET request to login: 
+2024-06-13 21:05:15,777 - DEBUG - GET request to edit profile: 
+2024-06-13 21:05:55,008 - DEBUG - GET request to edit profile: 
+2024-06-13 21:07:01,517 - DEBUG - GET request to edit profile: 
+2024-06-13 21:14:03,632 - DEBUG - GET request to edit profile: 
+2024-06-13 21:14:10,899 - DEBUG - GET request to edit profile: 
+2024-06-13 21:16:56,932 - DEBUG - GET request to edit profile: 
+2024-06-13 21:17:10,894 - DEBUG - GET request to edit profile: 
+2024-06-13 21:17:11,651 - DEBUG - GET request to edit profile: 
+2024-06-13 21:17:12,376 - DEBUG - GET request to edit profile: 
+2024-06-13 21:17:19,135 - DEBUG - POST request to edit profile: 
+2024-06-13 21:17:19,173 - ERROR - Internal Server Error: /profile/edit: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py", line 1076, in edit_profile
+    if len(validated["errors"]) > 0:
+           ~~~~~~~~~^^^^^^^^^^
+TypeError: 'int' object is not subscriptable
+2024-06-13 21:17:51,866 - DEBUG - GET request to edit profile: 
+2024-06-13 21:18:07,755 - DEBUG - GET request to edit profile: 
+2024-06-13 21:18:08,521 - DEBUG - GET request to edit profile: 
+2024-06-13 21:18:09,153 - DEBUG - GET request to edit profile: 
+2024-06-13 21:18:09,807 - DEBUG - GET request to edit profile: 
+2024-06-13 21:18:44,005 - DEBUG - GET request to edit profile: 
+2024-06-13 21:18:55,735 - DEBUG - GET request to edit profile: 
+2024-06-13 21:19:20,418 - DEBUG - GET request to edit profile: 
+2024-06-13 21:19:32,134 - DEBUG - GET request to edit profile: 
+2024-06-13 21:19:32,778 - DEBUG - GET request to edit profile: 
+2024-06-13 21:19:44,981 - DEBUG - GET request to edit profile: 
+2024-06-13 21:19:45,440 - DEBUG - GET request to edit profile: 
+2024-06-13 21:20:08,666 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-13 21:20:09,787 - DEBUG - GET request to edit profile: 
+2024-06-13 21:21:10,325 - DEBUG - GET request to edit profile: 
+2024-06-13 21:21:33,396 - DEBUG - GET request to edit profile: 

@@ -215,6 +215,19 @@ def view_all(request):
 
 # challanges
 def challenges(request):
+    """
+    GET - Loads `Challenges` page.
+    
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workouts: QuerySet of all workouts.
+        challenges: QuerySet of all challenges.
+        data: Dictionary of page data.  
+        
+    Returns:
+        Django HttpResponse object.
+    """
     try:
         # Check if the session is valid:
         user = User.objects.get(id=request.session["user_id"])
@@ -259,6 +272,7 @@ def join_challenge(request, challenge_id):
         else:
             messages.info(request, "You have already joined this challenge.")
         return redirect("challenges")
+
 # muscle group
 def muscle_group(request):
     """
@@ -982,26 +996,7 @@ def profile(request):
 
     try:
         # Check for valid session:
-        user = User.objects.get(id=request.session["user_id"])
-        workout = Workout.objects.filter(user__id=user.id, is_shared=True).order_by('-updated_at')[:5]
-        exercise = []
-
-        for w in workout:
-            exercise.extend(StrengthTrainingExercise.objects.filter(workout__id=w.id))
-            exercise.extend(EnduranceTrainingExercise.objects.filter(workout__id=w.id))
-            exercise.extend(BalanceExercise.objects.filter(workout__id=w.id))
-            exercise.extend(FlexibilityExercise.objects.filter(workout__id=w.id))
-        
-        # Gather any page data:
-        data = {
-            'id': user.id,
-            'user': user,
-            'shared_workouts': workout,
-            'shared_exercises': sorted(exercise, key=lambda x: x.updated_at, reverse=True),
-        }
-
-        # If get request, load profile page with data:
-        return render(request, "workout/profile.html", data)
+        return profile_online(request, request.session["user_id"])
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
@@ -1052,9 +1047,71 @@ def profile_online(request, id):
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         logging.warning("User must be logged in to view 'profile'.")
         return redirect("/")
-   
+
+def edit_profile(request):
+    
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+        
+        # Gather any page data:
+        data = {
+            'profile': user,
+        }
+
+        # If get request, load profile page with data:
+        if request.method == "GET":
+            logging.debug("GET request to edit profile")
+            # If get request, load edit workout page with data:
+            return render(request, "workout/edit_profile.html", data)
+        if request.method == "POST":
+            logging.debug("POST request to edit profile")
+            # check if 
+            profile = {}
+            
+            # Begin validation of updated profile:
+            validated = User.objects.update(**profile)
+            # If errors, reload register page with errors:
+            try:
+                if len(validated["errors"]) > 0:
+                    logging.error("Profile could not be edited.")
+                    print("Profile could not be edited.")
+                    # Loop through errors and Generate Django Message for each with custom level and tag:
+                    for error in validated["errors"]:
+                        messages.error(request, error, extra_tags='edit')
+                        logging.error(error)
+                    # Reload workout page:
+                    return redirect("/profile/edit")
+            except KeyError:
+                # If validation successful, load newly created workout page:
+                print("Edited profile passed validation and has been updated.")
+                # Load workout:
+                return redirect("/profile/edit")
+
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'profile'.")
+        return redirect("/")
+    
 #statistics     
 def statistics(request):
+    """
+    GET - View statistics.
+    
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        data_list: List of all exercises.
+        paginator: Paginator object.
+        data: Dictionary of page data.
+        sort_field: Field to sort by.
+        sort_direction: Direction to sort by.
+    
+    Returns:
+        Django HttpResponse object.
+    """
     try:
         user = User.objects.get(id=request.session["user_id"])
         
@@ -1169,3 +1226,10 @@ def statistics(request):
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         logging.warning("User must be logged in to view 'view_all'.")
         return redirect("/")
+
+#other    
+def redirect_to_dashboard(request):
+    """
+    Redirect to dashboard.
+    """
+    return redirect('/dashboard')

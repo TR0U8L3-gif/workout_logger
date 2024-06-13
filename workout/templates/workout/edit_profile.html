@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Workout Logger</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all,follow" />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'fontawesomefree/css/all.min.css' %}"
+    />
+    <link rel="stylesheet" href="../../static/workout/styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'workout/images/favicon.ico' %}"
+    />
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+  </head>
+
+  <body>
+    {% include 'workout/widgets/header.html' %}
+
+    <div class="d-flex align-items-stretch">
+      {% include 'workout/widgets/sidebar.html' %}
+      <div class="page-content">
+        <div class="page-header mb-0">
+            <div class="container-fluid">
+              <h2 class="h5 no-margin-bottom">Edit Profile</h2>
+            </div>
+          </div>
+          <div class="mb-2" style="width: 100%; height: 300px; position: relative">
+            {% if profile.background_photo_url %}
+            <img 
+              src="{{ profile.background_photo_url }}"
+              alt="User Profile Picture"
+              width="100%"
+              height="300px"
+              style="object-fit: cover; object-position: center; pointer-events: none;"
+            />
+            {% else %} {% load static %}
+            <img 
+              src="{% static 'workout/images/bg.png' %}"
+              alt="User Profile Picture"
+              width="100%"
+              height="300px"
+              style="object-fit: cover; object-position: center; pointer-events: none;"
+            />
+            {% endif %}
+            <div style="position: absolute; left: 0; top: 0">
+              {% if profile.profile_photo_url %}
+              <li class="list-inline-item">
+                <a href="/profile/edit" class="nav-link" style="pointer-events: none;">
+                    <div class="avatar">
+                    <img
+                      src="{{ profile.profile_photo_url }}"
+                      alt="User Profile Picture"
+                      height="280px"
+                      width="280px"
+                      class="rounded-circle"
+                    />
+                  </div>
+                </a>
+              </li>
+              {% else %} {% load static %}
+              <li class="list-inline-item">
+                <a href="/profile/edit" class="nav-link" style="pointer-events: none;">
+                  <div class="avatar">
+                    <img
+                      src="{% static 'workout/images/workout_logger.png' %}"
+                      alt="User Profile Picture"
+                      height="280px"
+                      width="280px"
+                      class="rounded-circle"
+                    />
+                  </div>
+                </a>
+              </li>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- edit form -->
+          <div class="card bg-dark add-exercise mb-4 mt-4 mx-4">
+            <div class="card-body text-light">
+          <form
+          id="update-profile-form"
+          action="/profile/edit"
+          method="POST"
+        >
+          {% csrf_token %}
+          <!-- Edit Workout Errors -->
+          {% if messages %} {% for message in messages %} 
+          {% if message.tags == "edit profile" %}
+          <div
+            class="alert alert-danger alert-dismissable"
+            role="alert"
+          >
+            <strong>Error!</strong> {{ message }}
+          </div>
+          {% endif %} {% endfor %} {% endif %}
+          <!-- Profile Username -->
+          <div class="form-group">
+            <input
+              id="username"
+              type="text"
+              name="username"
+              required
+              class="input-material form-control-lg"
+              placeholder="Username"
+              value="{{ profile.username }}"
+            />
+          </div>
+          <!-- Profile Email -->
+          <div class="form-group">
+            <input
+              id="email"
+              type="text"
+              name="email"
+              class="input-material form-control-lg"
+              placeholder="Email"
+              value="{{ profile.email }}"
+            />
+          </div>
+
+          <!-- Profile Photo Url-->
+          <div class="form-group">
+            <input
+              id="profile_photo_url"
+              type="text"
+              name="profile_photo_url"
+              class="input-material form-control-lg"
+              placeholder="Profile Photo Url"
+              {% if profile.profile_photo_url %}
+                value="{{ profile.profile_photo_url }}"
+              {% else %}
+                value=""
+              {% endif %}
+            />
+          </div>
+
+            <!-- Background Photo Url-->
+            <div class="form-group">
+              <input
+                id="background_photo_url"
+                type="text"
+                name="background_photo_url"
+                class="input-material form-control-lg"
+                placeholder="Background Photo Url"
+                {% if profile.background_photo_url %}
+                    value="{{ profile.background_photo_url }}"
+                {% else %}
+                  value=""
+                {% endif %}
+              />
+
+            <!-- Profile Password -->
+          <div class="form-group">
+            <input
+              id="password"
+              type="password"
+              name="password"
+              class="input-material form-control-lg"
+              placeholder="Password"
+              value=""
+            />
+          </div>
+
+          <!-- Profile Password Repeat-->
+          <div class="form-group">
+            <input
+              id="password_repeat"
+              type="password"
+              name="password_repeat"
+              class="input-material form-control-lg"
+              placeholder="Repeat Password"
+              value=""
+            />
+          </div>
+
+          <!-- Update Profile Button -->
+          <input
+            id="update"
+            type="submit"
+            value="Update"
+            class="btn btn-success btn-lg mt-4"
+          />
+          <!-- Back Button -->
+          <a
+            href="/workout/{{ workout.id }}"
+            style="text-decoration: none"
+            class="btn btn-primary btn-lg end-workout mt-4 mx-4"
+            >Back</a>
+        </form>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'workout/index.js' %}"></script>
+  </body>
+</html>
