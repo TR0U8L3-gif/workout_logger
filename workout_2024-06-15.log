@@ -732,3 +732,230 @@ IndexError: list index out of range
 2024-06-15 10:53:26,290 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
 2024-06-15 10:53:34,730 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
 2024-06-15 10:54:25,658 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 14:48:02,076 - DEBUG - GET request to login: 
+2024-06-15 14:49:11,213 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-15 14:50:17,321 - ERROR - Internal Server Error: /admin/: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py", line 1308, in redirect_to_dashboard
+    if request.startswith('admin'):
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: 'WSGIRequest' object has no attribute 'startswith'
+2024-06-15 14:50:17,494 - ERROR - Internal Server Error: /favicon.ico: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py", line 1308, in redirect_to_dashboard
+    if request.startswith('admin'):
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: 'WSGIRequest' object has no attribute 'startswith'
+2024-06-15 14:51:01,934 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-15 14:51:17,662 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-15 14:51:20,956 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-15 14:52:02,945 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-15 14:52:06,175 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-15 14:55:25,744 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-15 14:55:30,734 - WARNING - Not Found: /favicon.ico: 
+2024-06-15 14:56:40,976 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-15 14:56:45,701 - INFO - User has been logged out.: 
+2024-06-15 14:56:45,729 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,736 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,743 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,750 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,757 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,764 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,772 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,779 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,786 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,793 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,800 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,806 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,813 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,819 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,826 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,832 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,839 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,846 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:45,853 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,893 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,900 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,909 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,917 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,925 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,933 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,940 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,948 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,956 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,962 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,971 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,978 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,986 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:46,994 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:47,001 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:47,007 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:47,015 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:47,022 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:47,030 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:47,036 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:50,942 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:50,950 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:50,957 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:50,964 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:50,971 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:50,978 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:50,987 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:50,994 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,001 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,007 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,014 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,020 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,027 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,033 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,040 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,047 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,053 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,060 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,068 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:51,074 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,118 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,126 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,134 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,141 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,148 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,157 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,166 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,173 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,181 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,188 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,196 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,205 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,214 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,221 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,228 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,235 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,243 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,251 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,259 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:56,266 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,682 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,690 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,697 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,704 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,714 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,722 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,729 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,737 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,744 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,752 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,759 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,766 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,773 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,781 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,787 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,794 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,802 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,808 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,816 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:58,822 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 14:56:59,027 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-15 14:57:00,996 - DEBUG - GET request to login: 
+2024-06-15 14:57:05,195 - DEBUG - GET request to login: 
+2024-06-15 14:57:06,660 - DEBUG - POST request to login: 
+2024-06-15 14:58:43,738 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-15 14:58:49,120 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout_logger\urls.py changed, reloading.: 
+2024-06-15 14:59:08,323 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-15 14:59:30,644 - ERROR - Internal Server Error: /challenge/1/join: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py", line 257, in join_challenge
+    workout = Workout.objects.get(id=challenge_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+workout.models.Workout.DoesNotExist: Workout matching query does not exist.
+2024-06-15 14:59:41,939 - DEBUG - GET request to edit profile: 
+2024-06-15 14:59:49,109 - ERROR - Internal Server Error: /workout/: 
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\fields\__init__.py", line 2053, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py", line 721, in workout
+    workout = Workout.objects.get(id=id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1492, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\sql\query.py", line 1319, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\lookups.py", line 341, in get_prep_lookup
+    return super().get_prep_lookup()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rsien\miniconda3\Lib\site-packages\django\db\models\fields\__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got ''.
+2024-06-15 15:00:31,795 - DEBUG - GET request to edit profile: 
+2024-06-15 15:00:41,086 - DEBUG - GET request to edit profile: 
+2024-06-15 15:00:42,141 - DEBUG - GET request to edit profile: 
+2024-06-15 15:00:45,609 - DEBUG - GET request to edit profile: 
+2024-06-15 15:02:06,186 - DEBUG - GET request to edit profile: 
+2024-06-15 15:02:07,009 - DEBUG - GET request to edit profile: 
+2024-06-15 15:02:22,933 - DEBUG - GET request to edit profile: 
+2024-06-15 15:02:33,233 - DEBUG - GET request to edit profile: 
+2024-06-15 15:03:17,477 - DEBUG - GET request to edit profile: 
+2024-06-15 15:03:18,156 - DEBUG - GET request to edit profile: 
+2024-06-15 15:03:18,870 - DEBUG - GET request to edit profile: 
+2024-06-15 15:04:33,057 - DEBUG - GET request to edit profile: 

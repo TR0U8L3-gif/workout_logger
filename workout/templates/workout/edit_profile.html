@@ -90,6 +90,7 @@
           id="update-profile-form"
           action="/profile/edit"
           method="POST"
+          autocomplete="off"
         >
           {% csrf_token %}
           <!-- Edit Workout Errors -->
@@ -160,11 +161,11 @@
             <!-- Profile Password -->
           <div class="form-group">
             <input
-              id="password"
+              id="new_password"
               type="password"
-              name="password"
+              name="new_password"
               class="input-material form-control-lg"
-              placeholder="Password"
+              placeholder="New Password"
               value=""
             />
           </div>
@@ -190,9 +191,9 @@
           />
           <!-- Back Button -->
           <a
-            href="/workout/{{ workout.id }}"
+            href="/profile"
             style="text-decoration: none"
-            class="btn btn-primary btn-lg end-workout mt-4 mx-4"
+            class="btn btn-primary btn-lg end-workout mt-4 mx-2"
             >Back</a>
         </form>
         </div>
