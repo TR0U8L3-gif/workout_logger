@@ -299,6 +299,18 @@ def view_challenge(request, id):
         user_challenge = UserChallenge.objects.get(id=1)
         workout = Workout.objects.get(id=user_challenge.workout_id)
         challenge = Challenge.objects.get(id=user_challenge.challenge_id)
+        
+        if request.method == "POST":
+            # Process form data
+            exercise_status = []
+            for i in range(len(user_challenge.exercise_status)):
+                print(i)
+                print(bool(request.POST.get(f'exercise_{i}')))
+                exercise_status.append(bool(request.POST.get(f'exercise_{i}')))
+            user_challenge.exercise_status = exercise_status
+            user_challenge.save()
+            messages.success(request, "Exercise status updated successfully.")
+            return redirect("workout/view_challenge.html", id=id)
 
 
         # Getting all exercises for this workout: 
@@ -308,13 +320,17 @@ def view_challenge(request, id):
         fe = FlexibilityExercise.objects.filter(workout__id=id)
         
         exercises = list(chain(ste, ete, be, fe))
+        exercises_with_status = []
+        for exercise in exercises:
+            exercise_status = user_challenge.exercise_status[exercises.index(exercise)]
+            exercises_with_status.append((exercise, exercise_status))
 
         # Gather any page data:
         data = {
             'user': user,
             'workout': workout,
             'challenge': challenge,
-            'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
+            'exercises_with_status': exercises_with_status,
             'muscle_groups': MuscleGroup.objects.order_by('name'),
             'exercise_types': get_exercises_types(),
             'current_exercise': exercise_type,

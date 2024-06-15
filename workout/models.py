@@ -946,12 +946,20 @@ class UserChallenge(models.Model):
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE, null=True, blank=True)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, null=True, blank=True)
     joined_at = models.DateTimeField(auto_now_add=True)
+    exercise_status = models.JSONField(default=list)
+
 
     class Meta:
         unique_together = ['user', 'challenge']
         
     def __str__(self):
         return self.challenge.name
+    
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            exercises_count = self.workout.exercise_set.count()
+            self.exercise_status = [False] * exercises_count
+        super(UserChallenge, self).save(*args, **kwargs)
 
 
 class MuscleGroup(models.Model):
