@@ -299,8 +299,8 @@ def view_challenge(request, id):
     
     try:
         # Check for valid session:
-        user = User.objects.get(id=request.session["user_id"])
-        user_challenge = UserChallenge.objects.get(id=1)
+        # workout = Workout.objects.get(id=id)
+        user_challenge = UserChallenge.objects.get(workout_id=id)
         workout = Workout.objects.get(id=user_challenge.workout_id)
         challenge = Challenge.objects.get(id=user_challenge.challenge_id)
         
@@ -335,6 +335,42 @@ def view_challenge(request, id):
 
         # If get request, load workout page with data:
         return render(request, "workout/view_challenge.html", data)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'workout'.")
+        return redirect("/")
+    
+def preview_challenge(request, id):
+    
+    try:
+        # Check for valid session:
+        workout = Workout.objects.get(id=id)
+        challenge = Challenge.objects.get(id=workout.challenge_id)
+
+        print(workout)
+        print(challenge)
+
+        # Getting all exercises for this workout: 
+        ste = StrengthTrainingExercise.objects.filter(workout__id=id)
+        ete = EnduranceTrainingExercise.objects.filter(workout__id=id)
+        be = BalanceExercise.objects.filter(workout__id=id)
+        fe = FlexibilityExercise.objects.filter(workout__id=id)
+        
+        exercises = list(chain(ste, ete, be, fe))
+        
+        print(exercises)
+
+        # Gather any page data:
+        data = {
+            'workout': workout,
+            'challenge': challenge,
+            'exercises': exercises,
+        }
+
+        # If get request, load workout page with data:
+        return render(request, "workout/preview_challenge.html", data)
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:

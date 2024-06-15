@@ -42,12 +42,16 @@
                                     <form action="{% url 'join_challenge' challenge.id %}" method="post" style="display: inline;">
                                         {% csrf_token %}
                                         {% if challenge.id in user_challenges %}
-                                            <button type="submit" class="btn btn-outline-danger">Exit the Challenge</button>
+                                            <button type="submit" class="btn btn-outline-danger me-2">Exit the Challenge</button>
                                         {% else %}
-                                            <button type="submit" class="btn btn-outline-success">Join the Challenge</button>
+                                            <button type="submit" class="btn btn-outline-success me-2">Join the Challenge</button>
                                         {% endif %}
                                     </form>
-                                    <a href="{% url 'join_challenge' challenge.id %}" class="btn btn-outline-info">View</a>
+                                    {% if challenge.id in user_challenges %}
+                                            <a href="/challenge/{{ challenge.id }}" class="btn btn-outline-info">View</a>
+                                        {% else %}
+                                            <a href="/prechallenge/{{ challenge.id }}" class="btn btn-outline-info">Preview</a>
+                                        {% endif %}
                                     <p class="card-text">
                                         <small class="text-muted">Updated {{ challenge.updated_at | timesince }} ago</small>
                                     </p>

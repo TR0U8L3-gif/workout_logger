@@ -32,6 +32,7 @@ urlpatterns = [
     re_path(r'^statistics$', views.statistics), 
     re_path(r'^challenges$', views.challenges, name='challenges'),
     re_path(r'^challenge/(?P<id>\d*)$', views.view_challenge),
+    re_path(r'^prechallenge/(?P<id>\d*)$', views.preview_challenge),
     re_path(r'^challenge/(?P<challenge_id>\d+)/join$', views.join_challenge, name='join_challenge'),
     re_path(r'^.*$', views.redirect_to_dashboard),
 ]
