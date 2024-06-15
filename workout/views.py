@@ -272,6 +272,63 @@ def join_challenge(request, challenge_id):
         else:
             messages.info(request, "You have already joined this challenge.")
         return redirect("challenges")
+    
+def view_challenge(request, id):
+    """
+    GET - View workout.
+
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: Workout object.
+        data: Dictionary of page data.
+
+    Returns:
+        Django HttpResponse object.
+    """
+    exercise_type = request.GET.get('exercise_type')
+    current_muscle_group_id = request.GET.get('current_muscle_group_id')
+    if(exercise_type == None):
+        exercise_type = StrengthTrainingExercise().class_name
+    if(current_muscle_group_id == None):
+        current_muscle_group_id = 0
+    
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+        user_challenge = UserChallenge.objects.get(id=1)
+        workout = Workout.objects.get(id=user_challenge.workout_id)
+        challenge = Challenge.objects.get(id=user_challenge.challenge_id)
+
+
+        # Getting all exercises for this workout: 
+        ste = StrengthTrainingExercise.objects.filter(workout__id=id)
+        ete = EnduranceTrainingExercise.objects.filter(workout__id=id)
+        be = BalanceExercise.objects.filter(workout__id=id)
+        fe = FlexibilityExercise.objects.filter(workout__id=id)
+        
+        exercises = list(chain(ste, ete, be, fe))
+
+        # Gather any page data:
+        data = {
+            'user': user,
+            'workout': workout,
+            'challenge': challenge,
+            'exercises': sorted(exercises, key=lambda x: x.updated_at, reverse=True),
+            'muscle_groups': MuscleGroup.objects.order_by('name'),
+            'exercise_types': get_exercises_types(),
+            'current_exercise': exercise_type,
+            'current_muscle_group_id': int(current_muscle_group_id),
+        }
+
+        # If get request, load workout page with data:
+        return render(request, "workout/view_challenge.html", data)
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'workout'.")
+        return redirect("/")
 
 # muscle group
 def muscle_group(request):

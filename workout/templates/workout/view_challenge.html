@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Workout Logger</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="all,follow" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'fontawesomefree/css/all.min.css' %}">
+    <link rel="stylesheet" href="../../static/workout/styles.css">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'workout/images/favicon.ico' %}"
+    />
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+  </head>
+
+  <body>
+    {% include 'workout/widgets/header.html' %}
+    <div class="d-flex align-items-stretch">
+      {% include 'workout/widgets/sidebar.html' %}
+      <div class="page-content">
+        <div class="page-header">
+          <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">Challenge</h2>
+          </div>
+        </div>
+        <section class="no-padding-bottom">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12 text-light">
+                <div  class="card bg-dark add-exercise mb-4 mt-2" >
+                  <div class="card-body mb-0 pb-0">
+                    <!-- Workout Name -->
+                    <h2 class="">{{ challenge.name}}</h2>
+                    <!-- Workout Subtitle -->
+                    <small class="text-muted">{{ challenge.created_at | date}}</small>
+                    <!-- Workout Description -->
+                    <h5 class="mt-2">{{ challenge.description}}</h5>
+                    <br>
+                  </div>
+                </div>
+          <h4 class="ms-4 mt-2 mb-4 text-light"> All Exercises in Workout</h4>
+                {% if exercises %}
+                <div class="card bg-dark add-exercise mb-4 mt-2">
+                  <div class="card-body">
+                    <div id="exercise-wrapper" class="mb-4">
+                      <hr  class="mb-0"/>
+                      <table class="table table-dark table-striped text-light">
+                      </thead>
+                        <tbody>
+                          {% for exercise in exercises %}
+                          <tr>
+                            <th scope="row" class="align-middle text-center">{{ exercise.exercise_name }}</th>
+                            <td class="align-middle text-center">{{ exercise.name }}</td>
+                            {% for data in exercise.data %}
+                            <td class="align-middle text-center">{{ data }}</td>
+                            {% endfor %}
+                            {% if workout.completed == False %}
+                            <!-- <td class="align-middle text-center">{{ exercise.data }}</td> -->
+                            <td ><a
+                              href="/exercise/{{ exercise.id }}?exercise_type={{exercise.class_name}}&redirect_workout={{ workout.id }}"
+                              class="btn btn-outline-info"
+                              >Edit</a
+                            ></td>
+
+                            <td class="align-middle text-center">
+                              <form
+                                id="delete-exercise-form"
+                                action="/exercise/{{ exercise.id }}/delete?exercise_type={{exercise.class_name}}&redirect_workout={{ workout.id }}"
+                                method="GET"
+                                class="p-0"
+                              >
+                                {% csrf_token %}
+                                <input
+                                  type="hidden"
+                                  id="exercise_type"
+                                  name="exercise_type"
+                                  value="{{ exercise.class_name }}"
+                                />
+                                <input
+                                  type="hidden"
+                                  id="redirect_workout"
+                                  name="redirect_workout"
+                                  value="{{ workout.id }}"
+                                />
+                                <button
+                                  id="delete-exercise"
+                                  type="submit"
+                                  class="btn btn-link btn-lg p-0"
+                                >
+                                  <i class="fa fa-remove delete-exercise"></i>
+                                </button>
+                              </form>
+                            </td>
+                            {% endif %}
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'workout/index.js' %}"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#exercise_type").change(function () {
+          $("#exercise_type_form").submit();
+        });
+      });
+    </script>
+  </body>
+</html>

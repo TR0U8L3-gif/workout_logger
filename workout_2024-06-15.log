@@ -1,0 +1,290 @@
+2024-06-15 09:59:01,684 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-15 09:59:10,819 - DEBUG - GET request to new workout: 
+2024-06-15 09:59:34,634 - DEBUG - GET request to edit workout: 
+2024-06-15 10:01:04,448 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/urls.py changed, reloading.: 
+2024-06-15 10:01:21,400 - ERROR - Internal Server Error: /challenge/: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1822, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 648, in workout
+    workout = Workout.objects.get(id=id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 428, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 974, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 992, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 999, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1375, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1396, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1329, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1180, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/lookups.py", line 79, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1824, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got ''.
+2024-06-15 10:01:41,266 - ERROR - Internal Server Error: /challenge/1: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 648, in workout
+    workout = Workout.objects.get(id=id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 439, in get
+    raise self.model.DoesNotExist(
+workout.models.Workout.DoesNotExist: Workout matching query does not exist.
+2024-06-15 10:02:11,988 - DEBUG - GET request to login: 
+2024-06-15 10:02:24,900 - INFO - User has been logged out.: 
+2024-06-15 10:02:24,910 - DEBUG - GET request to login: 
+2024-06-15 10:02:27,896 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-15 10:02:27,904 - DEBUG - GET request to login: 
+2024-06-15 10:02:33,768 - DEBUG - POST request to login: 
+2024-06-15 10:03:52,995 - ERROR - Internal Server Error: /challenge/: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1822, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 648, in workout
+    workout = Workout.objects.get(id=id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 428, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 974, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 992, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 999, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1375, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1396, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1329, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1180, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/lookups.py", line 79, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1824, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got ''.
+2024-06-15 10:04:19,611 - ERROR - Internal Server Error: /challenge/: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1822, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 648, in workout
+    workout = Workout.objects.get(id=id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 428, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 974, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 992, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 999, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1375, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1396, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1329, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1180, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/lookups.py", line 79, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1824, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got ''.
+2024-06-15 10:04:21,935 - ERROR - Internal Server Error: /challenge/1: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 648, in workout
+    workout = Workout.objects.get(id=id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 439, in get
+    raise self.model.DoesNotExist(
+workout.models.Workout.DoesNotExist: Workout matching query does not exist.
+2024-06-15 10:06:10,372 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:06:13,795 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:06:18,107 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:06:25,451 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/urls.py changed, reloading.: 
+2024-06-15 10:07:26,498 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:07:29,945 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:11:51,291 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:12:04,064 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:12:34,734 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:12:48,181 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:12:51,590 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:13:01,969 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:13:31,758 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:13:34,274 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:13:40,605 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:16:02,231 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:16:06,635 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:16:15,031 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:16:23,399 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:16:32,980 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:16:47,409 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:16:49,692 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:17:44,636 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:17:45,991 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:17:49,298 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:17:51,592 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:18:06,032 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:18:08,766 - ERROR - Internal Server Error: /challenge/3: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1822, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'Workout'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 300, in view_challenge
+    workout = Workout.objects.get(id=user_challenge.workout)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 428, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 974, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 992, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 999, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1375, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1396, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1329, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1180, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/lookups.py", line 79, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1824, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <Workout: testowy challenge workout>.
+2024-06-15 10:18:32,733 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:18:34,087 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:18:37,009 - ERROR - User does not have permission to view workout.: 
+2024-06-15 10:18:37,020 - DEBUG - GET request to new workout: 
+2024-06-15 10:18:52,606 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-15 10:18:53,885 - DEBUG - GET request to new workout: 
+2024-06-15 10:19:56,753 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
