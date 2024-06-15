@@ -234,6 +234,8 @@ def challenges(request):
 
         # Get workouts assigned to the logged-in user or shared workouts:
         challenges = Workout.objects.filter(Q(is_shared=True) & ~Q(challenge=None))
+        user_challenges = UserChallenge.objects.filter(user=user).values_list('workout_id', flat=True)
+
         print(challenges)
 
         # Get unique challenges from those workouts:
@@ -243,6 +245,7 @@ def challenges(request):
         data = {
             'user': user,
             'challenges': challenges,
+            'user_challenges': user_challenges,
         }
 
         # Load the page with challenges with data:
@@ -252,30 +255,37 @@ def challenges(request):
         return redirect('login')  # Redirect to login page or handle the error appropriately
 
 def join_challenge(request, challenge_id):
-    user = User.objects.get(id=request.session["user_id"])
-    challenge = Challenge.objects.get(id=1)
-    workout = Workout.objects.get(id=challenge_id)
-    print(workout)
-    print(challenge)
     
-    if request.method == "GET":
-        data = {
-            'user': user,
-            'challenge': challenge,
-        }
-        return render(request, "workout/join_challenge.html", data)
-
     if request.method == "POST":
-        user_challenge, created = UserChallenge.objects.get_or_create(user=user, challenge=challenge, workout=workout)
-        if created:
-            messages.success(request, "Successfully joined the challenge.")
-        else:
-            messages.info(request, "You have already joined this challenge.")
-        return redirect("challenges")
+        try:
+            user = User.objects.get(id=request.session["user_id"])
+            workout = Workout.objects.get(id=challenge_id)
+            challenge = workout.challenge
+
+            # Check if the user has already joined the challenge
+            user_challenge, created = UserChallenge.objects.get_or_create(
+                user=user, challenge=challenge, workout=workout,
+                defaults={'joined_at': timezone.now(), 'exercise_status': []}
+            )
+
+            if created:
+                messages.success(request, "Successfully joined the challenge.")
+            else:
+                # User already joined, so remove the record
+                user_challenge.delete()
+                messages.success(request, "Successfully exited the challenge.")
+
+            return redirect("challenges")
+        except User.DoesNotExist:
+            messages.error(request, "User does not exist.")
+            return redirect("challenges")
+        except Workout.DoesNotExist:
+            messages.error(request, "Workout does not exist.")
+            return redirect('login')
     
 def view_challenge(request, id):
     """
-    GET - View workout.
+    GET - View challenge.
 
     Args:
         request: Django HttpRequest object.
@@ -286,12 +296,6 @@ def view_challenge(request, id):
     Returns:
         Django HttpResponse object.
     """
-    exercise_type = request.GET.get('exercise_type')
-    current_muscle_group_id = request.GET.get('current_muscle_group_id')
-    if(exercise_type == None):
-        exercise_type = StrengthTrainingExercise().class_name
-    if(current_muscle_group_id == None):
-        current_muscle_group_id = 0
     
     try:
         # Check for valid session:
@@ -310,8 +314,6 @@ def view_challenge(request, id):
             user_challenge.exercise_status = exercise_status
             user_challenge.save()
             messages.success(request, "Exercise status updated successfully.")
-            return redirect("workout/view_challenge.html", id=id)
-
 
         # Getting all exercises for this workout: 
         ste = StrengthTrainingExercise.objects.filter(workout__id=id)
@@ -327,14 +329,8 @@ def view_challenge(request, id):
 
         # Gather any page data:
         data = {
-            'user': user,
-            'workout': workout,
             'challenge': challenge,
             'exercises_with_status': exercises_with_status,
-            'muscle_groups': MuscleGroup.objects.order_by('name'),
-            'exercise_types': get_exercises_types(),
-            'current_exercise': exercise_type,
-            'current_muscle_group_id': int(current_muscle_group_id),
         }
 
         # If get request, load workout page with data:

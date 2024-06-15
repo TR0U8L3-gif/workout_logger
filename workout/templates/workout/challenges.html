@@ -41,7 +41,11 @@
                                     <p class="card-text">{{ challenge.description }}</p>
                                     <form action="{% url 'join_challenge' challenge.id %}" method="post" style="display: inline;">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn btn-outline-success">Join the Challenge</button>
+                                        {% if challenge.id in user_challenges %}
+                                            <button type="submit" class="btn btn-outline-danger">Exit the Challenge</button>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-outline-success">Join the Challenge</button>
+                                        {% endif %}
                                     </form>
                                     <a href="{% url 'join_challenge' challenge.id %}" class="btn btn-outline-info">View</a>
                                     <p class="card-text">

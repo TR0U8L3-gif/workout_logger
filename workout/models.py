@@ -955,11 +955,11 @@ class UserChallenge(models.Model):
     def __str__(self):
         return self.challenge.name
     
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            exercises_count = self.workout.exercise_set.count()
-            self.exercise_status = [False] * exercises_count
-        super(UserChallenge, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not self.pk:
+    #         exercises_count = self.workout.exercise_set.count()
+    #         self.exercise_status = [False] * exercises_count
+    #     super(UserChallenge, self).save(*args, **kwargs)
 
 
 class MuscleGroup(models.Model):
