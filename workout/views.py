@@ -261,11 +261,18 @@ def join_challenge(request, challenge_id):
             user = User.objects.get(id=request.session["user_id"])
             workout = Workout.objects.get(id=challenge_id)
             challenge = workout.challenge
+            
+            ste = StrengthTrainingExercise.objects.filter(workout__id=workout.id)
+            ete = EnduranceTrainingExercise.objects.filter(workout__id=workout.id)
+            be = BalanceExercise.objects.filter(workout__id=workout.id)
+            fe = FlexibilityExercise.objects.filter(workout__id=workout.id)
+            
+            exercises = list(chain(ste, ete, be, fe))
 
             # Check if the user has already joined the challenge
             user_challenge, created = UserChallenge.objects.get_or_create(
                 user=user, challenge=challenge, workout=workout,
-                defaults={'joined_at': timezone.now(), 'exercise_status': []}
+                defaults={'joined_at': timezone.now(), 'exercise_status': [False] * len(exercises)}
             )
 
             if created:
