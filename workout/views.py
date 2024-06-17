@@ -386,6 +386,8 @@ def preview_challenge(request, id):
     """
     try:
         # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+
         workout = Workout.objects.get(id=id)
         challenge = Challenge.objects.get(id=workout.challenge_id)
 
@@ -404,6 +406,7 @@ def preview_challenge(request, id):
 
         # Gather any page data:
         data = {
+            'user': user,
             'workout': workout,
             'challenge': challenge,
             'exercises': exercises,
