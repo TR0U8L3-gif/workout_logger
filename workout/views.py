@@ -255,7 +255,19 @@ def challenges(request):
         return redirect('login')  # Redirect to login page or handle the error appropriately
 
 def join_challenge(request, challenge_id):
+    """
+    POST - Join a challenge.
     
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: Workout object.
+        challenge: Challenge object.
+        data: Dictionary of page data.
+    
+    Returns:
+        Django HttpResponse object.
+    """
     if request.method == "POST":
         try:
             user = User.objects.get(id=request.session["user_id"])
@@ -356,7 +368,19 @@ def view_challenge(request, id):
         return redirect("/")
     
 def preview_challenge(request, id):
+    """
+    GET - View challenge.
     
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        workout: Workout object.
+        challenge: Challenge object.
+        data: Dictionary of page data.
+    
+    Returns:
+        Django HttpResponse object.
+    """
     try:
         # Check for valid session:
         workout = Workout.objects.get(id=id)
@@ -1013,9 +1037,6 @@ def complete_workout(request, id):
                 redirect_url = request.POST["redirect"]
             except KeyError as err:
                 pass
-            
-            print("redirect_url: totoot tto ")
-            print(redirect_url)
 
             # check if workout is owned by user
             if workout.user != user:
@@ -1167,13 +1188,24 @@ def profile_online(request, id):
         return redirect("/")
 
 def edit_profile(request):
+    """
+    GET - load edit profile, POST - submit edit profile
     
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        data: Dictionary of page data.
+        
+    Returns:
+        Django HttpResponse object.
+    """
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
         
         # Gather any page data:
         data = {
+            'user': user,
             'profile': user,
         }
 
@@ -1184,12 +1216,22 @@ def edit_profile(request):
             return render(request, "workout/edit_profile.html", data)
         if request.method == "POST":
             logging.debug("POST request to edit profile")
+            
             # check if 
-            profile = {}
+            profile = {
+                'user_id': user.id,
+                'old_username': user.username,
+                'old_email': user.email,
+                'username': request.POST['username'],
+                'email': request.POST['email'],
+                'profile_photo_url': request.POST['profile_photo_url'],
+                'background_photo_url': request.POST['background_photo_url'],
+            }
             
             # Begin validation of updated profile:
             validated = User.objects.update(**profile)
             # If errors, reload register page with errors:
+            
             try:
                 if len(validated["errors"]) > 0:
                     logging.error("Profile could not be edited.")
@@ -1212,7 +1254,73 @@ def edit_profile(request):
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         logging.warning("User must be logged in to view 'profile'.")
         return redirect("/")
+
+
+def edit_profile_password(request):
+    """
+    GET - load edit profile password, POST - submit edit profile password
     
+    Args:
+        request: Django HttpRequest object.
+        user: User object.
+        data: Dictionary of page data.
+    
+    Returns:
+        Django HttpResponse object.
+    """
+    try:
+        # Check for valid session:
+        user = User.objects.get(id=request.session["user_id"])
+        
+        # Gather any page data:
+        data = {
+            'profile': user,
+        }
+
+        # If get request, load profile page with data:
+        if request.method == "GET":
+            logging.error("GET request to edit profile password")
+            # If get request, load edit workout page with data:
+            return redirect("/profile/edit")
+        if request.method == "POST":
+            logging.debug("POST request to edit profile")
+            
+            # check if 
+            profile = {
+                'user_id': user.id,
+                'old_password': user.password,
+                'current_password': request.POST['current_password'],
+                'new_password': request.POST['new_password'],
+                'repeat_password': request.POST['repeat_password'],
+            }
+            
+            # Begin validation of updated profile:
+            validated = User.objects.update_password(**profile)
+            # If errors, reload register page with errors:
+            
+            try:
+                if len(validated["errors"]) > 0:
+                    logging.error("Profile password could not be edited.")
+                    print("Profile password could not be edited.")
+                    # Loop through errors and Generate Django Message for each with custom level and tag:
+                    for error in validated["errors"]:
+                        messages.error(request, error, extra_tags='edit password')
+                        logging.error(error)
+                    # Reload workout page:
+                    return redirect("/profile/edit")
+            except KeyError:
+                # If validation successful, load newly created workout page:
+                print("Edited profile password passed validation and has been updated.")
+                # Load workout:
+                return redirect("/profile/edit")
+
+    except (KeyError, User.DoesNotExist) as err:
+        # If existing session not found:
+        messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
+        logging.warning("User must be logged in to view 'profile'.")
+        return redirect("/")
+
+
 #statistics     
 def statistics(request):
     """
