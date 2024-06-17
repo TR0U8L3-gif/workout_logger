@@ -16,3 +16,7 @@ AttributeError: 'UserChallenge' object has no attribute 'values'
 2024-06-17 11:09:53,597 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
 2024-06-17 11:09:54,865 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
 2024-06-17 11:10:00,162 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-17 11:24:48,795 - DEBUG - GET request to new workout: 
+2024-06-17 11:27:56,406 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-17 11:28:05,846 - DEBUG - GET request to login: 
+2024-06-17 11:28:09,644 - DEBUG - GET request to new workout: 

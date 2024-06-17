@@ -319,6 +319,8 @@ def view_challenge(request, id):
     try:
         # Check for valid session:
         # workout = Workout.objects.get(id=id)
+        user = User.objects.get(id=request.session["user_id"])
+
         user_challenge = UserChallenge.objects.get(workout_id=id)
         workout = Workout.objects.get(id=user_challenge.workout_id)
         challenge = Challenge.objects.get(id=user_challenge.challenge_id)
@@ -353,6 +355,7 @@ def view_challenge(request, id):
 
         # Gather any page data:
         data = {
+            'user': user,
             'challenge': challenge,
             'exercises_with_status': exercises_with_status,
             'users': user_list,
