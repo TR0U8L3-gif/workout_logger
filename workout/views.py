@@ -310,6 +310,11 @@ def view_challenge(request, id):
         user_challenge = UserChallenge.objects.get(workout_id=id)
         workout = Workout.objects.get(id=user_challenge.workout_id)
         challenge = Challenge.objects.get(id=user_challenge.challenge_id)
+                
+        users = User.objects.filter(id=user_challenge.user_id)
+        user_list = list(users)
+        
+        print(user_list)
         
         if request.method == "POST":
             # Process form data
@@ -338,6 +343,7 @@ def view_challenge(request, id):
         data = {
             'challenge': challenge,
             'exercises_with_status': exercises_with_status,
+            'users': user_list,
         }
 
         # If get request, load workout page with data:

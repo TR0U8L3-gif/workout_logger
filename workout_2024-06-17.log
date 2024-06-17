@@ -1,0 +1,18 @@
+2024-06-17 11:09:19,887 - DEBUG - GET request to login: 
+2024-06-17 11:09:24,332 - DEBUG - POST request to login: 
+2024-06-17 11:09:29,192 - ERROR - Internal Server Error: /challenge/7: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 316, in view_challenge
+    users = User.objects.filter(id=user_challenge.values('user_id'))
+                                   ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'UserChallenge' object has no attribute 'values'
+2024-06-17 11:09:45,145 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-17 11:09:53,597 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-17 11:09:54,865 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-17 11:10:00,162 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
