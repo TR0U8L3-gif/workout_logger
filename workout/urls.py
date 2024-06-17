@@ -2,7 +2,8 @@ from django.urls import include, re_path
 
 from . import views
 
-"""workout app URL Configuration
+"""
+Workout app URL Configuration
 
 Our workout application URLs.
 """
@@ -27,7 +28,8 @@ urlpatterns = [
     re_path(r'^exercise/(?P<id>\d*)/delete$', views.delete_exercise),
     re_path(r'^history$', views.view_all), 
     re_path(r'^profile$', views.profile), 
-    re_path(r'^profile/edit$', views.edit_profile), 
+    re_path(r'^profile/edit$', views.edit_profile),  
+    re_path(r'^profile/edit/password$', views.edit_profile_password),  
     re_path(r'^profile/(?P<id>\d*)$', views.profile_online), 
     re_path(r'^statistics$', views.statistics), 
     re_path(r'^challenges$', views.challenges, name='challenges'),

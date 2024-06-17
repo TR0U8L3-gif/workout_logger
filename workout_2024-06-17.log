@@ -1,0 +1,391 @@
+2024-06-17 11:54:45,013 - DEBUG - GET request to login: 
+2024-06-17 11:55:02,245 - DEBUG - POST request to login: 
+2024-06-17 11:55:08,367 - DEBUG - GET request to login: 
+2024-06-17 11:55:28,283 - DEBUG - GET request to edit profile: 
+2024-06-17 11:57:31,044 - DEBUG - GET request to edit profile: 
+2024-06-17 11:57:52,037 - DEBUG - GET request to edit profile: 
+2024-06-17 11:58:51,187 - DEBUG - GET request to edit profile: 
+2024-06-17 11:59:29,880 - DEBUG - GET request to edit profile: 
+2024-06-17 12:00:08,913 - DEBUG - GET request to edit profile: 
+2024-06-17 12:00:10,113 - DEBUG - GET request to edit profile: 
+2024-06-17 12:01:19,330 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-17 12:01:25,749 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-17 12:01:43,693 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:01:48,022 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:01:53,369 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:02:29,676 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:03:05,006 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:03:07,238 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:03:11,525 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:03:16,908 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:03:28,561 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:03:32,845 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:03:37,159 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:03:39,376 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:03:41,629 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:05:57,168 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:05:59,469 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:06:36,085 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:06:39,432 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:07:07,619 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:07:14,077 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:07:16,345 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:07:25,830 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:09:26,887 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:09:54,103 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:09:56,353 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:10:00,614 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:10:02,858 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:10:05,087 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:10:12,439 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:10:45,703 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:10:50,021 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:10:52,259 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:10:57,628 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:11:03,009 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:11:07,336 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:11:18,895 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:11:21,124 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:11:23,324 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:11:25,920 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:11:30,196 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:11:38,605 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:11:48,055 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:12:03,819 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:12:28,364 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:12:30,659 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:12:32,899 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:12:39,294 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:12:41,542 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:12:43,827 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:12:55,383 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:12:59,769 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:13:07,186 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:13:27,977 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:13:33,328 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:13:41,851 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:13:45,099 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:13:50,521 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:13:53,805 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:13:59,151 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:14:01,444 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:14:04,699 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:14:07,895 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:14:35,908 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:14:41,212 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:14:51,604 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:15:26,392 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:15:42,740 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:15:52,851 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:15:59,007 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:16:05,415 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:16:07,620 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:16:09,827 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:16:16,168 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:16:35,043 - DEBUG - GET request to edit profile: 
+2024-06-17 12:17:05,700 - DEBUG - POST request to edit profile: 
+2024-06-17 12:17:05,700 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:17:05,716 - DEBUG - GET request to login: 
+2024-06-17 12:17:16,526 - DEBUG - POST request to login: 
+2024-06-17 12:17:24,690 - DEBUG - GET request to edit profile: 
+2024-06-17 12:17:54,019 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:17:56,281 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:18:00,732 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:18:02,275 - DEBUG - GET request to edit profile: 
+2024-06-17 12:18:03,686 - DEBUG - POST request to edit profile: 
+2024-06-17 12:18:03,686 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:18:03,702 - DEBUG - GET request to login: 
+2024-06-17 12:18:43,666 - DEBUG - GET request to edit profile: 
+2024-06-17 12:18:46,092 - DEBUG - POST request to edit profile: 
+2024-06-17 12:18:46,092 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:18:46,109 - DEBUG - GET request to login: 
+2024-06-17 12:19:02,422 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:19:04,643 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:19:11,065 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:19:12,771 - DEBUG - GET request to edit profile: 
+2024-06-17 12:19:13,929 - DEBUG - POST request to edit profile: 
+2024-06-17 12:19:13,929 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:19:13,945 - DEBUG - GET request to login: 
+2024-06-17 12:19:40,504 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:19:42,785 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:19:44,271 - DEBUG - GET request to edit profile: 
+2024-06-17 12:19:45,230 - DEBUG - POST request to edit profile: 
+2024-06-17 12:19:45,233 - ERROR - Profile could not be edited.: 
+2024-06-17 12:19:45,233 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:19:45,233 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:19:45,251 - DEBUG - GET request to edit profile: 
+2024-06-17 12:20:50,432 - DEBUG - GET request to edit profile: 
+2024-06-17 12:20:51,986 - DEBUG - GET request to edit profile: 
+2024-06-17 12:20:52,993 - DEBUG - POST request to edit profile: 
+2024-06-17 12:20:52,995 - ERROR - Profile could not be edited.: 
+2024-06-17 12:20:52,995 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:20:52,995 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:20:53,005 - DEBUG - GET request to edit profile: 
+2024-06-17 12:21:35,463 - DEBUG - GET request to edit profile: 
+2024-06-17 12:21:36,589 - DEBUG - GET request to edit profile: 
+2024-06-17 12:21:40,520 - DEBUG - POST request to edit profile: 
+2024-06-17 12:21:40,523 - ERROR - Profile could not be edited.: 
+2024-06-17 12:21:40,523 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:21:40,524 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:21:40,532 - DEBUG - GET request to edit profile: 
+2024-06-17 12:22:04,399 - DEBUG - GET request to edit profile: 
+2024-06-17 12:22:04,773 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:22:07,204 - DEBUG - POST request to edit profile: 
+2024-06-17 12:22:07,208 - ERROR - Profile could not be edited.: 
+2024-06-17 12:22:07,208 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:22:07,208 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:22:07,227 - DEBUG - GET request to edit profile: 
+2024-06-17 12:22:09,160 - DEBUG - GET request to edit profile: 
+2024-06-17 12:22:45,517 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:23:00,398 - DEBUG - GET request to edit profile: 
+2024-06-17 12:23:01,655 - DEBUG - POST request to edit profile: 
+2024-06-17 12:23:01,658 - ERROR - Profile could not be edited.: 
+2024-06-17 12:23:01,658 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:23:01,659 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:23:01,678 - DEBUG - GET request to edit profile: 
+2024-06-17 12:23:15,929 - DEBUG - GET request to edit profile: 
+2024-06-17 12:23:17,027 - DEBUG - POST request to edit profile: 
+2024-06-17 12:23:17,030 - ERROR - Profile could not be edited.: 
+2024-06-17 12:23:17,031 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:23:17,031 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:23:17,051 - DEBUG - GET request to edit profile: 
+2024-06-17 12:24:01,371 - DEBUG - GET request to edit profile: 
+2024-06-17 12:24:02,639 - DEBUG - GET request to edit profile: 
+2024-06-17 12:24:03,683 - DEBUG - POST request to edit profile: 
+2024-06-17 12:24:03,685 - ERROR - Profile could not be edited.: 
+2024-06-17 12:24:03,685 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:24:03,685 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:24:03,695 - DEBUG - GET request to edit profile: 
+2024-06-17 12:24:26,848 - DEBUG - GET request to edit profile: 
+2024-06-17 12:24:27,999 - DEBUG - POST request to edit profile: 
+2024-06-17 12:24:28,002 - ERROR - Profile could not be edited.: 
+2024-06-17 12:24:28,002 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:24:28,002 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:24:28,011 - DEBUG - GET request to edit profile: 
+2024-06-17 12:25:00,444 - DEBUG - GET request to edit profile: 
+2024-06-17 12:25:01,361 - DEBUG - POST request to edit profile: 
+2024-06-17 12:25:01,364 - ERROR - Profile could not be edited.: 
+2024-06-17 12:25:01,364 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:25:01,365 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:25:01,373 - DEBUG - GET request to edit profile: 
+2024-06-17 12:25:05,162 - DEBUG - GET request to edit profile: 
+2024-06-17 12:26:21,582 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:26:23,873 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:26:37,473 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:26:39,763 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:26:52,163 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:26:54,408 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:27:14,876 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:27:33,911 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:28:03,951 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:28:09,390 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:28:11,691 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:28:14,128 - DEBUG - GET request to edit profile: 
+2024-06-17 12:28:15,039 - DEBUG - POST request to edit profile: 
+2024-06-17 12:28:15,041 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:28:15,056 - DEBUG - GET request to login: 
+2024-06-17 12:28:54,666 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:28:56,914 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:29:00,183 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:29:05,507 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:29:08,782 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:29:13,042 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:29:27,692 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:29:30,006 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:29:36,401 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:29:38,612 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:29:40,568 - DEBUG - GET request to edit profile: 
+2024-06-17 12:29:40,866 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:29:41,927 - DEBUG - GET request to edit profile: 
+2024-06-17 12:29:42,329 - DEBUG - POST request to edit profile: 
+2024-06-17 12:29:42,330 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:29:42,346 - DEBUG - GET request to login: 
+2024-06-17 12:30:03,809 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:30:09,186 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:30:41,439 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:30:44,679 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:30:47,917 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:30:50,214 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:31:02,520 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:31:04,130 - DEBUG - GET request to edit profile: 
+2024-06-17 12:31:05,008 - DEBUG - POST request to edit profile: 
+2024-06-17 12:31:05,011 - ERROR - Profile could not be edited.: 
+2024-06-17 12:31:05,011 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:31:05,011 - ERROR - Email address is already registered to another user.: 
+2024-06-17 12:31:05,030 - DEBUG - GET request to edit profile: 
+2024-06-17 12:31:49,339 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:31:57,662 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:32:03,002 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:32:03,997 - DEBUG - GET request to edit profile: 
+2024-06-17 12:32:04,837 - DEBUG - POST request to edit profile: 
+2024-06-17 12:32:04,839 - ERROR - Profile could not be edited.: 
+2024-06-17 12:32:04,839 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:32:04,857 - DEBUG - GET request to edit profile: 
+2024-06-17 12:32:13,609 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:32:18,963 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:32:20,849 - DEBUG - GET request to edit profile: 
+2024-06-17 12:32:21,226 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:32:22,158 - DEBUG - POST request to edit profile: 
+2024-06-17 12:32:22,159 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:32:22,177 - DEBUG - GET request to login: 
+2024-06-17 12:32:40,123 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:32:42,431 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:32:45,544 - DEBUG - GET request to login: 
+2024-06-17 12:32:45,899 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:32:47,096 - DEBUG - POST request to login: 
+2024-06-17 12:32:51,207 - DEBUG - GET request to edit profile: 
+2024-06-17 12:32:54,184 - DEBUG - POST request to edit profile: 
+2024-06-17 12:32:54,185 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:32:54,197 - DEBUG - GET request to login: 
+2024-06-17 12:33:03,920 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:33:06,270 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:33:10,591 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:33:11,736 - DEBUG - GET request to edit profile: 
+2024-06-17 12:33:12,702 - DEBUG - POST request to edit profile: 
+2024-06-17 12:33:12,703 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:33:12,719 - DEBUG - GET request to login: 
+2024-06-17 12:41:30,358 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:41:39,833 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:41:47,279 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:42:38,508 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:42:43,911 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:42:50,386 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:42:55,730 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:42:58,982 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:43:01,217 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:43:12,810 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:43:19,297 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 12:43:26,774 - DEBUG - GET request to edit profile: 
+2024-06-17 12:43:27,384 - DEBUG - GET request to edit profile: 
+2024-06-17 12:43:28,220 - DEBUG - POST request to edit profile: 
+2024-06-17 12:43:28,221 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 12:43:28,236 - DEBUG - GET request to login: 
+2024-06-17 12:43:53,533 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:43:56,611 - DEBUG - GET request to edit profile: 
+2024-06-17 12:43:57,434 - DEBUG - POST request to edit profile: 
+2024-06-17 12:43:57,459 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:00,972 - DEBUG - POST request to edit profile: 
+2024-06-17 12:44:00,974 - ERROR - Profile could not be edited.: 
+2024-06-17 12:44:00,974 - ERROR - Username is already registered to another user.: 
+2024-06-17 12:44:00,982 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:03,199 - DEBUG - POST request to edit profile: 
+2024-06-17 12:44:03,215 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:09,950 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:12,641 - DEBUG - POST request to edit profile: 
+2024-06-17 12:44:12,656 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:16,298 - DEBUG - POST request to edit profile: 
+2024-06-17 12:44:16,314 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:20,251 - DEBUG - POST request to edit profile: 
+2024-06-17 12:44:20,266 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:25,035 - DEBUG - POST request to edit profile: 
+2024-06-17 12:44:25,051 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:34,906 - DEBUG - POST request to edit profile: 
+2024-06-17 12:44:34,921 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:39,363 - DEBUG - POST request to edit profile: 
+2024-06-17 12:44:39,378 - DEBUG - GET request to edit profile: 
+2024-06-17 12:44:55,198 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:45:05,714 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:45:10,066 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:47:26,857 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:47:53,874 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:58:40,139 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:59:15,272 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:59:18,605 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:59:31,135 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:59:34,420 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:59:39,748 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:59:46,112 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:59:51,482 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 12:59:57,952 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\urls.py changed, reloading.: 
+2024-06-17 13:00:07,337 - DEBUG - GET request to edit profile: 
+2024-06-17 13:00:15,338 - DEBUG - GET request to edit profile: 
+2024-06-17 13:00:19,222 - DEBUG - GET request to edit profile: 
+2024-06-17 13:00:38,505 - DEBUG - GET request to edit profile: 
+2024-06-17 13:01:28,242 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\views.py changed, reloading.: 
+2024-06-17 13:01:31,050 - DEBUG - GET request to edit profile: 
+2024-06-17 13:01:40,556 - DEBUG - POST request to edit profile: 
+2024-06-17 13:01:40,557 - ERROR - Profile password could not be edited.: 
+2024-06-17 13:01:40,558 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-17 13:01:40,558 - ERROR - Chuj ci w dupe: 
+2024-06-17 13:01:40,579 - DEBUG - GET request to edit profile: 
+2024-06-17 13:02:46,051 - DEBUG - GET request to edit profile: 
+2024-06-17 13:02:47,054 - DEBUG - POST request to edit profile: 
+2024-06-17 13:02:47,055 - ERROR - Profile password could not be edited.: 
+2024-06-17 13:02:47,055 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-17 13:02:47,055 - ERROR - Chuj ci w dupe: 
+2024-06-17 13:02:47,065 - DEBUG - GET request to edit profile: 
+2024-06-17 13:03:01,113 - DEBUG - POST request to edit profile: 
+2024-06-17 13:03:01,115 - ERROR - Profile password could not be edited.: 
+2024-06-17 13:03:01,115 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-17 13:03:01,115 - ERROR - Chuj ci w dupe: 
+2024-06-17 13:03:01,123 - DEBUG - GET request to edit profile: 
+2024-06-17 13:03:36,049 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:03:39,344 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:03:41,553 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:03:54,120 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:03:57,029 - DEBUG - GET request to edit profile: 
+2024-06-17 13:04:00,450 - DEBUG - POST request to edit profile: 
+2024-06-17 13:04:00,451 - ERROR - Profile password could not be edited.: 
+2024-06-17 13:04:00,452 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-17 13:04:00,452 - ERROR - Chuj ci w dupe: 
+2024-06-17 13:04:00,470 - DEBUG - GET request to edit profile: 
+2024-06-17 13:04:14,984 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:04:20,107 - DEBUG - GET request to edit profile: 
+2024-06-17 13:04:22,186 - DEBUG - POST request to edit profile: 
+2024-06-17 13:04:22,187 - WARNING - User must be logged in to view 'profile'.: 
+2024-06-17 13:04:22,203 - DEBUG - GET request to login: 
+2024-06-17 13:04:35,947 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:04:37,058 - DEBUG - GET request to edit profile: 
+2024-06-17 13:04:38,748 - DEBUG - POST request to edit profile: 
+2024-06-17 13:04:39,756 - ERROR - Profile password could not be edited.: 
+2024-06-17 13:04:39,756 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-17 13:04:39,757 - ERROR - Chuj ci w dupe: 
+2024-06-17 13:04:39,775 - DEBUG - GET request to edit profile: 
+2024-06-17 13:04:52,418 - DEBUG - POST request to edit profile: 
+2024-06-17 13:04:53,425 - ERROR - Profile password could not be edited.: 
+2024-06-17 13:04:53,426 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-17 13:04:53,426 - ERROR - Chuj ci w dupe: 
+2024-06-17 13:04:53,434 - DEBUG - GET request to edit profile: 
+2024-06-17 13:06:04,005 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:06:31,896 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:06:36,234 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:06:44,686 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:06:49,000 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:06:52,345 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:07:02,853 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:07:08,061 - DEBUG - GET request to edit profile: 
+2024-06-17 13:07:09,634 - DEBUG - POST request to edit profile: 
+2024-06-17 13:07:10,650 - ERROR - Profile password could not be edited.: 
+2024-06-17 13:07:10,650 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-17 13:07:10,650 - ERROR - Password is incorrect.: 
+2024-06-17 13:07:10,650 - ERROR - Chuj ci w dupe: 
+2024-06-17 13:07:10,671 - DEBUG - GET request to edit profile: 
+2024-06-17 13:07:35,461 - DEBUG - POST request to edit profile: 
+2024-06-17 13:07:36,465 - ERROR - Profile password could not be edited.: 
+2024-06-17 13:07:36,466 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-17 13:07:36,466 - ERROR - Chuj ci w dupe: 
+2024-06-17 13:07:36,474 - DEBUG - GET request to edit profile: 
+2024-06-17 13:07:57,038 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:07:59,283 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:08:03,570 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:08:06,817 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:08:11,169 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:09:56,973 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:09:59,344 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:10:03,658 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:10:21,373 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:10:24,651 - INFO - C:\Users\rsien\Desktop\python-django\workout_logger\workout\models.py changed, reloading.: 
+2024-06-17 13:10:35,537 - DEBUG - GET request to edit profile: 
+2024-06-17 13:10:54,012 - DEBUG - POST request to edit profile: 
+2024-06-17 13:10:56,067 - DEBUG - GET request to edit profile: 
+2024-06-17 13:11:28,026 - INFO - User has been logged out.: 
+2024-06-17 13:11:28,036 - DEBUG - GET request to login: 
+2024-06-17 13:11:28,164 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-17 13:11:28,172 - DEBUG - GET request to login: 
+2024-06-17 13:11:30,099 - DEBUG - POST request to login: 
+2024-06-17 13:11:31,108 - WARNING - User could not be logged in.: 
+2024-06-17 13:11:31,108 - ERROR - Username or password is incorrect.: 
+2024-06-17 13:11:31,112 - DEBUG - GET request to login: 
+2024-06-17 13:11:31,188 - WARNING - User must be logged in to view 'dashboard'.: 
+2024-06-17 13:11:31,191 - DEBUG - GET request to login: 
+2024-06-17 13:11:33,849 - DEBUG - POST request to login: 

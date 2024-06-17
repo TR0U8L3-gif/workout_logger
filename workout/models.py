@@ -171,6 +171,156 @@ class UserManager(models.Manager):
             }
             return errors
 
+    def update(self, **kwargs):
+        """
+        Validates and updates a user.
+
+        Parameters:
+        - `self` - Instance to whom this method belongs.
+        - `**kwargs` - Dictionary object of user values from controller to be validated.
+
+        Validations:
+        - Username - Required; No fewer than 2 characters; letters only
+        - Email - Required, Valid Format, Not Taken
+        - Password - Required; Min 8 char, Matches Password Confirmation
+        """
+
+        # Create empty errors list, which we'll return to generate django messages back in our controller:
+        errors = []
+
+        #---------------#
+        #-- USERNAME: --#
+        #---------------#
+        # Check if username is less than 2 characters:
+        if len(kwargs["username"]) < 2:
+            errors.append('Username is required and must be at least 2 characters long.')
+
+        # Check if username contains letters, numbers and basic characters only:
+        USERNAME_REGEX = re.compile(r'^[a-zA-Z0-9!@#$%^&*()?]*$')
+        # Test username against regex object:
+        if not USERNAME_REGEX.match(kwargs["username"]):
+            errors.append('Username must contain letters, numbers and basic characters only.')
+            
+        # Check for existing User via username:
+        if (kwargs["old_username"] != kwargs["username"]) and len(User.objects.filter(username=kwargs["username"])) > 0:
+            errors.append('Username is already registered to another user.')
+        
+        #------------#
+        #-- EMAIL: --#
+        #------------#
+        # Check if email field is empty:
+        if len(kwargs["email"]) < 5:
+            errors.append('Email field must be at least 5 characters.')
+            
+        # Else if email is greater than 5 characters:
+        else:
+            # Check if email is in valid format (using regex):
+            EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
+            if not EMAIL_REGEX.match(kwargs["email"]):
+                errors.append('Email field is not a valid email format.')
+            else:
+                # Check for existing User via email:
+                if (kwargs["old_email"] != kwargs["email"]) and len(User.objects.filter(email=kwargs["email"])) > 0:
+                    errors.append('Email address is already registered to another user.')
+        
+        #-----------------#
+        #-- PROFILEPIC: --#
+        #-----------------#
+        
+        profile_photo_url = None
+        if(len(kwargs["profile_photo_url"]) > 0):
+            profile_photo_url = kwargs["profile_photo_url"]
+        
+        #------------#
+        #-- BGPIC: --#
+        #------------#
+        
+        background_photo_url = None
+        if(len(kwargs["background_photo_url"]) > 0):
+            background_photo_url = kwargs["background_photo_url"]
+        
+        # Check for validation errors:
+        # If none, update user and return new user:
+        if len(errors) == 0:
+            # Update user:
+            user = User.objects.filter(id=kwargs['user_id']).update(username=kwargs['username'], email=kwargs['email'], profile_photo_url=profile_photo_url, background_photo_url=background_photo_url)
+            
+            # Return updated User:
+            updated_user = {
+                "updated_user": user
+            }
+            print(updated_user)
+            return updated_user
+        else:
+            # Else, if validation fails, print errors to console and return errors object:
+            for error in errors:
+                print("Validation Error: ", error)
+            # Prepare data for controller:
+            errors = {
+                "errors": errors,
+            }
+            print(errors)
+            return errors
+
+    def update_password(self, **kwargs):
+        """
+        Validates and updates a user's password.
+
+        Parameters:
+        - `self` - Instance to whom this method belongs.
+        - `**kwargs` - Dictionary object of user values from controller to be validated.
+
+        Validations:
+        - Password - Required; Min 8 char, Matches Password Confirmation
+        """
+
+        # Create empty errors list, which we'll return to generate django messages back in our controller:
+        errors = []
+
+        #---------------#
+        #-- PASSWORD: --#
+        #---------------#
+        # Check if password is less than 8 characters:
+        if len(kwargs["new_password"]) < 8 or len(kwargs["repeat_password"]) < 8:
+            errors.append('Password fields are required and must be at least 8 characters.')
+        else:
+            # Check if password matches confirmation password:
+            if kwargs["new_password"] != kwargs["repeat_password"]:
+                errors.append('Password and confirmation must match.')
+        
+        # Compare passwords with bcrypt:
+        password = kwargs["current_password"].encode()
+        hashed = kwargs["old_password"].encode()
+
+        if not (bcrypt.checkpw(password, hashed)):
+            print("ERROR: PASSWORD IS INCORRECT")
+            # Note: We send back a general error that does not specify what credential is invalid: this is for security purposes and is admittedly a slight inconvenience to our user, but makes it harder to gather information from the server during brute for attempts
+            errors.append("Current Password is incorrect.")
+
+
+        # Check for validation errors:
+        # If none, hash password, update user and return new user:
+        if len(errors) == 0:
+            kwargs["new_password"] = bcrypt.hashpw((kwargs["new_password"]).encode(), bcrypt.gensalt(14))
+            # Update user:
+            user = User.objects.filter(id=kwargs['user_id']).update(password=kwargs['new_password'])
+
+            # Return updated User:
+            updated_user = {
+                "updated_user": user
+            }
+            print(updated_user)
+            return updated_user
+        else:
+            # Else, if validation fails, print errors to console and return errors object:
+            for error in errors:
+                print("Validation Error: ", error)
+            # Prepare data for controller:
+            errors = {
+                "errors": errors,
+            }
+            print(errors)
+            return errors
 class WorkoutManager(models.Manager):
     """Additional instance method functions for `Workout`"""
 

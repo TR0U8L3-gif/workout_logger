@@ -90,12 +90,11 @@
           id="update-profile-form"
           action="/profile/edit"
           method="POST"
-          autocomplete="off"
         >
           {% csrf_token %}
           <!-- Edit Workout Errors -->
           {% if messages %} {% for message in messages %} 
-          {% if message.tags == "edit profile" %}
+          {% if message.tags == "edit error" %}
           <div
             class="alert alert-danger alert-dismissable"
             role="alert"
@@ -157,30 +156,7 @@
                   value=""
                 {% endif %}
               />
-
-            <!-- Profile Password -->
-          <div class="form-group">
-            <input
-              id="new_password"
-              type="password"
-              name="new_password"
-              class="input-material form-control-lg"
-              placeholder="New Password"
-              value=""
-            />
-          </div>
-
-          <!-- Profile Password Repeat-->
-          <div class="form-group">
-            <input
-              id="password_repeat"
-              type="password"
-              name="password_repeat"
-              class="input-material form-control-lg"
-              placeholder="Repeat Password"
-              value=""
-            />
-          </div>
+            </div>
 
           <!-- Update Profile Button -->
           <input
@@ -198,6 +174,79 @@
         </form>
         </div>
         </div>
+
+        <!-- edit form password -->
+        <div class="card bg-dark add-exercise mb-4 mt-4 mx-4">
+          <div class="card-body text-light">
+        <form
+        id="update-profile-form"
+        action="/profile/edit/password"
+        method="POST"
+        autocomplete="off"
+      >
+        {% csrf_token %}
+        <!-- Edit Workout Errors -->
+        {% if messages %} {% for message in messages %} 
+        {% if message.tags == "edit password error" %}
+        <div
+          class="alert alert-danger alert-dismissable"
+          role="alert"
+        >
+          <strong>Error!</strong> {{ message }}
+        </div>
+        {% endif %} {% endfor %} {% endif %}
+
+        <!-- Profile Password -->
+        <div class="form-group">
+          <input
+            id="current_password"
+            type="password"
+            name="current_password"
+            class="input-material form-control-lg"
+            placeholder="Current Password"
+            value=""
+          />
+        </div>
+
+          <!-- Profile New Password -->
+        <div class="form-group">
+          <input
+            id="new_password"
+            type="password"
+            name="new_password"
+            class="input-material form-control-lg"
+            placeholder="New Password"
+            value=""
+          />
+        </div>
+
+        <!-- Profile Password Repeat-->
+        <div class="form-group">
+          <input
+            id="repeat_password"
+            type="password"
+            name="repeat_password"
+            class="input-material form-control-lg"
+            placeholder="Repeat Password"
+            value=""
+          />
+        </div>
+
+        <!-- Update Profile Button -->
+        <input
+          id="update"
+          type="submit"
+          value="Update"
+          class="btn btn-success btn-lg mt-4"
+        />
+        <!-- Back Button -->
+        <a
+          href="/profile"
+          style="text-decoration: none"
+          class="btn btn-primary btn-lg end-workout mt-4 mx-2"
+          >Back</a>
+      </form>
+      </div>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
