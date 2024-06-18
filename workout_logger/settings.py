@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'workout_logger.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
+database_url = os.environ.get("DATABASE_URL")
 
 DATABASES = {
     'default': {
@@ -87,7 +88,7 @@ DATABASES = {
     }
 }
 
-# DATABASES["default"] = {}
+DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 # Password validation
