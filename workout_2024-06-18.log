@@ -1,0 +1,173 @@
+2024-06-18 16:50:52,749 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 16:51:00,307 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 16:51:06,641 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 16:51:20,676 - DEBUG - GET request to login: 
+2024-06-18 16:51:24,624 - DEBUG - POST request to login: 
+2024-06-18 16:52:02,545 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 16:53:00,677 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 16:58:21,567 - DEBUG - GET request to login: 
+2024-06-18 16:58:26,614 - DEBUG - POST request to login: 
+2024-06-18 16:58:27,561 - WARNING - Session data corrupted: 
+2024-06-18 16:59:16,451 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 16:59:17,823 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 17:00:06,692 - DEBUG - GET request to login: 
+2024-06-18 17:00:19,160 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 17:00:35,618 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 17:02:11,674 - DEBUG - GET request to login: 
+2024-06-18 17:02:17,075 - DEBUG - POST request to login: 
+2024-06-18 17:02:17,874 - WARNING - User could not be logged in.: 
+2024-06-18 17:02:17,875 - ERROR - Username or password is incorrect.: 
+2024-06-18 17:02:17,888 - DEBUG - GET request to login: 
+2024-06-18 17:02:19,791 - DEBUG - GET request to register: 
+2024-06-18 17:02:32,873 - DEBUG - POST request to register: 
+2024-06-18 17:02:34,750 - ERROR - Internal Server Error: /user/register: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character varying(22)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 85, in register
+    validated = User.objects.register(**request.POST)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 87, in register
+    validated_user["logged_in_user"].save()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/base.py", line 743, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/base.py", line 780, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/base.py", line 885, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/base.py", line 923, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 1301, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1441, in execute_sql
+    cursor.execute(sql, params)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 80, in _execute
+    with self.db.wrap_database_errors:
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: value too long for type character varying(22)
+
+2024-06-18 17:02:53,215 - DEBUG - GET request to login: 
+2024-06-18 17:02:57,861 - DEBUG - POST request to login: 
+2024-06-18 17:03:00,432 - INFO - User has been logged out.: 
+2024-06-18 17:03:00,437 - DEBUG - GET request to login: 
+2024-06-18 17:03:01,589 - DEBUG - GET request to register: 
+2024-06-18 17:03:14,587 - DEBUG - POST request to register: 
+2024-06-18 17:03:17,691 - INFO - User has been logged out.: 
+2024-06-18 17:03:17,703 - DEBUG - GET request to login: 
+2024-06-18 17:03:29,787 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 17:17:05,392 - DEBUG - GET request to login: 
+2024-06-18 17:17:10,711 - DEBUG - POST request to login: 
+2024-06-18 17:17:12,326 - WARNING - User could not be logged in.: 
+2024-06-18 17:17:12,327 - ERROR - Username or password is incorrect.: 
+2024-06-18 17:17:12,342 - DEBUG - GET request to login: 
+2024-06-18 17:17:16,738 - DEBUG - POST request to login: 
+2024-06-18 17:17:17,553 - WARNING - User could not be logged in.: 
+2024-06-18 17:17:17,553 - ERROR - Username or password is incorrect.: 
+2024-06-18 17:17:17,563 - DEBUG - GET request to login: 
+2024-06-18 17:17:22,995 - DEBUG - GET request to register: 
+2024-06-18 17:17:29,726 - DEBUG - POST request to register: 
+2024-06-18 17:17:30,519 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-18 17:17:30,532 - DEBUG - GET request to register: 
+2024-06-18 17:17:43,918 - DEBUG - POST request to register: 
+2024-06-18 17:17:45,757 - ERROR - Internal Server Error: /user/register: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character varying(22)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 85, in register
+    validated = User.objects.register(**request.POST)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 87, in register
+    validated_user["logged_in_user"].save()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/base.py", line 743, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/base.py", line 780, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/base.py", line 885, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/base.py", line 923, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 1301, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1441, in execute_sql
+    cursor.execute(sql, params)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 80, in _execute
+    with self.db.wrap_database_errors:
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: value too long for type character varying(22)
+
+2024-06-18 17:20:11,154 - DEBUG - GET request to login: 
+2024-06-18 17:20:13,828 - DEBUG - POST request to login: 
+2024-06-18 17:20:14,609 - WARNING - User could not be logged in.: 
+2024-06-18 17:20:14,610 - ERROR - Username or password is incorrect.: 
+2024-06-18 17:20:14,627 - DEBUG - GET request to login: 
+2024-06-18 17:20:45,623 - DEBUG - POST request to login: 
+2024-06-18 17:20:46,454 - WARNING - User could not be logged in.: 
+2024-06-18 17:20:46,455 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-18 17:20:46,472 - DEBUG - GET request to login: 
+2024-06-18 17:21:32,455 - DEBUG - POST request to login: 
