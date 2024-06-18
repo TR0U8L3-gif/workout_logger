@@ -336,3 +336,314 @@ django.db.utils.DataError: value too long for type character varying(60)
 2024-06-18 17:59:07,960 - WARNING - User could not be logged in.: 
 2024-06-18 17:59:07,962 - ERROR - This user is corrupt. Please contact the administrator.: 
 2024-06-18 17:59:07,981 - DEBUG - GET request to login: 
+2024-06-18 18:03:49,025 - DEBUG - GET request to login: 
+2024-06-18 18:20:27,028 - DEBUG - GET request to login: 
+2024-06-18 18:20:30,160 - DEBUG - POST request to login: 
+2024-06-18 18:20:30,940 - WARNING - User could not be logged in.: 
+2024-06-18 18:20:30,940 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-18 18:20:30,954 - DEBUG - GET request to login: 
+2024-06-18 18:21:32,279 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:24:39,236 - DEBUG - GET request to login: 
+2024-06-18 18:24:47,813 - DEBUG - GET request to register: 
+2024-06-18 18:24:56,707 - DEBUG - POST request to register: 
+2024-06-18 18:25:03,507 - INFO - User has been logged out.: 
+2024-06-18 18:25:03,603 - DEBUG - GET request to login: 
+2024-06-18 18:25:06,832 - DEBUG - POST request to login: 
+2024-06-18 18:25:08,435 - WARNING - User could not be logged in.: 
+2024-06-18 18:25:08,435 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-18 18:25:08,456 - DEBUG - GET request to login: 
+2024-06-18 18:27:40,115 - DEBUG - GET request to login: 
+2024-06-18 18:27:40,679 - DEBUG - GET request to login: 
+2024-06-18 18:27:44,855 - DEBUG - POST request to login: 
+2024-06-18 18:30:35,169 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:30:43,684 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:30:51,172 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:30:58,536 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:31:11,969 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:31:16,577 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:32:08,594 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:32:09,913 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:32:12,208 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:32:18,157 - INFO - User has been logged out.: 
+2024-06-18 18:32:18,269 - DEBUG - GET request to login: 
+2024-06-18 18:32:18,795 - DEBUG - GET request to login: 
+2024-06-18 18:32:19,573 - DEBUG - GET request to register: 
+2024-06-18 18:32:28,127 - DEBUG - POST request to register: 
+2024-06-18 18:32:28,958 - ERROR - Email address is already registered to another user.: 
+2024-06-18 18:32:28,967 - DEBUG - GET request to register: 
+2024-06-18 18:32:53,026 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:32:54,428 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:33:58,470 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:34:46,428 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:35:06,205 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:35:10,512 - DEBUG - GET request to register: 
+2024-06-18 18:35:15,448 - DEBUG - GET request to login: 
+2024-06-18 18:35:19,111 - DEBUG - POST request to login: 
+2024-06-18 18:35:20,848 - WARNING - User could not be logged in.: 
+2024-06-18 18:35:20,848 - ERROR - Username or password is incorrect.: 
+2024-06-18 18:35:20,856 - DEBUG - GET request to login: 
+2024-06-18 18:35:26,437 - DEBUG - POST request to login: 
+2024-06-18 18:35:27,278 - ERROR - Internal Server Error: /user/login: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 47, in login
+    validated = User.objects.login(**request.POST)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 155, in login
+    if not (bcrypt.checkpw(password, hashed)):
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'password': 'str' object cannot be converted to 'PyBytes'
+2024-06-18 18:36:16,485 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:36:23,992 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:36:31,342 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:36:35,023 - DEBUG - GET request to login: 
+2024-06-18 18:36:35,542 - DEBUG - GET request to login: 
+2024-06-18 18:36:39,783 - DEBUG - POST request to login: 
+2024-06-18 18:36:41,490 - WARNING - User could not be logged in.: 
+2024-06-18 18:36:41,490 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-18 18:36:41,507 - DEBUG - GET request to login: 
+2024-06-18 18:37:10,142 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:37:11,498 - DEBUG - GET request to login: 
+2024-06-18 18:37:14,789 - DEBUG - GET request to login: 
+2024-06-18 18:37:15,470 - DEBUG - GET request to login: 
+2024-06-18 18:37:20,104 - DEBUG - POST request to login: 
+2024-06-18 18:37:20,931 - ERROR - Internal Server Error: /user/login: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 47, in login
+    validated = User.objects.login(**request.POST)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 158, in login
+    if not (bcrypt.checkpw(password, hashed)):
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'hashed_password': 'str' object cannot be converted to 'PyBytes'
+2024-06-18 18:38:07,374 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:38:26,883 - DEBUG - GET request to login: 
+2024-06-18 18:38:34,185 - DEBUG - POST request to login: 
+2024-06-18 18:38:34,967 - WARNING - User could not be logged in.: 
+2024-06-18 18:38:34,967 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-18 18:38:34,978 - DEBUG - GET request to login: 
+2024-06-18 18:38:54,282 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:38:59,453 - DEBUG - GET request to login: 
+2024-06-18 18:39:05,436 - DEBUG - POST request to login: 
+2024-06-18 18:39:06,274 - ERROR - Internal Server Error: /user/login: 
+Traceback (most recent call last):
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 141, in login
+    if not (bcrypt.checkpw(password, hashed)):
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid salt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 47, in login
+    validated = User.objects.login(**request.POST)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 153, in login
+    hashed = logged_in_user.password.decode("utf-8").encode()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'decode'. Did you mean: 'encode'?
+2024-06-18 18:40:06,820 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:40:10,254 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:40:12,857 - DEBUG - POST request to login: 
+2024-06-18 18:40:13,678 - ERROR - Internal Server Error: /user/login: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 47, in login
+    validated = User.objects.login(**request.POST)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 158, in login
+    if not (bcrypt.checkpw(password, hashed)):
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'password': 'str' object cannot be converted to 'PyBytes'
+2024-06-18 18:40:16,765 - DEBUG - POST request to login: 
+2024-06-18 18:40:17,583 - ERROR - Internal Server Error: /user/login: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 47, in login
+    validated = User.objects.login(**request.POST)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 158, in login
+    if not (bcrypt.checkpw(password, hashed)):
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'password': 'str' object cannot be converted to 'PyBytes'
+2024-06-18 18:40:34,937 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:40:41,288 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:40:42,426 - DEBUG - GET request to login: 
+2024-06-18 18:40:46,360 - DEBUG - POST request to login: 
+2024-06-18 18:40:47,173 - ERROR - Internal Server Error: /user/login: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 47, in login
+    validated = User.objects.login(**request.POST)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 158, in login
+    if not (bcrypt.checkpw(password, hashed)):
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'hashed_password': 'str' object cannot be converted to 'PyBytes'
+2024-06-18 18:42:24,972 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:42:37,515 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:42:40,935 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:42:45,254 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:42:48,569 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:42:57,566 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:43:00,897 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:43:05,270 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:43:08,065 - DEBUG - POST request to login: 
+2024-06-18 18:43:10,655 - WARNING - User could not be logged in.: 
+2024-06-18 18:43:10,655 - ERROR - Username or password is incorrect.: 
+2024-06-18 18:43:13,360 - DEBUG - POST request to login: 
+2024-06-18 18:43:15,929 - WARNING - User could not be logged in.: 
+2024-06-18 18:43:15,930 - ERROR - Username or password is incorrect.: 
+2024-06-18 18:43:15,938 - DEBUG - GET request to login: 
+2024-06-18 18:43:28,564 - DEBUG - POST request to login: 
+2024-06-18 18:43:31,128 - WARNING - User could not be logged in.: 
+2024-06-18 18:43:31,128 - ERROR - Username or password is incorrect.: 
+2024-06-18 18:43:31,134 - DEBUG - GET request to login: 
+2024-06-18 18:44:02,306 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:44:22,563 - DEBUG - GET request to login: 
+2024-06-18 18:44:23,300 - DEBUG - GET request to register: 
+2024-06-18 18:44:33,413 - DEBUG - POST request to register: 
+2024-06-18 18:46:36,044 - DEBUG - GET request to login: 
+2024-06-18 18:46:39,672 - DEBUG - POST request to login: 
+2024-06-18 18:46:40,617 - WARNING - User could not be logged in.: 
+2024-06-18 18:46:40,618 - ERROR - Username or password is incorrect.: 
+2024-06-18 18:46:40,630 - DEBUG - GET request to login: 
+2024-06-18 18:46:44,868 - DEBUG - POST request to login: 
+2024-06-18 18:46:47,399 - INFO - User has been logged out.: 
+2024-06-18 18:46:47,410 - DEBUG - GET request to login: 
+2024-06-18 18:46:48,568 - DEBUG - GET request to register: 
+2024-06-18 18:46:56,199 - DEBUG - POST request to register: 
+2024-06-18 18:48:07,769 - INFO - User has been logged out.: 
+2024-06-18 18:48:07,778 - DEBUG - GET request to login: 
+2024-06-18 18:48:18,824 - DEBUG - POST request to login: 
+2024-06-18 18:48:19,773 - WARNING - User could not be logged in.: 
+2024-06-18 18:48:19,774 - ERROR - Username or password is incorrect.: 
+2024-06-18 18:48:19,784 - DEBUG - GET request to login: 
+2024-06-18 18:48:25,446 - DEBUG - POST request to login: 
+2024-06-18 18:48:26,390 - WARNING - User could not be logged in.: 
+2024-06-18 18:48:26,390 - ERROR - Username or password is incorrect.: 
+2024-06-18 18:48:26,401 - DEBUG - GET request to login: 
+2024-06-18 18:50:37,230 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 18:50:38,666 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 
+2024-06-18 18:50:55,174 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:51:31,953 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:51:43,616 - DEBUG - GET request to login: 
+2024-06-18 18:51:43,725 - DEBUG - GET request to login: 
+2024-06-18 18:51:44,690 - DEBUG - GET request to login: 
+2024-06-18 18:51:46,966 - DEBUG - GET request to register: 
+2024-06-18 18:51:57,074 - DEBUG - GET request to register: 
+2024-06-18 18:52:04,857 - DEBUG - POST request to register: 
+2024-06-18 18:55:56,614 - INFO - User has been logged out.: 
+2024-06-18 18:55:56,717 - DEBUG - GET request to login: 
+2024-06-18 18:55:57,577 - DEBUG - GET request to login: 
+2024-06-18 18:55:58,342 - DEBUG - GET request to register: 
+2024-06-18 18:56:14,969 - DEBUG - POST request to register: 
+2024-06-18 18:56:30,906 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:56:33,717 - INFO - User has been logged out.: 
+2024-06-18 18:56:33,815 - DEBUG - GET request to login: 
+2024-06-18 18:56:35,496 - DEBUG - GET request to register: 
+2024-06-18 18:56:44,093 - DEBUG - POST request to register: 
+2024-06-18 18:58:06,590 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 18:59:18,257 - INFO - User has been logged out.: 
+2024-06-18 18:59:18,361 - DEBUG - GET request to login: 
+2024-06-18 18:59:19,679 - DEBUG - GET request to register: 
+2024-06-18 18:59:27,375 - DEBUG - POST request to register: 
+2024-06-18 18:59:28,175 - ERROR - Password fields are required and must be at least 8 characters.: 
+2024-06-18 18:59:28,190 - DEBUG - GET request to register: 
+2024-06-18 18:59:35,324 - DEBUG - POST request to register: 
+2024-06-18 19:00:15,295 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:02:44,162 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:02:49,526 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:02:53,843 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:02:57,859 - INFO - User has been logged out.: 
+2024-06-18 19:02:59,551 - DEBUG - GET request to login: 
+2024-06-18 19:02:59,757 - DEBUG - GET request to login: 
+2024-06-18 19:03:01,430 - DEBUG - GET request to register: 
+2024-06-18 19:03:09,838 - DEBUG - POST request to register: 
+2024-06-18 19:03:28,897 - INFO - User has been logged out.: 
+2024-06-18 19:03:28,991 - DEBUG - GET request to login: 
+2024-06-18 19:03:31,715 - DEBUG - GET request to register: 
+2024-06-18 19:03:39,720 - DEBUG - POST request to register: 
+2024-06-18 19:03:48,046 - INFO - User has been logged out.: 
+2024-06-18 19:03:48,144 - DEBUG - GET request to login: 
+2024-06-18 19:03:52,085 - DEBUG - POST request to login: 
+2024-06-18 19:03:53,780 - WARNING - User could not be logged in.: 
+2024-06-18 19:03:53,780 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-18 19:03:53,795 - DEBUG - GET request to login: 
+2024-06-18 19:04:15,229 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:04:32,309 - DEBUG - GET request to login: 
+2024-06-18 19:04:33,454 - DEBUG - GET request to register: 
+2024-06-18 19:04:42,591 - DEBUG - POST request to register: 
+2024-06-18 19:04:58,268 - INFO - User has been logged out.: 
+2024-06-18 19:04:58,376 - DEBUG - GET request to login: 
+2024-06-18 19:05:08,519 - DEBUG - POST request to login: 
+2024-06-18 19:05:42,995 - DEBUG - GET request to edit profile: 
+2024-06-18 19:05:56,047 - DEBUG - POST request to edit profile: 
+2024-06-18 19:05:58,785 - DEBUG - GET request to edit profile: 
+2024-06-18 19:06:17,238 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:06:18,660 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:06:22,037 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:06:57,617 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:07:02,012 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:07:05,328 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:07:13,734 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-18 19:07:17,973 - DEBUG - GET request to edit profile: 
+2024-06-18 19:07:25,199 - DEBUG - POST request to edit profile: 
+2024-06-18 19:07:25,231 - ERROR - Internal Server Error: /profile/edit/password: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 1304, in edit_profile_password
+    validated = User.objects.update_password(**profile)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py", line 301, in update_password
+    if not (bcrypt.checkpw(password, hashed)):
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid salt
+2024-06-18 19:07:30,802 - INFO - User has been logged out.: 
+2024-06-18 19:07:30,894 - DEBUG - GET request to login: 
+2024-06-18 19:07:32,375 - DEBUG - GET request to register: 
+2024-06-18 19:07:41,448 - DEBUG - POST request to register: 
+2024-06-18 19:07:53,547 - DEBUG - GET request to edit profile: 
+2024-06-18 19:08:01,889 - DEBUG - POST request to edit profile: 
+2024-06-18 19:08:04,590 - DEBUG - GET request to edit profile: 
+2024-06-18 19:08:12,278 - INFO - User has been logged out.: 
+2024-06-18 19:08:12,380 - DEBUG - GET request to login: 
+2024-06-18 19:08:16,678 - DEBUG - POST request to login: 
+2024-06-18 19:08:23,439 - DEBUG - GET request to new workout: 

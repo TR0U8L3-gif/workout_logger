@@ -79,9 +79,15 @@ class UserManager(models.Manager):
         # If none, hash password, create user and send new user back:
         if len(errors) == 0:
             kwargs["password"][0] = bcrypt.hashpw((kwargs["password"][0]).encode(), bcrypt.gensalt(14))
+            
+            init_password = kwargs["password"][0]
+            
+            if(type(init_password) is bytes):
+                init_password = init_password.decode("utf-8")
+            
             # Create new validated User:
             validated_user = {
-                "logged_in_user": User(username=kwargs["username"][0], email=kwargs["email"][0], password=kwargs["password"][0]),
+                "logged_in_user": User(username=kwargs["username"][0], email=kwargs["email"][0], password=init_password),
             }
             # Save new User:
             validated_user["logged_in_user"].save()
@@ -302,8 +308,14 @@ class UserManager(models.Manager):
         # If none, hash password, update user and return new user:
         if len(errors) == 0:
             kwargs["new_password"] = bcrypt.hashpw((kwargs["new_password"]).encode(), bcrypt.gensalt(14))
+            
+            init_password = kwargs["new_password"]
+            
+            if(type(init_password) is bytes):
+                init_password = init_password.decode("utf-8")
+            
             # Update user:
-            user = User.objects.filter(id=kwargs['user_id']).update(password=kwargs['new_password'])
+            user = User.objects.filter(id=kwargs['user_id']).update(password=init_password)
 
             # Return updated User:
             updated_user = {
