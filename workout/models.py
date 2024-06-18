@@ -1050,7 +1050,7 @@ class User(models.Model):
     """Creates instances of `User`."""
     username = models.CharField(max_length=20)
     email = models.CharField(max_length=50)
-    password = models.CharField(max_length=22)
+    password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     profile_photo_url = models.CharField(max_length=255, blank=True, null=True)
