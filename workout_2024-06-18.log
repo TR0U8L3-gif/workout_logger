@@ -323,3 +323,16 @@ django.db.utils.DataError: value too long for type character varying(60)
 2024-06-18 17:33:12,733 - DEBUG - GET request to new workout: 
 2024-06-18 17:33:13,366 - DEBUG - GET request to new exercise: 
 2024-06-18 17:33:27,099 - DEBUG - GET request to new workout: 
+2024-06-18 17:58:43,220 - DEBUG - GET request to login: 
+2024-06-18 17:58:51,800 - DEBUG - POST request to login: 
+2024-06-18 17:58:52,592 - WARNING - User could not be logged in.: 
+2024-06-18 17:58:52,592 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-18 17:58:52,610 - DEBUG - GET request to login: 
+2024-06-18 17:58:57,529 - DEBUG - POST request to login: 
+2024-06-18 17:58:59,966 - WARNING - User could not be logged in.: 
+2024-06-18 17:58:59,967 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-18 17:58:59,985 - DEBUG - GET request to login: 
+2024-06-18 17:59:06,201 - DEBUG - POST request to login: 
+2024-06-18 17:59:07,960 - WARNING - User could not be logged in.: 
+2024-06-18 17:59:07,962 - ERROR - This user is corrupt. Please contact the administrator.: 
+2024-06-18 17:59:07,981 - DEBUG - GET request to login: 
