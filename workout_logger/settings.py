@@ -92,10 +92,10 @@ DATABASES = {
     }
 }
 
-database_url = env("DATABASE_URL")
+# database_url = env("DATABASE_URL")
 
 
-DATABASES["default"] = dj_database_url.parse(database_url)
+# DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 # Password validation
