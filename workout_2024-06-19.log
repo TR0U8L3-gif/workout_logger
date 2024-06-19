@@ -1,0 +1,199 @@
+2024-06-19 06:14:09,533 - DEBUG - GET request to login: 
+2024-06-19 06:14:14,076 - DEBUG - POST request to login: 
+2024-06-19 06:14:18,057 - INFO - User has been logged out.: 
+2024-06-19 06:14:18,074 - DEBUG - GET request to login: 
+2024-06-19 06:15:29,182 - DEBUG - POST request to login: 
+2024-06-19 06:15:36,758 - DEBUG - GET request to new exercise: 
+2024-06-19 06:16:41,549 - DEBUG - GET request to login: 
+2024-06-19 06:23:40,916 - DEBUG - GET request to new workout: 
+2024-06-19 06:26:40,790 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:26:54,531 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:27:36,451 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:27:37,758 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:27:39,072 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:29:56,056 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:34:18,952 - ERROR - Internal Server Error: /challenge/7: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 353, in view_challenge
+    exercise_status = user_challenge.exercise_status[exercises.index(exercise)]
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+2024-06-19 06:35:20,656 - DEBUG - GET request to new workout: 
+2024-06-19 06:37:55,429 - ERROR - Internal Server Error: /challenge/8: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 353, in view_challenge
+    exercise_status = user_challenge.exercise_status[exercises.index(exercise)]
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+2024-06-19 06:37:58,664 - ERROR - Internal Server Error: /challenge/8: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 353, in view_challenge
+    exercise_status = user_challenge.exercise_status[exercises.index(exercise)]
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+2024-06-19 06:41:14,194 - DEBUG - GET request to new workout: 
+2024-06-19 06:41:17,014 - DEBUG - GET request to new exercise: 
+2024-06-19 06:41:21,920 - DEBUG - GET request to new exercise: 
+2024-06-19 06:41:37,736 - DEBUG - GET request to new workout: 
+2024-06-19 06:41:58,035 - INFO - User has been logged out.: 
+2024-06-19 06:41:58,046 - DEBUG - GET request to login: 
+2024-06-19 06:42:15,988 - DEBUG - GET request to register: 
+2024-06-19 06:42:27,456 - DEBUG - POST request to register: 
+2024-06-19 06:42:27,460 - ERROR - Username is already registered to another user.: 
+2024-06-19 06:42:27,474 - DEBUG - GET request to register: 
+2024-06-19 06:42:46,830 - DEBUG - POST request to register: 
+2024-06-19 06:42:58,662 - DEBUG - GET request to new workout: 
+2024-06-19 06:43:05,113 - ERROR - Internal Server Error: /challenge/7: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 324, in view_challenge
+    user_challenge = UserChallenge.objects.get(workout_id=id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 443, in get
+    raise self.model.MultipleObjectsReturned(
+workout.models.UserChallenge.MultipleObjectsReturned: get() returned more than one UserChallenge -- it returned 2!
+2024-06-19 06:43:56,551 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:44:10,081 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:44:17,453 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:44:26,859 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:44:32,225 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:44:35,531 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:44:37,817 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:44:57,319 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:45:05,034 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:45:06,843 - ERROR - Internal Server Error: /challenge/7: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 359, in view_challenge
+    'challenge': challenge,
+                 ^^^^^^^^^
+NameError: name 'challenge' is not defined. Did you mean: 'Challenge'?
+2024-06-19 06:47:58,109 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:48:03,445 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:48:04,742 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:48:07,042 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:48:10,359 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:48:14,714 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:48:16,019 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:48:18,315 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:54:35,626 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:54:38,022 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:54:40,317 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:54:53,988 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:54:56,335 - ERROR - Internal Server Error: /challenge/7: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 325, in view_challenge
+    user_challengeAll = UserChallenge.objects.get(workout_id=id)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 443, in get
+    raise self.model.MultipleObjectsReturned(
+workout.models.UserChallenge.MultipleObjectsReturned: get() returned more than one UserChallenge -- it returned 2!
+2024-06-19 06:55:15,544 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:55:16,717 - ERROR - Internal Server Error: /challenge/7: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 325, in view_challenge
+    user_challengeAll = UserChallenge.objects.get(workout_id=id)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 443, in get
+    raise self.model.MultipleObjectsReturned(
+workout.models.UserChallenge.MultipleObjectsReturned: get() returned more than one UserChallenge -- it returned 2!
+2024-06-19 06:55:17,318 - ERROR - Internal Server Error: /challenge/7: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 325, in view_challenge
+    user_challengeAll = UserChallenge.objects.get(workout_id=id)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 443, in get
+    raise self.model.MultipleObjectsReturned(
+workout.models.UserChallenge.MultipleObjectsReturned: get() returned more than one UserChallenge -- it returned 2!
+2024-06-19 06:55:30,101 - ERROR - Internal Server Error: /challenge/7: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 325, in view_challenge
+    user_challengeAll = UserChallenge.objects.get(workout_id=id)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 443, in get
+    raise self.model.MultipleObjectsReturned(
+workout.models.UserChallenge.MultipleObjectsReturned: get() returned more than one UserChallenge -- it returned 2!
+2024-06-19 06:55:42,136 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:57:57,576 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:58:09,336 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:59:06,576 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 06:59:35,061 - DEBUG - GET request to new workout: 
+2024-06-19 06:59:35,721 - DEBUG - GET request to new exercise: 
+2024-06-19 06:59:37,785 - DEBUG - GET request to new exercise: 
+2024-06-19 06:59:42,596 - DEBUG - GET request to new workout: 
+2024-06-19 06:59:51,210 - DEBUG - GET request to new workout: 
+2024-06-19 06:59:54,506 - INFO - User has been logged out.: 
+2024-06-19 06:59:54,517 - DEBUG - GET request to login: 
+2024-06-19 07:00:00,922 - DEBUG - POST request to login: 
+2024-06-19 07:00:05,040 - DEBUG - GET request to new workout: 
+2024-06-19 07:00:17,998 - DEBUG - GET request to new workout: 
+2024-06-19 07:00:18,536 - DEBUG - GET request to new exercise: 
+2024-06-19 07:00:21,744 - DEBUG - GET request to new exercise: 
+2024-06-19 07:00:22,215 - DEBUG - GET request to new workout: 

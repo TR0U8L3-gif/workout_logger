@@ -84,6 +84,7 @@
                           <thead>
                             <tr>
                               <th>Exercise</th>
+                              <th>Description</th>
                               <th class="text-center">Status</th>
                             </tr>
                           </thead>
@@ -91,6 +92,7 @@
                             {% for exercise, status in exercises_with_status %}
                             <tr>
                               <td>{{ exercise.name }}</td>
+                              <td>{{ exercise.description }}</td>
                               <td class="align-middle text-center">
                                 <input type="checkbox" name="exercise_{{ forloop.counter0 }}" {% if status %}checked{% endif %} style="transform: scale(1.8);">
                               </td>

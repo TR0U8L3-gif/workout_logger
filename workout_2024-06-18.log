@@ -647,3 +647,6 @@ ValueError: Invalid salt
 2024-06-18 19:08:12,380 - DEBUG - GET request to login: 
 2024-06-18 19:08:16,678 - DEBUG - POST request to login: 
 2024-06-18 19:08:23,439 - DEBUG - GET request to new workout: 
+2024-06-18 19:09:42,513 - DEBUG - GET request to login: 
+2024-06-18 19:09:46,398 - DEBUG - POST request to login: 
+2024-06-18 19:09:57,858 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout_logger/settings.py changed, reloading.: 

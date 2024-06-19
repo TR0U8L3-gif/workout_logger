@@ -318,16 +318,21 @@ def view_challenge(request, id):
     
     try:
         # Check for valid session:
-        # workout = Workout.objects.get(id=id)
         user = User.objects.get(id=request.session["user_id"])
 
-        user_challenge = UserChallenge.objects.get(workout_id=id)
+        user_challenge = UserChallenge.objects.get(Q(workout_id=id) & Q(user_id=user.id))
         workout = Workout.objects.get(id=user_challenge.workout_id)
-        challenge = Challenge.objects.get(id=user_challenge.challenge_id)
+        challenge = Challenge.objects.get(Q(id=user_challenge.challenge_id) & Q())
                 
-        users = User.objects.filter(id=user_challenge.user_id)
+        user_challenge_all = UserChallenge.objects.filter(workout_id=id)
+
+        # Wyciągnij user_id z user_challenge_all
+        user_ids = user_challenge_all.values_list('user_id', flat=True)
+
+        # Pobierz użytkowników na podstawie user_id
+        users = User.objects.filter(id__in=user_ids)
         user_list = list(users)
-        
+
         print(user_list)
         
         if request.method == "POST":
@@ -352,6 +357,7 @@ def view_challenge(request, id):
         for exercise in exercises:
             exercise_status = user_challenge.exercise_status[exercises.index(exercise)]
             exercises_with_status.append((exercise, exercise_status))
+            
 
         # Gather any page data:
         data = {
