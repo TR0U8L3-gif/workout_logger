@@ -924,7 +924,6 @@ def new_workout(request):
     Returns:
         Django HttpResponse object.
     """
-
     try:
         # Check for valid session:
         user = User.objects.get(id=request.session["user_id"])
@@ -942,39 +941,30 @@ def new_workout(request):
 
         if request.method == "POST":
             logging.debug("POST request to new workout")
-            # Unpack request.POST for validation as we must add a field and cannot modify the request.POST object itself as it's a tuple:
-            workout = {
+            # Unpack request.POST for validation
+            workout_data = {
                 "name": request.POST["name"],
                 "description": request.POST["description"],
                 "user": user
             }
 
-            # Begin validation of a new workout:
-            validated = Workout.objects.new(**workout)
-
-            # If errors, reload register page with errors:
+            # Begin validation and creation of a new workout
             try:
-                if len(validated["errors"]) > 0:
-                    logging.error("Workout could not be created.")
-                    print("Workout could not be created.")
-                    # Loop through errors and Generate Django Message for each with custom level and tag:
-                    for error in validated["errors"]:
-                        messages.error(request, error, extra_tags='workout')
-                        logging.error(error)
-                    # Reload workout page:
-                    return redirect("/workout")
-            except KeyError:
-                # If validation successful, load newly created workout page:
-                print("Workout passed validation and has been created.")
-                id = str(validated['workout'].id)
-                # Load workout:
-                return redirect('/workout/' + id)
+                new_workout = Workout.objects.create(**workout_data)
+                messages.success(request, "Workout created successfully!")
+                logging.info("Workout created successfully.")
+                return redirect('/workout/' + str(new_workout.id))
+            except Exception as e:
+                logging.error("Error creating workout: %s", e)
+                messages.error(request, "Error creating workout: " + str(e), extra_tags='workout')
+                return redirect("/workout")
 
     except (KeyError, User.DoesNotExist) as err:
         # If existing session not found:
         messages.info(request, "You must be logged in to view this page.", extra_tags="invalid_session")
         logging.warning("User must be logged in to view 'new_workout'.")
         return redirect("/")
+
 
 def delete_workout(request, id):
     """
