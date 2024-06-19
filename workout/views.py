@@ -887,17 +887,17 @@ def edit_workout(request, id):
                 'workout_id': data['workout'].id,
             }
             # Begin validation of updated workout:
-            validated = Workout.objects.update(**workout)
+            # validated = Workout.objects.update(**workout)
             # If errors, reload register page with errors:
             try:
-                if len(validated["errors"]) > 0:
-                    logging.error("Workout could not be edited.")
-                    print("Workout could not be edited.")
-                    # Loop through errors and Generate Django Message for each with custom level and tag:
-                    for error in validated["errors"]:
-                        messages.error(request, error, extra_tags='edit')
-                        logging.error(error)
-                    # Reload workout page:
+                # if len(validated["errors"]) > 0:
+                #     logging.error("Workout could not be edited.")
+                #     print("Workout could not be edited.")
+                #     # Loop through errors and Generate Django Message for each with custom level and tag:
+                #     for error in validated["errors"]:
+                #         messages.error(request, error, extra_tags='edit')
+                #         logging.error(error)
+                #     # Reload workout page:
                     return redirect("/workout/" + str(data['workout'].id) + "/edit")
             except KeyError:
                 # If validation successful, load newly created workout page:

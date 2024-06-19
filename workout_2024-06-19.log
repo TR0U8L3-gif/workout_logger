@@ -270,3 +270,218 @@ Traceback (most recent call last):
     raise self.model.DoesNotExist(
 workout.models.Workout.DoesNotExist: Workout matching query does not exist.
 2024-06-19 07:12:00,702 - DEBUG - GET request to new workout: 
+2024-06-19 07:58:55,352 - DEBUG - GET request to login: 
+2024-06-19 07:58:59,157 - DEBUG - GET request to register: 
+2024-06-19 07:59:00,755 - DEBUG - GET request to login: 
+2024-06-19 07:59:08,590 - DEBUG - POST request to login: 
+2024-06-19 07:59:38,234 - DEBUG - GET request to edit profile: 
+2024-06-19 07:59:45,970 - DEBUG - GET request to edit profile: 
+2024-06-19 08:01:00,143 - DEBUG - GET request to edit workout: 
+2024-06-19 08:01:04,842 - DEBUG - POST request to edit workout: 
+2024-06-19 08:01:04,862 - ERROR - Internal Server Error: /workout/9/edit: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/options.py", line 608, in get_field
+    return self.fields_map[field_name]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'workout_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 890, in edit_workout
+    validated = Workout.objects.update(**workout)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 786, in update
+    query.add_update_values(kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/subqueries.py", line 86, in add_update_values
+    field = self.get_meta().get_field(name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/options.py", line 610, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Workout has no field named 'workout_id'
+2024-06-19 08:01:08,326 - DEBUG - GET request to edit workout: 
+2024-06-19 08:01:14,891 - DEBUG - POST request to complete workout: 
+2024-06-19 08:01:16,186 - DEBUG - POST request to complete workout: 
+2024-06-19 08:01:17,403 - DEBUG - POST request to share workout: 
+2024-06-19 08:01:24,676 - DEBUG - POST request to complete workout: 
+2024-06-19 08:01:26,650 - DEBUG - POST request to complete workout: 
+2024-06-19 08:02:09,462 - DEBUG - POST request to complete workout: 
+2024-06-19 08:02:12,682 - DEBUG - POST request to complete workout: 
+2024-06-19 08:02:17,073 - DEBUG - POST request to complete workout: 
+2024-06-19 08:02:23,508 - DEBUG - POST request to complete workout: 
+2024-06-19 08:02:29,355 - DEBUG - POST request to share workout: 
+2024-06-19 08:02:33,839 - DEBUG - GET request to new workout: 
+2024-06-19 08:02:37,700 - DEBUG - POST request to share workout: 
+2024-06-19 08:03:14,850 - DEBUG - GET request to new workout: 
+2024-06-19 08:03:16,384 - DEBUG - GET request to new exercise: 
+2024-06-19 08:03:23,650 - DEBUG - GET request to new exercise: 
+2024-06-19 08:05:04,005 - DEBUG - GET request to login: 
+2024-06-19 08:06:36,220 - DEBUG - GET request to new exercise: 
+2024-06-19 08:23:00,759 - DEBUG - GET request to new workout: 
+2024-06-19 08:26:29,592 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/models.py changed, reloading.: 
+2024-06-19 08:41:36,741 - DEBUG - GET request to new workout: 
+2024-06-19 08:43:36,949 - DEBUG - GET request to new workout: 
+2024-06-19 08:43:44,271 - DEBUG - GET request to edit workout: 
+2024-06-19 08:43:47,519 - DEBUG - POST request to edit workout: 
+2024-06-19 08:43:47,539 - ERROR - Internal Server Error: /workout/3/edit: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/options.py", line 608, in get_field
+    return self.fields_map[field_name]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'workout_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 890, in edit_workout
+    validated = Workout.objects.update(**workout)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 786, in update
+    query.add_update_values(kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/subqueries.py", line 86, in add_update_values
+    field = self.get_meta().get_field(name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/options.py", line 610, in get_field
+    raise FieldDoesNotExist("%s has no field named '%s'" % (self.object_name, field_name))
+django.core.exceptions.FieldDoesNotExist: Workout has no field named 'workout_id'
+2024-06-19 08:45:54,592 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:45:56,391 - DEBUG - GET request to edit workout: 
+2024-06-19 08:45:58,005 - DEBUG - POST request to edit workout: 
+2024-06-19 08:45:58,030 - ERROR - Internal Server Error: /workout/3/edit: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 416, in execute
+    return Database.Cursor.execute(self, query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: workout_workout.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 890, in edit_workout
+    validated = Workout.objects.update(**workout)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 790, in update
+    rows = query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1591, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1202, in execute_sql
+    cursor.execute(sql, params)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 99, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 80, in _execute
+    with self.db.wrap_database_errors:
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 416, in execute
+    return Database.Cursor.execute(self, query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: workout_workout.id
+2024-06-19 08:46:10,730 - DEBUG - GET request to login: 
+2024-06-19 08:46:16,771 - DEBUG - POST request to login: 
+2024-06-19 08:46:17,702 - WARNING - User could not be logged in.: 
+2024-06-19 08:46:17,702 - ERROR - Username or password is incorrect.: 
+2024-06-19 08:46:17,713 - DEBUG - GET request to login: 
+2024-06-19 08:46:23,503 - DEBUG - POST request to login: 
+2024-06-19 08:46:24,447 - WARNING - User could not be logged in.: 
+2024-06-19 08:46:24,447 - ERROR - Username or password is incorrect.: 
+2024-06-19 08:46:24,455 - DEBUG - GET request to login: 
+2024-06-19 08:46:45,473 - DEBUG - GET request to login: 
+2024-06-19 08:46:49,520 - DEBUG - POST request to login: 
+2024-06-19 08:46:54,093 - DEBUG - GET request to edit workout: 
+2024-06-19 08:47:00,422 - DEBUG - GET request to new exercise: 
+2024-06-19 08:47:06,688 - DEBUG - POST request to edit exercise: 
+2024-06-19 08:47:16,822 - DEBUG - POST request to edit exercise: 
+2024-06-19 08:47:18,273 - DEBUG - GET request to new workout: 
+2024-06-19 08:47:24,820 - DEBUG - GET request to new exercise: 
+2024-06-19 08:47:40,233 - DEBUG - GET request to new exercise: 
+2024-06-19 08:47:45,710 - DEBUG - GET request to edit workout: 
+2024-06-19 08:48:06,817 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:48:09,217 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:48:15,545 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:49:24,849 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:49:32,303 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:49:34,592 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:49:36,052 - DEBUG - GET request to edit workout: 
+2024-06-19 08:49:37,352 - DEBUG - POST request to edit workout: 
+2024-06-19 08:49:37,371 - ERROR - Internal Server Error: /workout/9/edit: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py", line 890, in edit_workout
+    validated = Workout.objects.get(id=data['workout'].id).update(**workout)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Workout' object has no attribute 'update'
+2024-06-19 08:49:45,084 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:50:23,821 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:50:26,198 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:50:34,560 - INFO - /Users/janrydzewski/Developer/Studies/Django/workout_logger/workout/views.py changed, reloading.: 
+2024-06-19 08:50:36,434 - DEBUG - GET request to edit workout: 
+2024-06-19 08:50:37,213 - DEBUG - POST request to edit workout: 
+2024-06-19 08:50:37,224 - DEBUG - GET request to edit workout: 
+2024-06-19 08:50:38,905 - DEBUG - POST request to edit workout: 
+2024-06-19 08:50:38,914 - DEBUG - GET request to edit workout: 
+2024-06-19 08:50:44,558 - DEBUG - POST request to edit workout: 
+2024-06-19 08:50:44,567 - DEBUG - GET request to edit workout: 
+2024-06-19 08:50:47,437 - DEBUG - GET request to new workout: 
+2024-06-19 08:50:48,218 - DEBUG - GET request to new exercise: 
+2024-06-19 08:50:54,572 - DEBUG - POST request to edit exercise: 
+2024-06-19 08:51:03,017 - DEBUG - POST request to edit exercise: 
+2024-06-19 08:51:14,319 - DEBUG - GET request to new exercise: 
+2024-06-19 08:51:17,227 - DEBUG - GET request to new exercise: 
+2024-06-19 08:51:17,687 - DEBUG - GET request to new workout: 
+2024-06-19 13:05:49,183 - DEBUG - GET request to login: 
+2024-06-19 13:05:53,797 - DEBUG - POST request to login: 
+2024-06-19 13:05:58,758 - DEBUG - GET request to edit profile: 
+2024-06-19 13:06:03,967 - DEBUG - POST request to edit profile: 
+2024-06-19 13:06:03,976 - DEBUG - GET request to edit profile: 
+2024-06-19 13:06:06,621 - DEBUG - GET request to edit profile: 
+2024-06-19 13:06:08,741 - DEBUG - POST request to edit profile: 
+2024-06-19 13:06:08,750 - DEBUG - GET request to edit profile: 
+2024-06-19 13:06:18,046 - DEBUG - GET request to new workout: 
+2024-06-19 13:06:19,004 - DEBUG - GET request to new exercise: 
